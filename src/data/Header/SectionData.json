@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Home",
+    "haveMenu": true
+  },
+  {
+    "name": "Shop",
+    "haveMenu": true
+  },
+  {
+    "name": "Collection",
+    "haveMenu": false
+  },
+  {
+    "name": "Pages",
+    "haveMenu": true
+  },
+  {
+    "name": "Blog",
+    "haveMenu": true
+  },
+  {
+    "name": "About",
+    "haveMenu": false
+  },
+  {
+    "name": "Contact",
+    "haveMenu": false
+  }
+]
