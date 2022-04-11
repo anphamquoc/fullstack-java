@@ -43,7 +43,7 @@ public class KhachHang {
 	private String hoTen;
 
 	@Column(name = "dia_chi")
-	private String dChi;
+	private String diaChi;
 
 	@Column(name = "so_dt")
 	private String soDt;
@@ -119,12 +119,12 @@ public class KhachHang {
 		this.sanPhamYeuThich = sanPhamYeuThich;
 	}
 
-	public String getDChi() {
-		return this.dChi;
+	public String getDiaChi() {
+		return this.diaChi;
 	}
 
-	public void setDChi(String dChi) {
-		this.dChi = dChi;
+	public void setDiaChi(String diaChi) {
+		this.diaChi = diaChi;
 	}
 
 	public String getEmail() {

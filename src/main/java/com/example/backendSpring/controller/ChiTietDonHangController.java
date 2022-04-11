@@ -3,6 +3,7 @@ package com.example.backendSpring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,12 +29,15 @@ public class ChiTietDonHangController {
 		return chiTietDonHangRepository.findAll();
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/{pid}")
 	public String createDetailOrder(@PathVariable long pid, @RequestBody ChiTietDonHang chiTietDonHang) {
-		chiTietDonHangRepository.createDetailOrder(chiTietDonHang.getMaDDH(), chiTietDonHang.getSoLuong(), pid);
+		chiTietDonHangRepository.createDetailOrder(chiTietDonHang.getMaDDH(),
+				chiTietDonHang.getSoLuong(), pid);
 		return "Add thành công";
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PutMapping("/{id}/{quantity}")
 	public String changeQuantityProduct(@PathVariable long id, @PathVariable int quantity) {
 		ChiTietDonHang chiTietDonHang = chiTietDonHangRepository.findById(id)
@@ -46,11 +50,12 @@ public class ChiTietDonHangController {
 		return "Thay đổi số lượng thành công";
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
 	@DeleteMapping("/{id}")
 	public String deleteOrder(@PathVariable long id) {
 		ChiTietDonHang chiTiet = chiTietDonHangRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy chi tiết đơn hàng này"));
-		chiTietDonHangRepository.deleteById(id);
+				.orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy chi tiết đơn hàng này để xóa"));
+		chiTietDonHangRepository.delete(chiTiet);
 		return "Xóa thành công";
 	}
 }

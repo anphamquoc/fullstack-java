@@ -3,6 +3,7 @@ package com.example.backendSpring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,16 +21,22 @@ public class SanPhamController {
 	@Autowired
 	private SanPhamRepository sanPhamRepository;
 
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping
 	public List<SanPham> getAllProducts() {
 		return sanPhamRepository.findAll();
 	}
 
-	@PostMapping
-	public SanPham addNewProduct(@RequestBody SanPham sanPham) {
-		return sanPhamRepository.save(sanPham);
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PostMapping("/{id}")
+	public String addNewProduct(@RequestBody SanPham sanPham, @PathVariable long id) {
+		sanPhamRepository.addProduct(sanPham.getGia(), sanPham.getHinhAnh(), sanPham.getMoTa(), sanPham.getSao(),
+				sanPham.getTenSp(), id);
+		;
+		return "Add thành công";
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/{id}")
 	public SanPham getProduct(@PathVariable long id) {
 		SanPham sanPham = sanPhamRepository.findById(id)

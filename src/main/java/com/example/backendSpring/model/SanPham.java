@@ -11,8 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,9 +30,9 @@ public class SanPham {
 	private String tenSp;
 
 	@Column(name = "gia")
-	private String gia;
+	private long gia;
 
-	@Column(name = "mo_ta")
+	@Column(name = "mo_ta", length = 4096)
 	private String moTa;
 
 	@Column(name = "hinh_anh")
@@ -41,11 +41,9 @@ public class SanPham {
 	@Column(name = "sao")
 	private double sao;
 
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-	@JoinTable(name = "PhanLoaiSanPham", joinColumns = { @JoinColumn(name = "id_sp") }, inverseJoinColumns = {
-			@JoinColumn(name = "id_pl") })
-	private Set<PhanLoai> cacPhanLoai = new HashSet<>();
+	@ManyToOne
+	@JoinColumn(name = "ma_pl", nullable = false)
+	private PhanLoai phanLoai;
 
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "sanPhamYeuThich")
@@ -71,11 +69,11 @@ public class SanPham {
 		this.tenSp = tenSp;
 	}
 
-	public String getGia() {
-		return gia;
+	public long getGia() {
+		return this.gia;
 	}
 
-	public void setGia(String gia) {
+	public void setGia(long gia) {
 		this.gia = gia;
 	}
 
@@ -95,9 +93,40 @@ public class SanPham {
 		this.hinhAnh = hinhAnh;
 	}
 
-	public Set<PhanLoai> getCacPhanLoai() {
-		System.out.println(cacPhanLoai.toString());
-		return cacPhanLoai;
+	public void setMaSp(long maSp) {
+		this.maSp = maSp;
+	}
+
+	public PhanLoai getPhanLoai() {
+		return this.phanLoai;
+	}
+
+	public void setPhanLoai(PhanLoai phanLoai) {
+		this.phanLoai = phanLoai;
+	}
+
+	public Set<KhachHang> getKhachHangYeuThich() {
+		return this.khachHangYeuThich;
+	}
+
+	public void setKhachHangYeuThich(Set<KhachHang> khachHangYeuThich) {
+		this.khachHangYeuThich = khachHangYeuThich;
+	}
+
+	public Set<ChiTietDonHang> getChiTietDonHang() {
+		return this.chiTietDonHang;
+	}
+
+	public void setChiTietDonHang(Set<ChiTietDonHang> chiTietDonHang) {
+		this.chiTietDonHang = chiTietDonHang;
+	}
+
+	public Set<ChiTietGioHang> getChiTietGioHang() {
+		return this.chiTietGioHang;
+	}
+
+	public void setChiTietGioHang(Set<ChiTietGioHang> chiTietGioHang) {
+		this.chiTietGioHang = chiTietGioHang;
 	}
 
 	public double getSao() {

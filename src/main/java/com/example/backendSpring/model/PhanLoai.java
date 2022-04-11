@@ -1,12 +1,9 @@
 package com.example.backendSpring.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -15,7 +12,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "PhanLoai")
@@ -34,15 +34,12 @@ public class PhanLoai {
 	@ElementCollection(targetClass = String.class)
 	private Set<String> kichCo;
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "cacPhanLoai")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "phanLoai")
 	private Set<SanPham> cacSanPham = new HashSet<>();
 
 	public long getMaPl() {
 		return this.maPl;
-	}
-
-	public void setMaPl(long maPl) {
-		this.maPl = maPl;
 	}
 
 	public Set<String> getMauSac() {
@@ -69,4 +66,7 @@ public class PhanLoai {
 		this.cacSanPham = cacSanPham;
 	}
 
+	public void setMaPl(long maPl) {
+		this.maPl = maPl;
+	}
 }

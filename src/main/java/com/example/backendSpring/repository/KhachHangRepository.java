@@ -19,6 +19,11 @@ public interface KhachHangRepository extends JpaRepository<KhachHang, Long> {
 
 	@Modifying
 	@Transactional
+	@Query(value = "insert into gio_hang(ma_gh, ma_kh) values(?, ?)", nativeQuery = true)
+	void createCart(long id, long pid);
+
+	@Modifying
+	@Transactional
 	@Query(value = "delete from yeu_thich where ma_kh=? and ma_sp=?", nativeQuery = true)
 	void deleteProductFromFavourite(long id, long pid);
 
@@ -31,4 +36,9 @@ public interface KhachHangRepository extends JpaRepository<KhachHang, Long> {
 	@Transactional
 	@Query(value = "delete from chi_tiet_gio_hang where ma_gh=? and ma_sp=?", nativeQuery = true)
 	void deleteProductFromCart(long id, long pid);
+
+	@Modifying
+	@Transactional
+	@Query(value = "update chi_tiet_gio_hang set so_luong=? where ma_gh=? and ma_sp=?", nativeQuery = true)
+	void updateProductInCart(int quantity, long id, long pid);
 }

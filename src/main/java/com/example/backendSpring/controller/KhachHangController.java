@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.backendSpring.dto.GioHangRequest;
 import com.example.backendSpring.dto.KhachHangRequest;
+import com.example.backendSpring.dto.KhachHangUpdateRequest;
 import com.example.backendSpring.exception.ResourceNotFoundException;
 import com.example.backendSpring.model.ChiTietGioHang;
 import com.example.backendSpring.model.GioHang;
@@ -30,12 +33,14 @@ public class KhachHangController {
 	private KhachHangRepository khachHangRepository;
 
 	// Get all customers
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping
 	public List<KhachHang> getAllCustomers() {
 		return khachHangRepository.findAll();
 	}
 
 	// Get customer with id
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/{id}")
 	public ResponseEntity<KhachHang> getCustomerById(@PathVariable long id) {
 		KhachHang khachHang = khachHangRepository.findById(id)
@@ -43,15 +48,32 @@ public class KhachHangController {
 		return ResponseEntity.ok(khachHang);
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PutMapping("/{id}")
+	public KhachHang updateCustomer(@PathVariable long id, @RequestBody KhachHangUpdateRequest khachHangUpdateRequest) {
+		KhachHang khachHang = khachHangRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Không có khách hàng cần tìm"));
+		khachHang.setDiaChi(khachHangUpdateRequest.getDiaChi());
+		khachHang.setEmail(khachHangUpdateRequest.getEmail());
+		khachHang.setHoTen(khachHangUpdateRequest.getHoTen());
+		khachHang.setSoDt(khachHangUpdateRequest.getSoDt());
+		return khachHang;
+	}
+
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/register")
+
 	public KhachHang register(@RequestBody KhachHang khachHang) {
 		KhachHang checKhachHang = khachHangRepository.findByUsername(khachHang.getUsername());
 		if (checKhachHang != null) {
 			throw new Error("Người dùng này đã tồn tại");
 		}
-		return khachHangRepository.save(khachHang);
+		KhachHang khachHang2 = khachHangRepository.save(khachHang);
+		khachHangRepository.createCart(khachHang2.getMaKh(), khachHang2.getMaKh());
+		return khachHang2;
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/login")
 	public KhachHang login(@RequestBody KhachHangRequest thongTin) {
 		KhachHang checkKhachHang = khachHangRepository.findByUsername(thongTin.getUsername());
@@ -65,6 +87,7 @@ public class KhachHangController {
 		return checkKhachHang;
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/{id}/yeu-thich")
 	public Set<SanPham> getAllFavouriteProduct(@PathVariable long id) {
 		KhachHang khachHang = khachHangRepository.findById(id)
@@ -72,13 +95,14 @@ public class KhachHangController {
 		return khachHang.getSanPhamYeuThich();
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
 	@PutMapping("/{id}/yeu-thich/{pid}")
 	public String addProductToFavourite(@PathVariable long id, @PathVariable long pid) {
 		KhachHang khachHang = khachHangRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy người dùng này"));
 		for (SanPham sp : khachHang.getSanPhamYeuThich()) {
 			if (sp.getMaSp() == pid) {
-				throw new Error("Sản phẩm này đã có trong giỏ");
+				throw new Error("Sản phẩm này đã có trong mục yêu thích");
 			}
 		}
 		khachHangRepository.addProductToFavourite(id, pid);
@@ -87,6 +111,7 @@ public class KhachHangController {
 
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
 	@DeleteMapping("/{id}/yeu-thich/{pid}")
 	public String deleteProductFromFavourite(@PathVariable long id, @PathVariable long pid) {
 		boolean checked = false;
@@ -108,6 +133,7 @@ public class KhachHangController {
 
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/{id}/gio-hang")
 	public GioHang getAllCart(@PathVariable long id) {
 		KhachHang khachHang = khachHangRepository.findById(id)
@@ -115,8 +141,9 @@ public class KhachHangController {
 		return khachHang.getGioHang();
 	}
 
-	@PutMapping("/{id}/gio-hang/{pid}")
-	public String addProductToCart(@PathVariable long id, @PathVariable long pid) {
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PostMapping("/{id}/gio-hang/{pid}")
+	public String addProductToCart(@PathVariable long id, @PathVariable long pid, @RequestBody GioHangRequest request) {
 		KhachHang khachHang = khachHangRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy người dùng này"));
 		GioHang gh = khachHang.getGioHang();
@@ -125,12 +152,30 @@ public class KhachHangController {
 				throw new Error("Sản phẩm này đã có trong giỏ");
 			}
 		}
-		khachHangRepository.addProductToCart(id, pid, 1);
+		khachHangRepository.addProductToCart(id, pid, request.getSoLuong());
 
 		return "Thêm thành công";
 
 	}
 
+	@CrossOrigin(origins = "http://localhost:3000")
+	@PutMapping("/{id}/gio-hang/{pid}")
+	public String updateProductInCart(@PathVariable long id, @PathVariable long pid,
+			@RequestBody GioHangRequest request) {
+		KhachHang khachHang = khachHangRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy người dùng này"));
+		GioHang gh = khachHang.getGioHang();
+		for (ChiTietGioHang sp : gh.getChiTietGioHang()) {
+			if (sp.getSanPham().getMaSp() == pid) {
+				khachHangRepository.updateProductInCart(request.getSoLuong(), id, pid);
+				return "Cập nhật thành công";
+			}
+		}
+		throw new Error("Sản phẩm không có trong giỏ hàng của bạn");
+
+	}
+
+	@CrossOrigin(origins = "http://localhost:3000")
 	@DeleteMapping("/{id}/gio-hang/{pid}")
 	public String deleteProductFromCart(@PathVariable long id, @PathVariable long pid) {
 		boolean checked = false;
