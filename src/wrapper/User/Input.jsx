@@ -1,13 +1,24 @@
 import React from "react";
 
-const Input = ({ name }) => {
+const Input = ({ name, setUser, user }) => {
+  const handleChange = (e) => {
+    if (e.target.name === "Username" || e.target.name === "Password")
+      setUser({ ...user, [e.target.name.toLowerCase()]: e.target.value });
+    else {
+      setUser({ ...user, [e.target.name]: e.target.value });
+    }
+  };
   return (
     <div class="form-group mb-6">
-      <label for="username" class="form-label inline-block mb-2 text-gray-400">
+      <label for={name} class="form-label inline-block mb-2 text-gray-400">
         {name}
       </label>
       <input
-        type="text"
+        type={
+          name === "Password" || name === "Confirm Password"
+            ? "password"
+            : "text"
+        }
         class="form-control
       block
       w-full
@@ -26,7 +37,8 @@ const Input = ({ name }) => {
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
         placeholder={`Enter ${name}`}
-        name="username"
+        name={name}
+        onChange={handleChange}
       />
       {/* <small id="emailHelp" class="block mt-1 text-xs text-gray-600">
               We'll never share your email with anyone else.

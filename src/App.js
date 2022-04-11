@@ -13,8 +13,21 @@ import ProductList from "./components/ProductList/index";
 import ProductDetail from "./components/ProductDetail/index";
 import Account from "./components/UserInfo/index";
 import "react-loading-skeleton/dist/skeleton.css";
+import { fetchProducts } from "./redux/features/ProductSlice";
+import { useDispatch } from "react-redux";
+import { useEffect, useLayoutEffect } from "react";
+import { loadUser } from "./redux/features/UserSlice";
+import Checkout from "./components/Checkout";
+import CheckoutSuccess from "./components/Checkout/CheckoutSuccess";
+import Order from "./components/Order";
 
 function App() {
+  //handle no access control allow origin header
+  const dispatch = useDispatch();
+  useLayoutEffect(() => {
+    dispatch(loadUser());
+    dispatch(fetchProducts());
+  });
   return (
     <Router>
       <NavBar />
@@ -26,6 +39,9 @@ function App() {
         <Route path="/favourite" element={<Favourite />}></Route>
         <Route path="/shop" element={<ProductList />}></Route>
         <Route path="/product/:id" element={<ProductDetail />}></Route>
+        <Route path="/checkout" element={<Checkout />}></Route>
+        <Route path="/checkout/success" element={<CheckoutSuccess />}></Route>
+        <Route path="/orders" element={<Order />} />
       </Routes>
     </Router>
   );

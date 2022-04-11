@@ -1,9 +1,43 @@
 import React, { Fragment, useState } from "react";
 import Breadcrumb from "../../wrapper/Breadcrumb";
+import { useNavigate } from "react-router-dom";
 import Input from "../../wrapper/User/Input";
+import { useSelector, useDispatch } from "react-redux";
+import { loginUser, registerUser } from "../../redux/features/UserSlice";
 
 const Form = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formActive, setFormActive] = useState("login");
+  const userRedux = useSelector((state) => state.user);
+  const [userLogin, setUserLogin] = useState({
+    username: "",
+    password: "",
+  });
+  const [userRegister, setUserRegister] = useState({
+    username: "",
+    password: "",
+    hoTen: "",
+    email: "",
+    soDt: "",
+    diaChi: "",
+  });
+  if (userRedux?.isAuthenticated) {
+    navigate("/");
+  }
+  const [rePassword, setRePassword] = useState("");
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(loginUser(userLogin));
+  };
+  const handleRegister = (e) => {
+    e.preventDefault();
+    if (userRegister.password !== rePassword) {
+      alert("Password not match");
+    } else {
+      dispatch(registerUser(userRegister));
+    }
+  };
   return (
     <Fragment>
       <div className="flex flex-col gap-5 justify-center items-center w-full min-h-[calc(100vh)]">
@@ -27,8 +61,16 @@ const Form = () => {
           {formActive === "login" ? (
             <div class="block p-10 w-2/5 rounded-lg shadow-lg bg-white absolute">
               <form>
-                <Input name={"Username"} />
-                <Input name={"Password"} />
+                <Input
+                  name={"Username"}
+                  setUser={setUserLogin}
+                  user={userLogin}
+                />
+                <Input
+                  name={"Password"}
+                  setUser={setUserLogin}
+                  user={userLogin}
+                />
                 <div className="flex justify-between">
                   <div class="form-group form-check mb-6">
                     <input
@@ -62,22 +104,83 @@ const Form = () => {
     transition
     duration-150
     ease-in-out"
-                  disabled
+                  onClick={handleLogin}
                 >
-                  {true ? (
+                  {/* {true ? (
                     <i class="fad fa-spinner-third fa-spin"></i>
-                  ) : (
-                    "Submit"
-                  )}
+                  ) : ( */}
+                  Submit
+                  {/* )} */}
                 </button>
               </form>
             </div>
           ) : (
             <div class="block p-10 w-2/5 rounded-lg shadow-lg bg-white absolute">
               <form>
-                <Input name={"Username"} />
-                <Input name={"Password"} />
-                <Input name={"Confirm Password"} />
+                <Input
+                  name={"Username"}
+                  user={userRegister}
+                  setUser={setUserRegister}
+                />
+                <Input
+                  name={"Password"}
+                  user={userRegister}
+                  setUser={setUserRegister}
+                />
+                <Input
+                  name={"soDt"}
+                  user={userRegister}
+                  setUser={setUserRegister}
+                />
+                <Input
+                  name={`hoTen`}
+                  user={userRegister}
+                  setUser={setUserRegister}
+                />
+                <Input
+                  name={"email"}
+                  user={userRegister}
+                  setUser={setUserRegister}
+                />
+                <Input
+                  name={"diaChi"}
+                  user={userRegister}
+                  setUser={setUserRegister}
+                />
+                <div class="form-group mb-6">
+                  <label
+                    for={"rePassword"}
+                    class="form-label inline-block mb-2 text-gray-400"
+                  >
+                    Confirm Password
+                  </label>
+                  <input
+                    type="password"
+                    class="form-control
+      block
+      w-full
+      px-3
+      py-1.5
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding
+      border border-solid border-gray-300
+      rounded
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    id="exampleInputEmail1"
+                    aria-describedby="emailHelp"
+                    placeholder={`Confirm Password`}
+                    name={"rePassword"}
+                    onChange={(e) => setRePassword(e.target.value)}
+                  />
+                  {/* <small id="emailHelp" class="block mt-1 text-xs text-gray-600">
+              We'll never share your email with anyone else.
+            </small> */}
+                </div>
                 <div className="flex justify-between">
                   <div class="form-group form-check mb-6">
                     <input
@@ -111,6 +214,7 @@ const Form = () => {
       transition
       duration-150
       ease-in-out"
+                  onClick={handleRegister}
                 >
                   Submit
                 </button>

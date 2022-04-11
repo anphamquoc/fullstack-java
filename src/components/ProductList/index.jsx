@@ -1,12 +1,48 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Breadcrumb from "../../wrapper/Breadcrumb";
 import ProductComponent from "../../wrapper/Product/ProductComponent";
 import FilterCheckbox from "../../wrapper/Shop/FilterCheckbox";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import ProductLoading from "../../wrapper/Loading/ProductLoading";
 
 const Index = () => {
   const products = useSelector((state) => state.products);
-  console.log(products);
+  const [filterProducts, setFilterProducts] = useState([]);
+  const [filter, setFilter] = useState({
+    gia: 0,
+    colors: [],
+    sort: "",
+  });
+  const handleFilter = () => {
+    const { gia, colors, sort } = filter;
+    let newFilterProducts = [...products.products];
+    if (gia !== 0) {
+      newFilterProducts = newFilterProducts.filter((product) => {
+        return product.gia <= gia;
+      });
+    }
+    if (colors.length > 0) {
+      console.log(newFilterProducts);
+      newFilterProducts = newFilterProducts.filter(function (product) {
+        return colors.every((color) => product.phanLoai.mauSac.includes(color));
+      });
+    }
+    if (sort !== "") {
+      newFilterProducts = newFilterProducts.sort((a, b) => {
+        if (sort === "gia-cao-den-thap") {
+          return b.gia - a.gia;
+        } else if (sort === "gia-thap-den-cao") {
+          return a.gia - b.gia;
+        } else if (sort === "a->z") {
+          return a.tenSp.localeCompare(b.tenSp);
+        } else if (sort === "z->a") {
+          return b.tenSp.localeCompare(a.tenSp);
+        }
+      });
+    }
+    setFilterProducts(newFilterProducts);
+  };
+  console.log(filterProducts);
   return (
     <Fragment>
       <div className="w-full pt-32 flex flex-col items-center">
@@ -21,7 +57,7 @@ const Index = () => {
                     for="customRange3"
                     class="form-label font-medium text-xl"
                   >
-                    0 - 20000
+                    0 - {filter.gia}
                   </label>
                   <input
                     type="range"
@@ -35,14 +71,23 @@ const Index = () => {
       focus:outline-none focus:ring-0 focus:shadow-none
     "
                     min="0"
-                    max="5"
-                    step="0.5"
+                    max="10000000"
+                    step="20000"
                     id="customRange3"
+                    onChange={(e) =>
+                      setFilter({ ...filter, gia: e.target.value })
+                    }
                   />
                 </div>
               </div>
-              <FilterCheckbox />
-              <FilterCheckbox />
+              <FilterCheckbox filter={filter} setFilter={setFilter} />
+              {/* <FilterCheckbox /> */}
+              <button
+                className="bg-purple-500 text-white py-2 rounded-full hover:bg-purple-600"
+                onClick={handleFilter}
+              >
+                Filter
+              </button>
             </div>
             <div className="basis-3/4">
               <div>
@@ -65,21 +110,41 @@ const Index = () => {
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                       aria-label="Default select example"
+                      onChange={(e) =>
+                        setFilter({ ...filter, sort: e.target.value })
+                      }
                     >
-                      <option selected>Sort by newess</option>
-                      <option value="1">A to Z</option>
-                      <option value="2">Z to A</option>
-                      <option value="3">In stock</option>
+                      <option selected value={""}>
+                        Sort by newess
+                      </option>
+                      <option value="a->z">A to Z</option>
+                      <option value="z->a">Z to A</option>
+                      <option value="gia-thap-den-cao">
+                        Giá từ thấp đến cao
+                      </option>
+                      <option value="gia-cao-den-thap">
+                        Giá từ cao đến thấp
+                      </option>
+                      {/* <option value="3">In stock</option> */}
                     </select>
                   </div>
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-7">
                 {/* One Product */}
-                <ProductComponent />
-                <ProductComponent />
-                <ProductComponent />
-                <ProductComponent />
+
+                {products.loading ? (
+                  <>
+                    <ProductLoading />
+                    <ProductLoading />
+                    <ProductLoading />
+                  </>
+                ) : (
+                  (filterProducts.length
+                    ? filterProducts
+                    : products.products
+                  ).map((product) => <ProductComponent product={product} />)
+                )}
               </div>
             </div>
           </div>

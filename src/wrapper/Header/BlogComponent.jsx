@@ -12,7 +12,7 @@ const BlogComponent = () => {
         />
       </div>
       <div className="flex flex-col gap-3 text-center">
-        <h3 className="font-semibold text-2xl">Bài viết về đồng hồ hay</h3>
+        <h3 className="font-semibold text-2xl">Đồng hồ mạ vàng</h3>
         <span className="font-normal text-xl italic text-gray-400">
           By Phạm Quốc Ấn
         </span>

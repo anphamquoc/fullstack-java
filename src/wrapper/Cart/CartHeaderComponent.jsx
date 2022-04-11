@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartHeaderComponent = ({ isCart }) => {
+const CartHeaderComponent = ({ isCart, isFavourite }) => {
   return (
     <thead class="border-b bg-gray-50">
       <tr className="uppercase">
@@ -19,10 +19,12 @@ const CartHeaderComponent = ({ isCart }) => {
         <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
           Subtotal
         </th>
-        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-          Action
-        </th>
-        {!isCart && (
+        {(isCart || isFavourite) && (
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+            Action
+          </th>
+        )}
+        {!isCart && isFavourite && (
           <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
             Add to cart
           </th>

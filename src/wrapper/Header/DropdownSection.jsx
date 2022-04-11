@@ -7,7 +7,9 @@ const Section = ({ name, haveMenu }) => {
       <div className="justify-center items-center text-xl inline-block group relative">
         {/* Menu name */}
         <div className="flex flex-row items-center gap-2 justify-center p-4 cursor-pointer group-hover:text-violet-600 font-semibold">
-          <Link to={"/"}>
+          <Link
+            to={`/${name.toLowerCase() === "home" ? "" : name.toLowerCase()}`}
+          >
             <h6>{name}</h6>
           </Link>{" "}
           {haveMenu ? <i className="fal fa-angle-down" /> : ""}
