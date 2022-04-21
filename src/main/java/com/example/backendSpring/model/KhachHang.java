@@ -1,5 +1,7 @@
 package com.example.backendSpring.model;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,6 +19,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -48,12 +52,26 @@ public class KhachHang {
 	@Column(name = "so_dt")
 	private String soDt;
 
+	@Column(name = "salt")
+	private String salt;
+
 	@Column(name = "email")
 	private String email;
+
+	@Column(name = "ngay_tao")
+	@CreationTimestamp
+	private Timestamp ngayTao;
+
+	@Column(name = "vai_tro")
+	private String vaiTro = "khachhang";
 
 	@OneToMany(targetEntity = DonDatHang.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "ma_kh", referencedColumnName = "ma_kh")
 	private List<DonDatHang> cacDonDatHang;
+
+	@OneToMany(targetEntity = Review.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "ma_kh", referencedColumnName = "ma_kh")
+	private List<Review> cacReview;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "YeuThich", joinColumns = { @JoinColumn(name = "ma_kh") }, inverseJoinColumns = {
@@ -71,6 +89,14 @@ public class KhachHang {
 		this.maKh = maKh;
 	}
 
+	public String getVaiTro() {
+		return this.vaiTro;
+	}
+
+	public void setVaiTro(String vaiTro) {
+		this.vaiTro = vaiTro;
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -83,12 +109,28 @@ public class KhachHang {
 		return password;
 	}
 
+	public String getSalt() {
+		return this.salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	public String getHoTen() {
 		return hoTen;
+	}
+
+	public Timestamp getNgayTao() {
+		return this.ngayTao;
+	}
+
+	public void setNgayTao(Timestamp ngayTao) {
+		this.ngayTao = ngayTao;
 	}
 
 	public void setHoTen(String hoTen) {

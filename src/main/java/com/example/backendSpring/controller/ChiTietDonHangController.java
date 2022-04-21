@@ -19,6 +19,7 @@ import com.example.backendSpring.repository.ChiTietDonHangRepository;
 
 @RestController
 @RequestMapping("/api/v1/chi-tiet-don-hang")
+@CrossOrigin("*")
 public class ChiTietDonHangController {
 
 	@Autowired
@@ -29,7 +30,6 @@ public class ChiTietDonHangController {
 		return chiTietDonHangRepository.findAll();
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/{pid}")
 	public String createDetailOrder(@PathVariable long pid, @RequestBody ChiTietDonHang chiTietDonHang) {
 		chiTietDonHangRepository.createDetailOrder(chiTietDonHang.getMaDDH(),
@@ -37,7 +37,6 @@ public class ChiTietDonHangController {
 		return "Add thành công";
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@PutMapping("/{id}/{quantity}")
 	public String changeQuantityProduct(@PathVariable long id, @PathVariable int quantity) {
 		ChiTietDonHang chiTietDonHang = chiTietDonHangRepository.findById(id)
@@ -50,7 +49,6 @@ public class ChiTietDonHangController {
 		return "Thay đổi số lượng thành công";
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@DeleteMapping("/{id}")
 	public String deleteOrder(@PathVariable long id) {
 		ChiTietDonHang chiTiet = chiTietDonHangRepository.findById(id)

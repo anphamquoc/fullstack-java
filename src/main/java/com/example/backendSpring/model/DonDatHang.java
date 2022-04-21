@@ -2,6 +2,7 @@ package com.example.backendSpring.model;
 
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,8 +47,9 @@ public class DonDatHang {
 	@Column(name = "email")
 	private String email;
 
-	@Column(name = "ngay_dat_hang", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Date ngayDatHang;
+	@Column(name = "ngay_dat_hang")
+	@CreationTimestamp
+	private Timestamp ngayDatHang;
 
 	@Column(name = "tong_tien")
 	private long tongTien;
@@ -108,11 +112,11 @@ public class DonDatHang {
 		this.noiNhan = noiNhan;
 	}
 
-	public Date getNgayDatHang() {
-		return ngayDatHang;
+	public Timestamp getNgayDatHang() {
+		return this.ngayDatHang;
 	}
 
-	public void setNgayDatHang(Date ngayDatHang) {
+	public void setNgayDatHang(Timestamp ngayDatHang) {
 		this.ngayDatHang = ngayDatHang;
 	}
 

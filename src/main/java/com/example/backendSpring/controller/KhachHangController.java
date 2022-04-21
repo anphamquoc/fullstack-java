@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.appsdeveloperblog.encryption.PasswordUtils;
 import com.example.backendSpring.dto.GioHangRequest;
 import com.example.backendSpring.dto.KhachHangRequest;
 import com.example.backendSpring.dto.KhachHangUpdateRequest;
+import com.example.backendSpring.dto.PasswordRequest;
 import com.example.backendSpring.exception.ResourceNotFoundException;
 import com.example.backendSpring.model.ChiTietGioHang;
 import com.example.backendSpring.model.GioHang;
@@ -27,20 +29,21 @@ import com.example.backendSpring.repository.KhachHangRepository;
 
 @RestController
 @RequestMapping("/api/v1/khach-hang")
+@CrossOrigin("*")
 public class KhachHangController {
 
 	@Autowired
 	private KhachHangRepository khachHangRepository;
 
 	// Get all customers
-	@CrossOrigin(origins = "http://localhost:3000")
+
 	@GetMapping
 	public List<KhachHang> getAllCustomers() {
 		return khachHangRepository.findAll();
 	}
 
 	// Get customer with id
-	@CrossOrigin(origins = "http://localhost:3000")
+
 	@GetMapping("/{id}")
 	public ResponseEntity<KhachHang> getCustomerById(@PathVariable long id) {
 		KhachHang khachHang = khachHangRepository.findById(id)
@@ -48,7 +51,22 @@ public class KhachHangController {
 		return ResponseEntity.ok(khachHang);
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
+	@PutMapping("/{id}/change-password")
+	public ResponseEntity<KhachHang> changePassword(@PathVariable long id,
+			@RequestBody PasswordRequest passwordRequest) {
+		KhachHang khachHang = khachHangRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Không có khách hàng cần tìm"));
+		if (!PasswordUtils.verifyUserPassword(passwordRequest.getPassword(), khachHang.getPassword(),
+				khachHang.getSalt())) {
+			throw new ResourceNotFoundException("Mật khẩu không đúng");
+		}
+		String salt = PasswordUtils.getSalt(30);
+		String newPassword = PasswordUtils.generateSecurePassword(passwordRequest.getNewPassword(), salt);
+		khachHang.setPassword(newPassword);
+		khachHang.setSalt(salt);
+		return ResponseEntity.ok(khachHangRepository.save(khachHang));
+	}
+
 	@PutMapping("/{id}")
 	public KhachHang updateCustomer(@PathVariable long id, @RequestBody KhachHangUpdateRequest khachHangUpdateRequest) {
 		KhachHang khachHang = khachHangRepository.findById(id)
@@ -57,10 +75,10 @@ public class KhachHangController {
 		khachHang.setEmail(khachHangUpdateRequest.getEmail());
 		khachHang.setHoTen(khachHangUpdateRequest.getHoTen());
 		khachHang.setSoDt(khachHangUpdateRequest.getSoDt());
+		khachHangRepository.save(khachHang);
 		return khachHang;
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/register")
 
 	public KhachHang register(@RequestBody KhachHang khachHang) {
@@ -68,26 +86,32 @@ public class KhachHangController {
 		if (checKhachHang != null) {
 			throw new Error("Người dùng này đã tồn tại");
 		}
+		String password = khachHang.getPassword();
+		String salt = PasswordUtils.getSalt(30);
+		String encryptPassword = PasswordUtils.generateSecurePassword(password, salt);
+		khachHang.setPassword(encryptPassword);
+		khachHang.setSalt(salt);
+
 		KhachHang khachHang2 = khachHangRepository.save(khachHang);
 		khachHangRepository.createCart(khachHang2.getMaKh(), khachHang2.getMaKh());
 		return khachHang2;
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/login")
 	public KhachHang login(@RequestBody KhachHangRequest thongTin) {
 		KhachHang checkKhachHang = khachHangRepository.findByUsername(thongTin.getUsername());
+
 		if (checkKhachHang == null) {
 			throw new Error("Không tìm thấy người dùng");
 		}
-		if (!checkKhachHang.getPassword().equals(thongTin.getPassword())) {
-			throw new Error("Sai mật khẩu");
+		if (!PasswordUtils.verifyUserPassword(thongTin.getPassword(), checkKhachHang.getPassword(),
+				checkKhachHang.getSalt())) {
+			throw new Error("Mật khẩu không đúng");
 		}
 
 		return checkKhachHang;
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/{id}/yeu-thich")
 	public Set<SanPham> getAllFavouriteProduct(@PathVariable long id) {
 		KhachHang khachHang = khachHangRepository.findById(id)
@@ -95,7 +119,6 @@ public class KhachHangController {
 		return khachHang.getSanPhamYeuThich();
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@PutMapping("/{id}/yeu-thich/{pid}")
 	public String addProductToFavourite(@PathVariable long id, @PathVariable long pid) {
 		KhachHang khachHang = khachHangRepository.findById(id)
@@ -111,7 +134,6 @@ public class KhachHangController {
 
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@DeleteMapping("/{id}/yeu-thich/{pid}")
 	public String deleteProductFromFavourite(@PathVariable long id, @PathVariable long pid) {
 		boolean checked = false;
@@ -133,7 +155,6 @@ public class KhachHangController {
 
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping("/{id}/gio-hang")
 	public GioHang getAllCart(@PathVariable long id) {
 		KhachHang khachHang = khachHangRepository.findById(id)
@@ -141,7 +162,6 @@ public class KhachHangController {
 		return khachHang.getGioHang();
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/{id}/gio-hang/{pid}")
 	public String addProductToCart(@PathVariable long id, @PathVariable long pid, @RequestBody GioHangRequest request) {
 		KhachHang khachHang = khachHangRepository.findById(id)
@@ -158,7 +178,6 @@ public class KhachHangController {
 
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@PutMapping("/{id}/gio-hang/{pid}")
 	public String updateProductInCart(@PathVariable long id, @PathVariable long pid,
 			@RequestBody GioHangRequest request) {
@@ -175,7 +194,6 @@ public class KhachHangController {
 
 	}
 
-	@CrossOrigin(origins = "http://localhost:3000")
 	@DeleteMapping("/{id}/gio-hang/{pid}")
 	public String deleteProductFromCart(@PathVariable long id, @PathVariable long pid) {
 		boolean checked = false;

@@ -2,6 +2,9 @@ package com.example.backendSpring.controller;
 
 import java.util.List;
 
+import com.example.backendSpring.model.Review;
+import com.example.backendSpring.repository.ReviewRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,24 +13,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.backendSpring.model.PhanLoai;
-import com.example.backendSpring.repository.PhanLoaiRepository;
-
 @RestController
-@RequestMapping("/api/v1/phan-loai")
+@RequestMapping("/api/v1/danh-gia")
 @CrossOrigin("*")
-public class PhanLoaiController {
+public class ReviewController {
 
-	@Autowired
-	private PhanLoaiRepository phanLoaiRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
 
-	@GetMapping
-	public List<PhanLoai> getAllCategories() {
-		return phanLoaiRepository.findAll();
-	}
+    @GetMapping
+    public List<Review> getAllReviews() {
+        return reviewRepository.findAll();
+    }
 
-	@PostMapping
-	public PhanLoai addNewCategory(@RequestBody PhanLoai phanLoai) {
-		return phanLoaiRepository.save(phanLoai);
-	}
+    @PostMapping
+    public Review addNewReview(@RequestBody Review review) {
+        reviewRepository.save(review);
+        return review;
+    }
 }

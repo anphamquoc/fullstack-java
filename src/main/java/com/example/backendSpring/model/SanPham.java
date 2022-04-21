@@ -1,6 +1,7 @@
 package com.example.backendSpring.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -53,6 +54,10 @@ public class SanPham {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sanPham")
 	private Set<ChiTietDonHang> chiTietDonHang = new HashSet<>();
 
+	@OneToMany(targetEntity = Review.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "ma_sp", referencedColumnName = "ma_sp")
+	private List<Review> cacReview;
+
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "sanPham")
 	private Set<ChiTietGioHang> chiTietGioHang = new HashSet<>();
@@ -99,6 +104,14 @@ public class SanPham {
 
 	public PhanLoai getPhanLoai() {
 		return this.phanLoai;
+	}
+
+	public List<Review> getCacReview() {
+		return this.cacReview;
+	}
+
+	public void setCacReview(List<Review> cacReview) {
+		this.cacReview = cacReview;
 	}
 
 	public void setPhanLoai(PhanLoai phanLoai) {
