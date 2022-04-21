@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ name, inputName, value, handleChange }) => {
+const Input = ({ name, inputName, value, handleChange, pattern, type }) => {
   return (
     <div class="mb-3 w-full">
       <label
@@ -11,7 +11,8 @@ const Input = ({ name, inputName, value, handleChange }) => {
       </label>
 
       <input
-        type="text"
+        type={type ? type : "text"}
+        pattern={pattern}
         class="
         form-control
         block

@@ -108,7 +108,7 @@ const Cart = () => {
                   </div>
                   <div className="flex justify-between items-center py-4">
                     <p>Total shipping</p>
-                    <span>20.000 đ</span>
+                    <span>Free ship</span>
                   </div>
                   <div className="flex flex-col gap-3 items-center py-4">
                     <div className="flex justify-between w-full">
@@ -116,7 +116,7 @@ const Cart = () => {
                         Grand total
                       </h4>
                       <span className="font-semibold text-2xl text-purple-500">
-                        {numberWithDots(total + 20000)} đ
+                        {numberWithDots(total)} đ
                       </span>
                     </div>
                     <Link to={"/checkout"} className="w-full">

@@ -6,6 +6,7 @@ import { PayPalButton } from "react-paypal-button-v2";
 import Product from "../../wrapper/Checkout/Product";
 import { numberWithDots } from "../../actions";
 import Input from "../../wrapper/Checkout/Input";
+import Empty from "../../assets/images/empty.gif";
 import {
   addProductToOrder,
   createOrder,
@@ -70,24 +71,22 @@ const Checkout = () => {
       }
     });
   };
-  // gioHang.chiTietGioHang.map((item) => {
-  //   const data = {
-  //     maDDH: user.orderId,
-  //     soLuong: item.soLuong,
-  //     maSp: item.sanPham.maSp,
-  //     product: item,
-  //   };
-  //   console.log(2);
-  //   dispatch(addProductToOrder(data));
-  //   dispatch(
-  //     removeFromCart({
-  //       userId: user.user.maKh,
-  //       pid: item.sanPham.maSp,
-  //     })
-  //   );
-  // });
-  // navigate("/checkout/success");
-  // };
+  if (gioHang.chiTietGioHang?.length === 0) {
+    return (
+      <div className="w-full flex flex-col items-center">
+        <Breadcrumb header={"Checkout"} breadcrumbName="CHECKOUT" />
+        <div className="w-full flex flex-col items-center">
+          <img src={Empty} alt="empty" />
+          <h1 className="text-3xl font-semibold text-center">
+            Your cart is empty to checkout
+          </h1>
+          <button className="bg-purple-500 mt-5 px-5 py-3 text-white rounded-full">
+            <a href="/">Back to home</a>
+          </button>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="w-full pt-32 flex flex-col items-center">
       <Breadcrumb header={"Checkout"} breadcrumbName={"Checkout"} />
@@ -203,8 +202,6 @@ const Checkout = () => {
                               clientId:
                                 "Ad77B1c_3OwOo-F5Ivl3mFfvlD1Lekx558kRDBOV_cdnZUvZHC-UaFcRvtcafQP-pi4L0EAuDr897QYI",
                               currency: "USD",
-                              disableFunding:
-                                gioHang.chiTietGioHang.length === 0,
                             }}
                             amount="20000"
                             // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"

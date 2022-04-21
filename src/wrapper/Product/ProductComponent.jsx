@@ -18,11 +18,19 @@ const ProductComponent = ({ product }) => {
   };
 
   const handleAddToFavourite = () => {
+    if (!user.isAuthenticated) {
+      alert("Bạn cần đăng nhập để thực hiện chức năng này");
+      return;
+    }
     dispatch(
       addToFavourite({ product, userId: localStorage.getItem("userId") })
     );
   };
   const handleAddToCart = () => {
+    if (!user.isAuthenticated) {
+      alert("Bạn cần đăng nhập để thực hiện chức năng này");
+      return;
+    }
     dispatch(addToCart({ product, userId: localStorage.getItem("userId") }));
   };
   calculateStar(product.sao);
@@ -34,6 +42,7 @@ const ProductComponent = ({ product }) => {
           alt="Product"
           className="w-full h-[350px]"
         />
+
         <div className="flex flex-row gap-[1px] items-center absolute bottom-0 w-full text-white cursor-pointer">
           <i
             className="fal fa-heart basis-1/6 py-4 grid place-items-center bg-fuchsia-500 translate-y-4 opacity-0 group-hover:opacity-100 transition group-hover:translate-y-0 duration-500 ease-in-out hover:bg-fuchsia-700"
@@ -46,17 +55,17 @@ const ProductComponent = ({ product }) => {
             <i class="fal fa-shopping-cart mr-2 text-sm "></i>
             Add to cart
           </button>
-          <Link to={`/product/${product.maSp}`} className="basis-1/6">
+          <a href={`/product/${product.maSp}`} className="basis-1/6">
             <i className="fal fa-eye py-4 bg-fuchsia-500 grid place-items-center translate-y-4 opacity-0 group-hover:opacity-100 transition group-hover:translate-y-0 duration-500 ease-in-out delay-200 hover:bg-fuchsia-700"></i>
-          </Link>
+          </a>
         </div>
       </div>
       <div className="flex flex-col gap-3 text-center">
-        <Link to={`/product/${product.maSp}`}>
+        <a href={`/product/${product.maSp}`}>
           <h3 className="font-semibold text-xl cursor-pointer hover:text-fuchsia-500 transition duration-100">
             {product.tenSp}
           </h3>
-        </Link>
+        </a>
         <div className="flex gap-2 justify-center text-xl">{star}</div>
         <span className="font-semibold text-lg">
           {numberWithDots(product.gia)} đ

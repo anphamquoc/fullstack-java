@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ name, setUser, user }) => {
+const Input = ({ name, setUser, user, pattern }) => {
   const handleChange = (e) => {
     if (e.target.name === "Username" || e.target.name === "Password")
       setUser({ ...user, [e.target.name.toLowerCase()]: e.target.value });
@@ -19,6 +19,7 @@ const Input = ({ name, setUser, user }) => {
             ? "password"
             : "text"
         }
+        pattern={pattern}
         class="form-control
       block
       w-full
@@ -34,7 +35,6 @@ const Input = ({ name, setUser, user }) => {
       ease-in-out
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-        id="exampleInputEmail1"
         aria-describedby="emailHelp"
         placeholder={`Enter ${name}`}
         name={name}

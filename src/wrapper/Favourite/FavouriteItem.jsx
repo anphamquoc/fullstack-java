@@ -17,7 +17,12 @@ const FavouriteItem = ({ product }) => {
     }
   };
   const handleRemove = () => {
-    dispatch(removeFromFavourite({ userId: user.user.maKh, product }));
+    dispatch(
+      removeFromFavourite({
+        userId: user.user.maKh,
+        pid: product.maSp,
+      })
+    );
   };
   const handleAddToCart = () => {
     dispatch(addToCart({ userId: user.user.maKh, product, soLuong: quantity }));
@@ -28,7 +33,10 @@ const FavouriteItem = ({ product }) => {
       <td class=" p-3 w-[82px] h-[82px]">
         <img src={`../../${product?.hinhAnh}`} alt="product" />
       </td>
-      <td class="text-gray-900 font-semibold text-lg px-6 py-4 whitespace-nowrap">
+      <td
+        class="text-gray-900 max-w-[400px] truncate font-semibold text-lg px-6 py-4 whitespace-nowrap"
+        title={product.tenSp}
+      >
         {product.tenSp}
       </td>
       <td class="text-gray-900 font-semibold text-lg px-6 py-4 whitespace-nowrap">

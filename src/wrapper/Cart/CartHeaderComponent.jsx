@@ -1,6 +1,6 @@
 import React from "react";
 
-const CartHeaderComponent = ({ isCart, isFavourite }) => {
+const CartHeaderComponent = ({ isCart, isFavourite, isInvoice }) => {
   return (
     <thead class="border-b bg-gray-50">
       <tr className="uppercase">
@@ -27,6 +27,11 @@ const CartHeaderComponent = ({ isCart, isFavourite }) => {
         {!isCart && isFavourite && (
           <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
             Add to cart
+          </th>
+        )}
+        {isInvoice && (
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+            Add Review
           </th>
         )}
       </tr>

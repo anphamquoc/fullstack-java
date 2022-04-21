@@ -7,6 +7,8 @@ import ProductComponent from "../../wrapper/Product/ProductComponent";
 import BlogComponent from "../../wrapper/Header/BlogComponent";
 import { useSelector } from "react-redux";
 import ProductLoading from "../../wrapper/Loading/ProductLoading";
+import Slide from "../../data/Header/SwiperSlice.json";
+import MottoData from "../../data/Header/Motto.json";
 
 const Header = () => {
   const products = useSelector((state) => state.products);
@@ -14,23 +16,18 @@ const Header = () => {
     <Fragment>
       {/* Swiper  */}
       <Swiper navigation={true} modules={[Navigation]}>
-        <SwiperSlide>
-          <SwiperSlideComponent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SwiperSlideComponent />
-        </SwiperSlide>
-        <SwiperSlide>
-          <SwiperSlideComponent />
-        </SwiperSlide>
+        {Slide.map((item, index) => (
+          <SwiperSlide key={index}>
+            <SwiperSlideComponent slide={item} />
+          </SwiperSlide>
+        ))}
       </Swiper>
       {/* Shipping */}
       <div className="grid place-items-center">
         <div className="grid grid-cols-4 w-4/5">
-          <Motto />
-          <Motto />
-          <Motto />
-          <Motto />
+          {MottoData.map((item, index) => (
+            <Motto key={index} data={item} />
+          ))}
         </div>
       </div>
       {/* Show Product */}

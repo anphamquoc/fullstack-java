@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Dashboard",
+    "url": "",
+    "iconClass": "fas fa-chart-pie-alt"
+  },
+  {
+    "name": "User",
+    "url": "users",
+    "iconClass": "fas fa-user"
+  },
+  {
+    "name": "Product",
+    "url": "products",
+    "iconClass": "fas fa-shopping-bag"
+  },
+  {
+    "name": "Order",
+    "url": "orders",
+    "iconClass": "fas fa-shopping-cart"
+  }
+]

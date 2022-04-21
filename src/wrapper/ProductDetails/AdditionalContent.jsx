@@ -1,6 +1,8 @@
 import React from "react";
+import ReviewItem from "./ReviewItem";
 
-const AdditionalContent = ({ name, value }) => {
+const AdditionalContent = ({ name, value, review }) => {
+  //convert date to hh:mm:ss dd/mm/yyy
   return (
     <div
       class={`tab-pane fade show ${
@@ -14,7 +16,11 @@ const AdditionalContent = ({ name, value }) => {
         {name === "Description" ? (
           value
         ) : name === "Reviews" ? (
-          "Không có đánh giá"
+          <div className="font-normal flex flex-col gap-5">
+            {review?.map((item, index) => (
+              <ReviewItem item={item} />
+            ))}
+          </div>
         ) : (
           <>
             <div className="flex flex-col gap-3 w-fit">

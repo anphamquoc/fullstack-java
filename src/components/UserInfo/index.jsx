@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { changePassword, updateUser } from "../../redux/features/UserSlice";
 import Input from "../../wrapper/Account/Input";
 import Title from "../../wrapper/Account/Title";
 import Breadcrumb from "../../wrapper/Breadcrumb";
@@ -8,12 +10,34 @@ import Breadcrumb from "../../wrapper/Breadcrumb";
 const UserInfo = () => {
   const { user } = useSelector((state) => state);
   const [userState, setUserState] = useState(null);
+  const [passwordState, setPasswordState] = useState({
+    password: "",
+    newPassword: "",
+  });
+  const dispatch = useDispatch();
   useEffect(() => {
-    setUserState(user.user);
-  }, [user.loading]);
+    setUserState({
+      hoTen: user.user?.hoTen,
+      soDt: user.user?.soDt,
+      diaChi: user.user?.diaChi,
+      email: user.user?.email,
+    });
+  }, [user.user]);
   const handleChange = (e) => {
-    console.log(e.target.value);
     setUserState({ ...userState, [e.target.name]: e.target.value });
+  };
+  const handlePasswordChange = (e) => {
+    setPasswordState({ ...passwordState, [e.target.name]: e.target.value });
+  };
+  const handleUpdateUser = () => {
+    dispatch(updateUser(userState));
+  };
+  const handleChangePassword = () => {
+    dispatch(changePassword(passwordState));
+    setPasswordState({
+      password: "",
+      newPassword: "",
+    });
   };
   return (
     <div className="w-full pt-32 flex flex-col items-center">
@@ -39,7 +63,7 @@ const UserInfo = () => {
                     <h4>MY ACCOUNT INFORMATION</h4>
                     <h5>Your Personal Details</h5>
                   </div>
-                  <div className="pt-5">
+                  <form onSubmit={handleUpdateUser} className="pt-5">
                     <div className="flex flex-row justify-between gap-10">
                       <div class="flex">
                         <Input
@@ -57,6 +81,9 @@ const UserInfo = () => {
                           value={userState?.email}
                           handleChange={handleChange}
                           inputName={"email"}
+                          pattern={
+                            "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+                          }
                         />
                       </div>
                     </div>
@@ -75,12 +102,15 @@ const UserInfo = () => {
                           value={userState?.soDt}
                           handleChange={handleChange}
                           inputName={"soDt"}
+                          //pattern phone number
+                          pattern={"^[0-9]{10,11}$"}
                         />
                       </div>
                     </div>
                     <button
                       className="py-3 px-7 mt-2 bg-gray-200 rounded-md font-semibold"
                       disabled={user.loading}
+                      type="submit"
                     >
                       {user.loading ? (
                         <i class="fad fa-spinner-third fa-spin"></i>
@@ -88,7 +118,7 @@ const UserInfo = () => {
                         "CONTINUE"
                       )}
                     </button>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -105,26 +135,45 @@ const UserInfo = () => {
                     <h4>CHANGE PASSWORD</h4>
                     <h5>Your password</h5>
                   </div>
-                  <div className="pt-5">
+                  <form className="pt-5" onSubmit={handleChangePassword}>
                     <div className="flex flex-row justify-between">
                       <div class="flex w-full">
-                        <Input name={"Password"} />
+                        <Input
+                          name={"Password"}
+                          inputName={"password"}
+                          value={passwordState.password}
+                          handleChange={handlePasswordChange}
+                          pattern={"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$"}
+                          type="password"
+                        />
                       </div>
                     </div>
                     <div className="flex flex-row justify-between">
                       <div class="flex w-full">
-                        <Input name={"Password Confirm"} />
+                        <Input
+                          name={"New password"}
+                          inputName={"newPassword"}
+                          value={passwordState.newPassword}
+                          handleChange={handlePasswordChange}
+                          pattern={"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$"}
+                          type="password"
+                        />
                       </div>
                     </div>
-                    <button className="py-3 px-7 mt-2 bg-gray-200 rounded-md font-semibold">
+                    <button
+                      className="py-3 px-7 mt-2 bg-gray-200 rounded-md font-semibold"
+                      type="submit"
+                    >
                       CONTINUE
                     </button>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
             <div className="accordion-item bg-white border border-gray-200">
-              <Title name={"3. MODIFY YOUR WISHLIST"} />
+              <Link to={"/favourite"}>
+                <Title name={"3. MODIFY YOUR WISHLIST"} />
+              </Link>
             </div>
           </>
         )}

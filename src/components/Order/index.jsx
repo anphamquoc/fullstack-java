@@ -6,7 +6,6 @@ import OrderItem from "../../wrapper/Order/OrderItem";
 const Order = () => {
   const user = useSelector((state) => state.user);
   const { cacDonDatHang } = user;
-  console.log(cacDonDatHang);
   return (
     <div className="w-full pt-32 flex flex-col items-center gap-5">
       <Breadcrumb header={"Order"} breadcrumbName={"Order"} />
@@ -16,7 +15,7 @@ const Order = () => {
         </div>
       ) : (
         <>
-          {cacDonDatHang.map((order, i) => (
+          {cacDonDatHang?.map((order, i) => (
             <OrderItem order={order} key={i} />
           ))}
         </>

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Free Shipping",
+    "description": "Free shipping on all orders",
+    "image": "../../assets/images/motto/shipping.webp"
+  },
+  {
+    "name": "Support 24/7",
+    "description": "24/7 support",
+    "image": "../../assets/images/motto/support.webp"
+  },
+  {
+    "name": "Money Back",
+    "description": "30 days money back",
+    "image": "../../assets/images/motto/money.webp"
+  },
+  {
+    "name": "Order discount",
+    "description": "Order discount",
+    "image": "../../assets/images/motto/discount.webp"
+  }
+]

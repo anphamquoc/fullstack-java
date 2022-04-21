@@ -1,22 +1,19 @@
 [
   {
     "name": "Home",
-    "haveMenu": true
+    "haveMenu": true,
+    "menu": {
+      "name": "Home",
+      "items": [
+        {
+          "name": "Home 1 - Watch",
+          "url": "/shop"
+        }
+      ]
+    }
   },
   {
     "name": "Shop",
-    "haveMenu": true
-  },
-  {
-    "name": "Collection",
-    "haveMenu": false
-  },
-  {
-    "name": "Pages",
-    "haveMenu": true
-  },
-  {
-    "name": "Blog",
     "haveMenu": true
   },
   {

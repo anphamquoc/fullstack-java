@@ -40,7 +40,7 @@ const Form = () => {
   };
   return (
     <Fragment>
-      <div className="flex flex-col gap-5 justify-center items-center w-full min-h-[calc(100vh)]">
+      <div className="flex flex-col gap-5 justify-center items-center w-full min-h-[calc(100vh)] pt-20">
         <Breadcrumb breadcrumbName={"LOGIN / REGISTER"} header={"Login"} />
         <div className="flex flex-row gap-5 text-2xl font-bold cursor-pointer">
           <h3
@@ -60,7 +60,7 @@ const Form = () => {
         <div className="relative w-full h-[400px] flex justify-center">
           {formActive === "login" ? (
             <div class="block p-10 w-2/5 rounded-lg shadow-lg bg-white absolute">
-              <form>
+              <form onSubmit={handleLogin}>
                 <Input
                   name={"Username"}
                   setUser={setUserLogin}
@@ -70,6 +70,7 @@ const Form = () => {
                   name={"Password"}
                   setUser={setUserLogin}
                   user={userLogin}
+                  pattern={"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$"}
                 />
                 <div className="flex justify-between">
                   <div class="form-group form-check mb-6">
@@ -104,7 +105,6 @@ const Form = () => {
     transition
     duration-150
     ease-in-out"
-                  onClick={handleLogin}
                 >
                   {/* {true ? (
                     <i class="fad fa-spinner-third fa-spin"></i>
@@ -116,7 +116,7 @@ const Form = () => {
             </div>
           ) : (
             <div class="block p-10 w-2/5 rounded-lg shadow-lg bg-white absolute">
-              <form>
+              <form onSubmit={handleRegister}>
                 <Input
                   name={"Username"}
                   user={userRegister}
@@ -126,11 +126,16 @@ const Form = () => {
                   name={"Password"}
                   user={userRegister}
                   setUser={setUserRegister}
+                  pattern={"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$"}
                 />
                 <Input
                   name={"soDt"}
                   user={userRegister}
                   setUser={setUserRegister}
+                  //phone pattern
+                  pattern={
+                    "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$"
+                  }
                 />
                 <Input
                   name={`hoTen`}
@@ -141,6 +146,10 @@ const Form = () => {
                   name={"email"}
                   user={userRegister}
                   setUser={setUserRegister}
+                  //email pattern
+                  pattern={
+                    "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
+                  }
                 />
                 <Input
                   name={"diaChi"}
@@ -176,6 +185,7 @@ const Form = () => {
                     placeholder={`Confirm Password`}
                     name={"rePassword"}
                     onChange={(e) => setRePassword(e.target.value)}
+                    pattern={"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$"}
                   />
                   {/* <small id="emailHelp" class="block mt-1 text-xs text-gray-600">
               We'll never share your email with anyone else.
@@ -214,7 +224,6 @@ const Form = () => {
       transition
       duration-150
       ease-in-out"
-                  onClick={handleRegister}
                 >
                   Submit
                 </button>

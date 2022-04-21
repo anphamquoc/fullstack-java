@@ -39,6 +39,33 @@ export const registerUser = createAsyncThunk(
   }
 );
 
+export const updateUser = createAsyncThunk(
+  "user/updateUser",
+  async (userUpdate) => {
+    const response = await axios.put(
+      `${API_URL}/api/v1/khach-hang/${localStorage.getItem("userId")}`,
+      userUpdate
+    );
+    const data = response.data;
+    return data;
+  }
+);
+
+export const changePassword = createAsyncThunk(
+  "user/changePassword",
+  async (passwordState) => {
+    const response = await axios.put(
+      `${API_URL}/api/v1/khach-hang/${localStorage.getItem(
+        "userId"
+      )}/change-password`,
+      passwordState
+    );
+    console.log(response.data);
+    const data = response.data;
+    return data;
+  }
+);
+
 export const removeFromFavourite = createAsyncThunk(
   "user/removeFromFavourite",
   async (request) => {
@@ -53,7 +80,7 @@ export const removeFromFavourite = createAsyncThunk(
 export const removeFromCart = createAsyncThunk(
   "user/removeFromCart",
   async (request) => {
-    const response = await axios.delete(
+    await axios.delete(
       `${API_URL}/api/v1/khach-hang/${request.userId}/gio-hang/${request.pid}`
     );
     return { pid: request.pid };
@@ -167,6 +194,7 @@ const userSlice = createSlice({
           soDt: payload.soDt,
           hoTen: payload.hoTen,
           maKh: payload.maKh,
+          vaiTro: payload.vaiTro,
         },
         isAuthenticated: payload ? true : false,
         cacDonDatHang: payload.cacDonDatHang,
@@ -196,6 +224,8 @@ const userSlice = createSlice({
           soDt: payload.soDt,
           hoTen: payload.hoTen,
           maKh: payload.maKh,
+          ngayTao: payload.ngayTao,
+          vaiTro: payload.vaiTro,
         },
         isAuthenticated: true,
         cacDonDatHang: payload.cacDonDatHang,
@@ -204,12 +234,11 @@ const userSlice = createSlice({
       };
       localStorage.setItem("userId", payload.maKh);
       state.loading = false;
-      console.log(state);
       return state;
     },
     [loginUser.rejected]: (state, action) => {
-      console.log(action.payload);
       state.loading = false;
+      alert("Thông tin khách hàng sai");
       return state;
     },
     [registerUser.pending]: (state, action) => {
@@ -217,8 +246,8 @@ const userSlice = createSlice({
       return state;
     },
     [registerUser.fulfilled]: (state, action) => {
-      state.loading = false;
       const { payload } = action;
+      console.log(payload);
       state = {
         ...state,
         user: {
@@ -228,22 +257,66 @@ const userSlice = createSlice({
           soDt: payload.soDt,
           hoTen: payload.hoTen,
           maKh: payload.maKh,
+          ngayTao: payload.ngayTao,
+          vaiTro: payload.vaiTro,
         },
         isAuthenticated: true,
         cacDonDatHang: payload.cacDonDatHang,
         sanPhamYeuThich: payload.sanPhamYeuThich,
         gioHang: payload.gioHang,
       };
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          username: payload.username,
-          password: payload.password,
-        })
-      );
+      localStorage.setItem("userId", payload.maKh);
+      state.loading = false;
       return state;
     },
     [registerUser.rejected]: (state, action) => {
+      state.loading = false;
+      alert("Lỗi khi đăng kí");
+      return state;
+    },
+    [changePassword.pending]: (state, action) => {
+      state.loading = true;
+      return state;
+    },
+    [changePassword.fulfilled]: (state, action) => {
+      state.loading = false;
+      alert("Đổi password thành công, mời đăng nhập lại");
+      //logout
+      state.isAuthenticated = false;
+      state.user = null;
+      localStorage.removeItem("userId");
+      return state;
+    },
+    [changePassword.rejected]: (state, action) => {
+      state.loading = false;
+      alert("Thông tin mật khẩu sai");
+      return state;
+    },
+    [updateUser.pending]: (state, action) => {
+      state.loading = true;
+      return state;
+    },
+    [updateUser.fulfilled]: (state, action) => {
+      const { payload } = action;
+      state = {
+        ...state,
+        loading: false,
+        user: {
+          diaChi: payload.diaChi,
+          email: payload.email,
+          soDt: payload.soDt,
+          hoTen: payload.hoTen,
+          maKh: payload.maKh,
+          username: payload.username,
+          password: payload.password,
+          vaiTro: payload.vaiTro,
+        },
+      };
+      alert("Cập nhật thông tin thành công");
+      return state;
+    },
+
+    [updateUser.rejected]: (state, action) => {
       state.loading = false;
       return state;
     },

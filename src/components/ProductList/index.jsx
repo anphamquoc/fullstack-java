@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Breadcrumb from "../../wrapper/Breadcrumb";
 import ProductComponent from "../../wrapper/Product/ProductComponent";
 import FilterCheckbox from "../../wrapper/Shop/FilterCheckbox";
 import { useSelector } from "react-redux";
 import ProductLoading from "../../wrapper/Loading/ProductLoading";
+import { Box, Slider } from "@mui/material";
 
 const Index = () => {
   const products = useSelector((state) => state.products);
@@ -13,6 +14,9 @@ const Index = () => {
     colors: [],
     sort: "",
   });
+  useEffect(() => {
+    setFilterProducts(products.products);
+  }, [products.loading]);
   const handleFilter = () => {
     const { gia, colors, sort } = filter;
     let newFilterProducts = [...products.products];
@@ -139,11 +143,16 @@ const Index = () => {
                     <ProductLoading />
                     <ProductLoading />
                   </>
+                ) : filterProducts.length ? (
+                  filterProducts.map((product) => (
+                    <ProductComponent product={product} />
+                  ))
                 ) : (
-                  (filterProducts.length
-                    ? filterProducts
-                    : products.products
-                  ).map((product) => <ProductComponent product={product} />)
+                  <div className="text-center">
+                    <h1 className="text-2xl font-semibold">
+                      Không có sản phẩm nào
+                    </h1>
+                  </div>
                 )}
               </div>
             </div>

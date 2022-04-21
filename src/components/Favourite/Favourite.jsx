@@ -25,9 +25,9 @@ const Favourite = () => {
           <div class="flex flex-col w-4/5">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="overflow-hidden">
+                <div class="w-full">
                   <table class="min-w-full text-center">
-                    <CartHeaderComponent isCart={false} />
+                    <CartHeaderComponent isCart={false} isFavourite={true} />
                     <tbody>
                       {favourite.map((product, i) => (
                         <FavouriteItem product={product} key={i} />

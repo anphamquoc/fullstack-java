@@ -14,6 +14,7 @@ const ProductDetail = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
+  const user = useSelector((state) => state.user);
   const [quantity, setQuantity] = useState(1);
   const id = params.id;
   useEffect(() => {
@@ -40,6 +41,10 @@ const ProductDetail = () => {
     }
   };
   const handleAddToCart = () => {
+    if (!user.isAuthenticated) {
+      alert("Bạn cần đăng nhập để thực hiện chức năng này");
+      return;
+    }
     dispatch(
       addToCart({
         product,
@@ -50,10 +55,15 @@ const ProductDetail = () => {
   };
 
   const handleAddToFavourite = () => {
+    if (!user.isAuthenticated) {
+      alert("Bạn cần đăng nhập để thực hiện chức năng này");
+      return;
+    }
     dispatch(
       addToFavourite({ product, userId: localStorage.getItem("userId") })
     );
   };
+  console.log(product);
   return (
     <Fragment>
       <div className="w-full pt-32 flex flex-col items-center">
@@ -114,6 +124,7 @@ const ProductDetail = () => {
                     </div>
                   </div>
                 </div>
+
                 <div class="custom-number-input h-10 flex flex-row gap-7 items-center">
                   <div class="flex flex-row h-14 w-32  rounded-lg relative bg-transparent mt-1">
                     <button
@@ -176,7 +187,7 @@ const ProductDetail = () => {
             <div class="tab-content" id="tabs-tabContentFill">
               <AdditionalContent name={"Additional Information"} />
               <AdditionalContent name={"Description"} value={product.moTa} />
-              <AdditionalContent name={"Reviews"} />
+              <AdditionalContent name={"Reviews"} review={product.cacReview} />
               <div
                 class="tab-pane fade text-gray-700 text-lg"
                 id="tabs-profileFill"

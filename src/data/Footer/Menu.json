@@ -1,0 +1,53 @@
+[
+  {
+    "name": "About Us",
+    "menu": [
+      {
+        "name": "About Us",
+        "link": "about"
+      },
+      {
+        "name": "Contact",
+        "link": "contact"
+      },
+      {
+        "name": "Orders Tracking",
+        "link": "orders"
+      }
+    ]
+  },
+  {
+    "name": "Shop",
+    "menu": [
+      {
+        "name": "Home",
+        "link": ""
+      },
+      {
+        "name": "Shop",
+        "link": "shop"
+      },
+      {
+        "name": "Cart",
+        "link": "cart"
+      },
+      {
+        "name": "Checkout",
+        "link": "checkout"
+      }
+    ]
+  },
+  {
+    "name": "My Account",
+    "menu": [
+      {
+        "name": "My Account",
+        "link": "account-info"
+      },
+      {
+        "name": "Wish List",
+        "link": "favourite"
+      }
+    ]
+  }
+]
