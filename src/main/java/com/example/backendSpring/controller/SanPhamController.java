@@ -31,8 +31,9 @@ public class SanPhamController {
 
 	@PostMapping("/{id}")
 	public String addNewProduct(@RequestBody SanPham sanPham, @PathVariable long id) {
-		sanPhamRepository.addProduct(sanPham.getGia(), sanPham.getHinhAnh(), sanPham.getMoTa(), sanPham.getSao(),
-				sanPham.getTenSp(), id);
+		sanPhamRepository.addProduct(sanPham.getGia(), "assets/images/products/" + sanPham.getHinhAnh(),
+				sanPham.getMoTa(), sanPham.getSao(),
+				sanPham.getTenSp(), id, sanPham.getStatus());
 		;
 		return "Add thành công";
 	}
@@ -51,6 +52,7 @@ public class SanPhamController {
 		sanPham2.setGia(sanPham.getGia());
 		sanPham2.setTenSp(sanPham.getTenSp());
 		sanPham2.setMoTa(sanPham.getMoTa());
+		sanPham2.setStatus(sanPham.getStatus());
 		sanPhamRepository.save(sanPham2);
 		return sanPham2;
 	}

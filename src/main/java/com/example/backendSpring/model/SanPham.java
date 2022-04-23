@@ -42,6 +42,9 @@ public class SanPham {
 	@Column(name = "sao")
 	private double sao;
 
+	@Column(name = "status")
+	private int status;
+
 	@ManyToOne
 	@JoinColumn(name = "ma_pl", nullable = false)
 	private PhanLoai phanLoai;
@@ -64,6 +67,14 @@ public class SanPham {
 
 	public long getMaSp() {
 		return maSp;
+	}
+
+	public int getStatus() {
+		return this.status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public String getTenSp() {
