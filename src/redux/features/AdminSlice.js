@@ -5,9 +5,11 @@ import { API_URL } from "../../constants";
 const initialState = {
   products: [],
   loadingOrder: true,
+  loadingReview: true,
   loadingUser: true,
   users: [],
   orders: [],
+  reviews: [],
 };
 
 export const loadAllUsers = createAsyncThunk("users/loadAllUsers", async () => {
@@ -20,6 +22,15 @@ export const loadAllOrders = createAsyncThunk(
   "orders/loadAllOrders",
   async () => {
     const response = await axios.get(`${API_URL}/api/v1/don-dat-hang`);
+    const data = response.data;
+    return data;
+  }
+);
+
+export const loadAllReviews = createAsyncThunk(
+  "reviews/loadAllReviews",
+  async () => {
+    const response = await axios.get(`${API_URL}/api/v1/danh-gia`);
     const data = response.data;
     return data;
   }
@@ -61,6 +72,19 @@ const adminSlice = createSlice({
     },
     [loadAllOrders.rejected]: (state, action) => {
       state.loadingOrder = false;
+      return state;
+    },
+    [loadAllReviews.pending]: (state, action) => {
+      state.loadingReview = true;
+      return state;
+    },
+    [loadAllReviews.fulfilled]: (state, action) => {
+      state.reviews = action.payload;
+      state.loadingReview = false;
+      return state;
+    },
+    [loadAllReviews.rejected]: (state, action) => {
+      state.loadingReview = false;
       return state;
     },
   },

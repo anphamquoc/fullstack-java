@@ -35,15 +35,25 @@ const ProductComponent = ({ product }) => {
   };
   calculateStar(product.sao);
   return (
-    <div className="flex flex-col gap-4 group">
+    <div className={`flex flex-col gap-4  group`}>
       <div className="w-full relative overflow-hidden">
         <img
           src={`../../${product.hinhAnh}`}
           alt="Product"
           className="w-full h-[350px]"
         />
-
-        <div className="flex flex-row gap-[1px] items-center absolute bottom-0 w-full text-white cursor-pointer">
+        <span
+          className={`absolute top-2 p-1 ${
+            product.status === 1 ? "bg-green-500" : "bg-red-500"
+          } rounded-full text-white right-2 text-xs font-semibold`}
+        >
+          {product.status === 1 ? "Còn hàng" : "Hết hàng"}
+        </span>
+        <div
+          className={`flex flex-row gap-[1px] items-center absolute bottom-0 w-full text-white cursor-pointer ${
+            product.status === 0 ? "pointer-events-none" : ""
+          }`}
+        >
           <i
             className="fal fa-heart basis-1/6 py-4 grid place-items-center bg-fuchsia-500 translate-y-4 opacity-0 group-hover:opacity-100 transition group-hover:translate-y-0 duration-500 ease-in-out hover:bg-fuchsia-700"
             onClick={handleAddToFavourite}

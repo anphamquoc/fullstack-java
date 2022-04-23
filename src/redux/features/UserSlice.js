@@ -341,7 +341,7 @@ const userSlice = createSlice({
       return state;
     },
     [addToFavourite.fulfilled]: (state, action) => {
-      const { data, product } = action.payload;
+      const { product } = action.payload;
       state.loading = false;
       state.sanPhamYeuThich.push(product);
       alert("Thêm vào mục yêu thích thành công");

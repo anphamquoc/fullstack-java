@@ -10,7 +10,11 @@ const columns = [
   { field: "phone", headerName: "Phone", width: 200 },
   { field: "address", headerName: "Address", width: 200 },
   { field: "username", headerName: "Username", width: 200 },
-  { field: "role", headerName: "Role", width: 200 },
+  {
+    field: "role",
+    headerName: "Role",
+    width: 200,
+  },
 ];
 
 const Users = () => {
@@ -26,7 +30,7 @@ const Users = () => {
       phone: user.soDt,
       address: user.diaChi,
       username: user.username,
-      role: "admin",
+      role: user.vaiTro,
     };
   });
   const [userFilter, setUserFilter] = useState([...rows]);

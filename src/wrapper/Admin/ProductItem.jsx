@@ -4,12 +4,19 @@ import { numberWithDots } from "../../actions";
 
 const ProductItem = ({ product }) => {
   return (
-    <div className="flex flex-col gap-4 text-center rounded-lg shadow-md pb-5">
+    <div className="flex relative flex-col gap-4 text-center rounded-lg shadow-md pb-5">
       <img
         src={`../../${product.hinhAnh}`}
         className={"h-[300px]"}
         alt="product"
       />
+      <span
+        className={`absolute top-2 p-1 ${
+          product.status === 1 ? "bg-green-500" : "bg-red-500"
+        } rounded-full text-white right-2 text-xs font-semibold`}
+      >
+        {product.status === 1 ? "Còn hàng" : "Hết hàng"}
+      </span>
       <Link to={`${product.maSp}`}>
         <h3
           className="font-semibold px-2 truncate cursor-pointer hover:text-purple-400"

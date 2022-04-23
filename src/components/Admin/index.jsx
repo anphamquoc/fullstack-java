@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import UserImage from "../../assets/images/discount.webp";
 import AdminDataMenu from "../../data/Admin/SectionData.json";
@@ -13,9 +13,12 @@ import {
   ArcElement,
   Legend,
 } from "chart.js";
-import { Line, Pie } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
-import { loadAllOrders, loadAllUsers } from "../../redux/features/AdminSlice";
+import {
+  loadAllOrders,
+  loadAllReviews,
+  loadAllUsers,
+} from "../../redux/features/AdminSlice";
 
 ChartJS.register(
   CategoryScale,
@@ -97,6 +100,7 @@ const Admin = () => {
   useEffect(() => {
     dispatch(loadAllOrders());
     dispatch(loadAllUsers());
+    dispatch(loadAllReviews());
   }, [dispatch]);
   if (user.loading === false && (!user.user || user.user.vaiTro !== "admin")) {
     navigate("/");

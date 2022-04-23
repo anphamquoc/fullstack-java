@@ -57,26 +57,31 @@ export const deleteProduct = createAsyncThunk(
   }
 );
 
+export const addProduct = createAsyncThunk(
+  "products/addProduct",
+  async (product) => {
+    const response = await axios.post(`${API_URL}/api/v1/san-pham/1`, product);
+    const data = response.data;
+    return { message: data, product: product };
+  }
+);
+
 export const productSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {
-    addProduct: (state, action) => {
-      state.products.push(action.payload);
-    },
-  },
+  reducers: {},
   extraReducers: {
-    [fetchProducts.pending]: (state, action) => {
+    [fetchProducts.pending]: (state) => {
       state.loading = true;
     },
     [fetchProducts.fulfilled]: (state, action) => {
       state.products = action.payload;
       state.loading = false;
     },
-    [fetchProducts.rejected]: (state, action) => {
+    [fetchProducts.rejected]: (state) => {
       state.loading = false;
     },
-    [fetchOneProduct.pending]: (state, action) => {
+    [fetchOneProduct.pending]: (state) => {
       state.loadingProduct = true;
       return state;
     },
@@ -85,11 +90,11 @@ export const productSlice = createSlice({
       state.product = action.payload;
       return state;
     },
-    [fetchOneProduct.rejected]: (state, action) => {
+    [fetchOneProduct.rejected]: (state) => {
       state.loadingProduct = false;
       return state;
     },
-    [updateProduct.pending]: (state, action) => {
+    [updateProduct.pending]: (state) => {
       state.loadingProduct = true;
       return state;
     },
@@ -100,14 +105,15 @@ export const productSlice = createSlice({
         if (product.maSp === action.payload.maSp) {
           product = action.payload;
         }
+        return product;
       });
       return state;
     },
-    [updateProduct.rejected]: (state, action) => {
+    [updateProduct.rejected]: (state) => {
       state.loadingProduct = false;
       return state;
     },
-    [deleteProduct.pending]: (state, action) => {
+    [deleteProduct.pending]: (state) => {
       state.loadingProduct = true;
     },
     [deleteProduct.fulfilled]: (state, action) => {
@@ -117,12 +123,12 @@ export const productSlice = createSlice({
       );
       return state;
     },
-    [deleteProduct.rejected]: (state, action) => {
+    [deleteProduct.rejected]: (state) => {
       state.loadingProduct = false;
       alert("Xóa sản phẩm không thành công");
       return state;
     },
-    [addReview.pending]: (state, action) => {
+    [addReview.pending]: (state) => {
       state.loadingProduct = true;
       return state;
     },
@@ -133,16 +139,32 @@ export const productSlice = createSlice({
         if (product.maSp === action.payload.maSP) {
           product.cacReview.push(action.payload);
         }
+        return product;
       });
       alert("Đánh giá thành công");
       return state;
     },
-    [addReview.rejected]: (state, action) => {
+    [addReview.rejected]: (state) => {
       state.loadingProduct = false;
+      return state;
+    },
+    [addProduct.pending]: (state) => {
+      state.loadingProduct = true;
+      return state;
+    },
+    [addProduct.fulfilled]: (state, action) => {
+      state.loadingProduct = false;
+      state.products.push(action.payload.product);
+      alert("Thêm sản phẩm thành công");
+      window.location.reload();
+      return state;
+    },
+    [addProduct.rejected]: (state) => {
+      state.loadingProduct = false;
+      alert("Thêm sản phẩm không thành công");
       return state;
     },
   },
 });
 
-export const { addProduct } = productSlice.actions;
 export default productSlice.reducer;

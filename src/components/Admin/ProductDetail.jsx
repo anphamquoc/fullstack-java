@@ -1,4 +1,4 @@
-import { Input, TextField } from "@mui/material";
+import { Input, MenuItem, Select, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +20,7 @@ const ProductDetail = () => {
       tenSp: "",
       gia: "",
       moTa: "",
+      status: 1,
     },
     [params.id, dispatch]
   );
@@ -31,6 +32,7 @@ const ProductDetail = () => {
       tenSp: products.product?.tenSp,
       gia: products.product?.gia,
       moTa: products.product?.moTa,
+      status: products.product?.status,
     });
   }, [products.product]);
   let star = [];
@@ -67,7 +69,7 @@ const ProductDetail = () => {
       ) : (
         <>
           <h1 className="mb-5 text-2xl font-semibold">Product Detail</h1>
-          <div className="flex flex-row gap-5">
+          <div className="flex flex-row gap-5 relative">
             <div className="basis-1/4">
               <img
                 src={`../../${product.hinhAnh}`}
@@ -78,8 +80,12 @@ const ProductDetail = () => {
             <div className="flex flex-col gap-6 basis-3/4">
               <div className="basis-1/2 flex flex-col gap-5">
                 <h2 className="text-2xl font-semibold">{product.tenSp}</h2>
-                <span className="text-sm font-semibold px-3 py-1 rounded-full bg-green-500 w-fit text-white">
-                  In stock
+                <span
+                  className={`text-sm font-semibold px-3 py-1 rounded-full ${
+                    product.status === 1 ? "bg-green-500" : "bg-red-500"
+                  } w-fit text-white`}
+                >
+                  {product.status === 1 ? "Còn hàng" : "Hết hàng"}
                 </span>
                 <p>{product.moTa}</p>
               </div>
@@ -149,6 +155,16 @@ const ProductDetail = () => {
                           onChange={handleChange}
                           name="gia"
                         />
+                        <Select
+                          value={productState.status}
+                          onChange={handleChange}
+                          displayEmpty
+                          inputProps={{ "aria-label": "Without label" }}
+                          name="status"
+                        >
+                          <MenuItem value={1}>Còn hàng</MenuItem>
+                          <MenuItem value={0}>Hết hàng</MenuItem>
+                        </Select>
                       </div>
                       <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
                         <button

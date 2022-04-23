@@ -31,7 +31,6 @@ const ProductDetail = () => {
   };
 
   const { product } = products;
-  calculateStar(product?.sao);
   const addQuantity = () => {
     setQuantity(quantity + 1);
   };
@@ -63,7 +62,12 @@ const ProductDetail = () => {
       addToFavourite({ product, userId: localStorage.getItem("userId") })
     );
   };
-  console.log(product);
+  // const diem = product
+  //   ? 5
+  //   : product.cacReview.reduce((acc, cur) => {
+  //       return acc + cur.diem;
+  //     }, 0);
+  // calculateStar(!product ? 5 : diem / product.cacReview.length);
   return (
     <Fragment>
       <div className="w-full pt-32 flex flex-col items-center">
@@ -149,16 +153,20 @@ const ProductDetail = () => {
                     </button>
                   </div>
                   <div className="flex flex-row items-center">
-                    <button
-                      className="p-4 w-full bg-gray-800 text-white font-bold"
-                      onClick={handleAddToCart}
-                    >
-                      Add to Cart
-                    </button>
-                    <i
-                      class="fal fa-heart text-2xl ml-3 cursor-pointer"
-                      onClick={handleAddToFavourite}
-                    ></i>
+                    {product.status && (
+                      <>
+                        <button
+                          className="p-4 w-full bg-gray-800 text-white font-bold"
+                          onClick={handleAddToCart}
+                        >
+                          Add to Cart
+                        </button>
+                        <i
+                          class="fal fa-heart text-2xl ml-3 cursor-pointer"
+                          onClick={handleAddToFavourite}
+                        ></i>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

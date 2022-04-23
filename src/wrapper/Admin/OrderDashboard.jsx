@@ -1,6 +1,6 @@
 import React from "react";
-import Product from "../../assets/images/Product1.jpg";
 import moment from "moment";
+import { numberWithDots } from "../../actions";
 const OrderDashboard = ({ order }) => {
   return (
     <div className="flex flex-row justify-between items-center">
@@ -12,7 +12,7 @@ const OrderDashboard = ({ order }) => {
         />
         <div>
           <h3 className="font-semibold">Order {order.maDDH}</h3>
-          <p className="text-gray-500">{order.tongTien}</p>
+          <p className="text-gray-500">{numberWithDots(order.tongTien)}</p>
         </div>
       </div>
 
