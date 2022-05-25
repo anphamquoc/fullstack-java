@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 import { API_URL } from "../../constants";
 const initialState = {
   sanPhamYeuThich: [],
@@ -238,7 +239,8 @@ const userSlice = createSlice({
     },
     [loginUser.rejected]: (state, action) => {
       state.loading = false;
-      alert("Thông tin khách hàng sai");
+      toast.error("Sai tên đăng nhập hoặc mật khẩu");
+      // alert("Thông tin khách hàng sai");
       return state;
     },
     [registerUser.pending]: (state, action) => {
@@ -271,7 +273,7 @@ const userSlice = createSlice({
     },
     [registerUser.rejected]: (state, action) => {
       state.loading = false;
-      alert("Lỗi khi đăng kí");
+      toast.error("Tên đăng nhập đã tồn tại");
       return state;
     },
     [changePassword.pending]: (state, action) => {
@@ -280,7 +282,7 @@ const userSlice = createSlice({
     },
     [changePassword.fulfilled]: (state, action) => {
       state.loading = false;
-      alert("Đổi password thành công, mời đăng nhập lại");
+      toast.success("Đổi password thành công, mời đăng nhập lại");
       //logout
       state.isAuthenticated = false;
       state.user = null;
@@ -289,7 +291,7 @@ const userSlice = createSlice({
     },
     [changePassword.rejected]: (state, action) => {
       state.loading = false;
-      alert("Thông tin mật khẩu sai");
+      toast.error("Thông tin mật khẩu sai");
       return state;
     },
     [updateUser.pending]: (state, action) => {
@@ -312,7 +314,7 @@ const userSlice = createSlice({
           vaiTro: payload.vaiTro,
         },
       };
-      alert("Cập nhật thông tin thành công");
+      toast.success("Cập nhật thông tin thành công");
       return state;
     },
 
@@ -330,6 +332,7 @@ const userSlice = createSlice({
       state.sanPhamYeuThich = state.sanPhamYeuThich.filter(
         (item) => item.maSp !== pid
       );
+      toast.success("Xóa sản phẩm yêu thích thành công");
       return state;
     },
     [removeFromFavourite.rejected]: (state, action) => {
@@ -344,12 +347,12 @@ const userSlice = createSlice({
       const { product } = action.payload;
       state.loading = false;
       state.sanPhamYeuThich.push(product);
-      alert("Thêm vào mục yêu thích thành công");
+      toast.success("Thêm vào mục yêu thích thành công");
       return state;
     },
     [addToFavourite.rejected]: (state, action) => {
       state.loading = false;
-      alert("Sản phẩm đã có trong mục yêu thích");
+      toast.warning("Sản phẩm đã có trong mục yêu thích");
 
       return state;
     },
@@ -364,12 +367,12 @@ const userSlice = createSlice({
         sanPham: product,
         soLuong: soLuong ? soLuong : 1,
       });
-      alert("Thêm vào giỏ hàng thành công");
+      toast.success("Thêm vào giỏ hàng thành công");
       return state;
     },
     [addToCart.rejected]: (state, action) => {
       state.loading = false;
-      alert("Sản phẩm đã có trong giỏ hàng");
+      toast.warning("Sản phẩm đã có trong giỏ hàng");
       return state;
     },
     [removeFromCart.pending]: (state, action) => {
@@ -382,12 +385,13 @@ const userSlice = createSlice({
       state.gioHang.chiTietGioHang = state.gioHang.chiTietGioHang.filter(
         (item) => item.sanPham.maSp !== pid
       );
+      // toast.success("Xóa sản phẩm khỏi giỏ hàng thành công");
       // alert("Xóa sản phẩm khỏi giỏ hàng thành công");
       return state;
     },
     [removeFromCart.rejected]: (state, action) => {
       state.loading = false;
-      alert("Sản phẩm không có trong giỏ hàng");
+      toast.error("Sản phẩm không có trong giỏ hàng");
       return state;
     },
     [updateQuantityInCart.pending]: (state, action) => {
@@ -423,7 +427,7 @@ const userSlice = createSlice({
     },
     [createOrder.rejected]: (state, action) => {
       state.loadingOrder = false;
-      alert("Đặt hàng thất bại");
+      toast.error("Đặt hàng thất bại");
       return state;
     },
     [addProductToOrder.pending]: (state, action) => {

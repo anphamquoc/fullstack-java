@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -93,6 +93,7 @@ const Dashboard = () => {
       },
     ],
   };
+  //reverse array
   return (
     <div className="basis-3/4">
       <h1 className="mb-5 text-2xl font-semibold">Hi, welcome back</h1>
@@ -181,7 +182,9 @@ const Dashboard = () => {
               </>
             ) : (
               admin.orders
-                .slice(0, 5)
+                // .sort((a, b) => a.ngayDatHang - b.ngayDatHang)
+                .slice(admin.orders.length - 6, admin.orders.length - 1)
+                .reverse()
                 .map((order) => <OrderDashboard key={order.id} order={order} />)
             )}
           </div>

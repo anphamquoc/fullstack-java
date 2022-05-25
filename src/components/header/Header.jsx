@@ -34,7 +34,7 @@ const Header = () => {
       <div className="grid place-items-center">
         <div className="flex flex-row gap-5 items-center my-10">
           <span className="w-[80px] h-[2px] bg-black"></span>
-          <h2 className="font-semibold text-3xl uppercase">Daily Deals!</h2>
+          <h2 className="font-semibold text-3xl uppercase">Sản phẩm</h2>
           <span className="w-[80px] h-[2px] bg-black"></span>
         </div>
         <div className="grid grid-cols-4 w-4/5 gap-7">
@@ -55,7 +55,9 @@ const Header = () => {
       <div className="grid place-items-center">
         <div className="flex flex-row gap-5 items-center my-10">
           <span className="w-[80px] h-[2px] bg-black"></span>
-          <h2 className="font-semibold text-3xl uppercase">BEST PRODUCT</h2>
+          <h2 className="font-semibold text-3xl uppercase">
+            Sản phẩm bán chạy
+          </h2>
           <span className="w-[80px] h-[2px] bg-black"></span>
         </div>
         <div className="grid grid-cols-3 w-4/5 gap-7">

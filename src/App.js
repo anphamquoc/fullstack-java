@@ -1,5 +1,7 @@
 import "./font-awesome-pro-5/font-awesome-pro-5/css/all.css";
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
+import "react-medium-image-zoom/dist/styles.css";
 import Header from "./components/header/Header";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -23,13 +25,14 @@ import Order from "./components/Order";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import NotFound from "./components/NotFound";
 import AboutUs from "./components/AboutUs";
-import Footer from "./components/Footer";
 import Admin from "./components/Admin";
 import Products from "./components/Admin/Products";
 import Users from "./components/Admin/Users";
 import Dashboard from "./components/Admin/Dashboard";
 import Orders from "./components/Admin/Orders";
 import ProductDetailAdmin from "./components/Admin/ProductDetail";
+import { ToastContainer } from "react-toastify";
+import HaveFooter from "./components/Footer/HaveFooter";
 
 function App() {
   //handle no access control allow origin header
@@ -44,29 +47,35 @@ function App() {
       <Routes>
         {/* Public Route */}
         <Route path="/login-register" element={<Form />}></Route>
-        <Route path="/" element={<Header />}></Route>
-        <Route path="/shop" element={<ProductList />}></Route>
-        <Route path="/product/:id" element={<ProductDetail />}></Route>
-        <Route path="/about" element={<AboutUs />}></Route>
-        {/* Private Route */}
-        <Route path="/" element={<ProtectedRoute />}>
-          <Route path="/account-info" element={<Account />}></Route>
-          <Route path="/cart" element={<Cart />}></Route>
-          <Route path="/favourite" element={<Favourite />}></Route>
-          <Route path="/checkout" element={<Checkout />}></Route>
-          <Route path="/checkout/success" element={<CheckoutSuccess />}></Route>
-          <Route path="/orders" element={<Order />} />
-        </Route>
-        <Route path="/admin" element={<Admin />}>
-          <Route path="" element={<Dashboard />} />
-          <Route path="products" element={<Products />} />
-          <Route path="users" element={<Users />} />
-          <Route path="orders" element={<Orders />} />
-          <Route path="products/:id" element={<ProductDetailAdmin />} />
+        <Route path="/" element={<HaveFooter />}>
+          <Route path="/" element={<Header />}></Route>
+          <Route path="/shop" element={<ProductList />}></Route>
+          <Route path="/product/:id" element={<ProductDetail />}></Route>
+          <Route path="/about" element={<AboutUs />}></Route>
+          {/* Private Route */}
+          <Route path="/" element={<ProtectedRoute />}>
+            <Route path="/account-info" element={<Account />}></Route>
+            <Route path="/cart" element={<Cart />}></Route>
+            <Route path="/favourite" element={<Favourite />}></Route>
+            <Route path="/checkout" element={<Checkout />}></Route>
+            <Route
+              path="/checkout/success"
+              element={<CheckoutSuccess />}
+            ></Route>
+            <Route path="/orders" element={<Order />} />
+          </Route>
+          <Route path="/admin" element={<Admin />}>
+            <Route path="" element={<Dashboard />} />
+            <Route path="products" element={<Products />} />
+            <Route path="users" element={<Users />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="products/:id" element={<ProductDetailAdmin />} />
+          </Route>
         </Route>
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
+      <ToastContainer />
     </Router>
   );
 }

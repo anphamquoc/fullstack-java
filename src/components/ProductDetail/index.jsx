@@ -9,6 +9,8 @@ import { fetchOneProduct } from "../../redux/features/ProductSlice";
 import Skeleton from "react-loading-skeleton";
 import { addToCart, addToFavourite } from "../../redux/features/UserSlice";
 import { numberWithDots } from "../../actions";
+import { toast } from "react-toastify";
+import Zoom from "react-medium-image-zoom";
 
 const ProductDetail = () => {
   const params = useParams();
@@ -41,7 +43,7 @@ const ProductDetail = () => {
   };
   const handleAddToCart = () => {
     if (!user.isAuthenticated) {
-      alert("Bạn cần đăng nhập để thực hiện chức năng này");
+      toast.warning("Bạn cần đăng nhập để thực hiện chức năng này");
       return;
     }
     dispatch(
@@ -55,7 +57,7 @@ const ProductDetail = () => {
 
   const handleAddToFavourite = () => {
     if (!user.isAuthenticated) {
-      alert("Bạn cần đăng nhập để thực hiện chức năng này");
+      toast.warning("Bạn cần đăng nhập để thực hiện chức năng này");
       return;
     }
     dispatch(
@@ -80,11 +82,13 @@ const ProductDetail = () => {
         ) : (
           <div className="flex flex-row gap-4 w-3/4">
             <div className="basis-1/2">
-              <img
-                src={`/../../${product?.hinhAnh}`}
-                alt="product"
-                className="w-full"
-              />
+              <Zoom>
+                <img
+                  src={`/../../${product?.hinhAnh}`}
+                  alt="product"
+                  className="w-full"
+                />
+              </Zoom>
             </div>
             <div className="divide-y-2 basis-1/2">
               <div className="flex flex-col gap-7 mb-5">
@@ -159,7 +163,7 @@ const ProductDetail = () => {
                           className="p-4 w-full bg-gray-800 text-white font-bold"
                           onClick={handleAddToCart}
                         >
-                          Add to Cart
+                          Add to cart
                         </button>
                         <i
                           class="fal fa-heart text-2xl ml-3 cursor-pointer"

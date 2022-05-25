@@ -1,10 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { numberWithDots } from "../../actions";
 import { addToCart, addToFavourite } from "../../redux/features/UserSlice";
 
 const ProductComponent = ({ product }) => {
+  console.log(product);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   let star = [];
@@ -19,7 +21,7 @@ const ProductComponent = ({ product }) => {
 
   const handleAddToFavourite = () => {
     if (!user.isAuthenticated) {
-      alert("Bạn cần đăng nhập để thực hiện chức năng này");
+      toast.warning("Bạn cần đăng nhập để thực hiện chức năng này");
       return;
     }
     dispatch(
@@ -28,7 +30,7 @@ const ProductComponent = ({ product }) => {
   };
   const handleAddToCart = () => {
     if (!user.isAuthenticated) {
-      alert("Bạn cần đăng nhập để thực hiện chức năng này");
+      toast.warning("Bạn cần đăng nhập để thực hiện chức năng này");
       return;
     }
     dispatch(addToCart({ product, userId: localStorage.getItem("userId") }));

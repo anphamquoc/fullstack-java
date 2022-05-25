@@ -11,7 +11,7 @@ const FilterCheckbox = ({ filter, setFilter }) => {
   };
   return (
     <div className="flex flex-col gap-5">
-      <h4 className="font-medium text-xl">Color</h4>
+      <h4 className="font-medium text-xl">Màu sắc</h4>
       <div class="flex">
         <div className="flex flex-col gap-3 font-medium">
           <div class="form-check">
@@ -26,7 +26,7 @@ const FilterCheckbox = ({ filter, setFilter }) => {
               class="form-check-label inline-block text-gray-800"
               for="flexCheckDefault"
             >
-              White
+              Trắng
             </label>
           </div>
           <div class="form-check">
@@ -41,7 +41,7 @@ const FilterCheckbox = ({ filter, setFilter }) => {
               class="form-check-label inline-block text-gray-800"
               for="flexCheckDefault"
             >
-              Black
+              Đen
             </label>
           </div>
         </div>

@@ -1,10 +1,9 @@
-import { Input, MenuItem, Select, TextField } from "@mui/material";
+import { MenuItem, Select, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { numberWithDots } from "../../actions";
-import Product from "../../assets/images/Product1.jpg";
 import {
   fetchOneProduct,
   updateProduct,

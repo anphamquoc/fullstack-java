@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Input from "../../wrapper/User/Input";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser, registerUser } from "../../redux/features/UserSlice";
+import { toast } from "react-toastify";
 
 const Form = () => {
   const navigate = useNavigate();
@@ -33,14 +34,14 @@ const Form = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     if (userRegister.password !== rePassword) {
-      alert("Password not match");
+      toast.error("Password not match");
     } else {
       dispatch(registerUser(userRegister));
     }
   };
   return (
     <Fragment>
-      <div className="flex flex-col gap-5 justify-center items-center w-full min-h-[calc(100vh)] pt-20">
+      <div className="flex flex-col gap-5 justify-center items-center w-full min-h-[calc(100vh)] pt-20 mb-20">
         <Breadcrumb breadcrumbName={"LOGIN / REGISTER"} header={"Login"} />
         <div className="flex flex-row gap-5 text-2xl font-bold cursor-pointer">
           <h3

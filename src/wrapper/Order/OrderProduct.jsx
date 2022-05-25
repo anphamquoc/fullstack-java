@@ -11,7 +11,6 @@ const OrderProduct = ({ product, isInvoice }) => {
     noiDung: "",
     diem: 5,
     maKH: localStorage.getItem("userId"),
-    maSP: product.sanPham.maSp,
     tenNguoiDanhGia: user.user.hoTen,
   });
   const handleChange = (e) => {
@@ -22,7 +21,7 @@ const OrderProduct = ({ product, isInvoice }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addReview(reviewDescription));
+    dispatch(addReview({ ...reviewDescription, maSP: product.sanPham.maSp }));
   };
   return (
     <tr class="bg-white border-b">
@@ -56,6 +55,12 @@ const OrderProduct = ({ product, isInvoice }) => {
             class="bg-purple-500 px-4 py-2 rounded-full text-white"
             data-bs-toggle="modal"
             data-bs-target="#exampleModalScrollable"
+            onClick={() => {
+              setReviewDescription({
+                ...reviewDescription,
+                maSP: product.sanPham.maSp,
+              });
+            }}
           >
             Add Review
           </button>

@@ -20,9 +20,10 @@ const Action = () => {
   const handleLogout = () => {
     dispatch(logOut());
   };
-  const total = gioHang?.chiTietGioHang
+  let total = !gioHang?.chiTietGioHang
     ? 0
-    : gioHang?.chiTietGioHang?.reduce((total, item) => {
+    : gioHang.chiTietGioHang?.reduce((total, item) => {
+        console.log(item);
         return total + item.soLuong * item.sanPham.gia;
       }, 0);
   return (
@@ -83,7 +84,7 @@ const Action = () => {
             </Link>
           )}
           {user.isAuthenticated && (
-            <div className="inline-block relative cursor-pointer">
+            <div className="inline-block relative cursor-pointer z-10">
               <i class="fal fa-shopping-cart" onClick={handleClickCart}></i>
               <div
                 className={`${activeCart}  absolute shadow-lg gap-3 flex-col w-max h-max  mt-6 right-0 bg-white p-7`}
@@ -110,7 +111,10 @@ const Action = () => {
                               </p>
                             </div>
                             <span className="text-[14px]">
-                              {product.sanPham.gia * product.soLuong}d
+                              {numberWithDots(
+                                product.sanPham.gia * product.soLuong
+                              )}{" "}
+                              đ
                             </span>
                           </div>
                           <i class="fas fa-times-circle pt-2"></i>

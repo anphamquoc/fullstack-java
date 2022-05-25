@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../assets/images/Logo.webp";
+import Logo from "../../assets/images/Logo.png";
 import MenuData from "../../data/Footer/Menu.json";
 import Menu from "../../wrapper/Footer/Menu";
 const Footer = () => {

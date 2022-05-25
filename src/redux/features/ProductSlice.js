@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { API_URL } from "../../constants";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const initialState = {
   products: [],
@@ -107,6 +108,7 @@ export const productSlice = createSlice({
         }
         return product;
       });
+      toast.success("Sửa sản phẩm thành công");
       return state;
     },
     [updateProduct.rejected]: (state) => {
@@ -121,11 +123,12 @@ export const productSlice = createSlice({
       state.products = state.products.filter(
         (product) => product.maSp !== action.payload.id
       );
+      toast.success("Xóa sản phẩm thành công");
       return state;
     },
     [deleteProduct.rejected]: (state) => {
       state.loadingProduct = false;
-      alert("Xóa sản phẩm không thành công");
+      toast.error("Xóa sản phẩm không thành công");
       return state;
     },
     [addReview.pending]: (state) => {
@@ -141,7 +144,7 @@ export const productSlice = createSlice({
         }
         return product;
       });
-      alert("Đánh giá thành công");
+      toast.success("Đánh giá thành công");
       return state;
     },
     [addReview.rejected]: (state) => {
@@ -155,13 +158,13 @@ export const productSlice = createSlice({
     [addProduct.fulfilled]: (state, action) => {
       state.loadingProduct = false;
       state.products.push(action.payload.product);
-      alert("Thêm sản phẩm thành công");
+      toast.success("Thêm sản phẩm thành công");
       window.location.reload();
       return state;
     },
     [addProduct.rejected]: (state) => {
       state.loadingProduct = false;
-      alert("Thêm sản phẩm không thành công");
+      toast.error("Thêm sản phẩm không thành công");
       return state;
     },
   },

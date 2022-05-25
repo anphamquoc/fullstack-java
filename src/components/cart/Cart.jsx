@@ -53,7 +53,7 @@ const Cart = () => {
             </div>
             <div className="flex flex-row justify-between w-4/5">
               <Link to={"/"}>
-                <Button name={"CONTINUE SHOPPING"} />
+                <Button name={"TIẾP TỤC MUA SẮM"} />
               </Link>
               <div className="flex flex-row gap-5">
                 <Button name={"UPDATE SHOPPING CART"} />
@@ -98,22 +98,22 @@ const Cart = () => {
               </form>
               {/*Create checkout board*/}
               <form className="p-7 bg-gray-100 rounded-md border-2 h-fit">
-                <h4 className="text-2xl font-semibold">Cart Total</h4>
+                <h4 className="text-2xl font-semibold">Tổng tiền</h4>
                 <div className="flex flex-col divide-y-2">
                   <div className="flex justify-between items-center py-4">
-                    <p>Total product</p>
+                    <p>Tổng tiền</p>
                     <span className="font-semibold text-xl">
                       {numberWithDots(total)} đ
                     </span>
                   </div>
                   <div className="flex justify-between items-center py-4">
-                    <p>Total shipping</p>
+                    <p>Phí vận chuyển</p>
                     <span>Free ship</span>
                   </div>
                   <div className="flex flex-col gap-3 items-center py-4">
                     <div className="flex justify-between w-full">
                       <h4 className="font-semibold text-2xl text-purple-500">
-                        Grand total
+                        Tổng tiền trả
                       </h4>
                       <span className="font-semibold text-2xl text-purple-500">
                         {numberWithDots(total)} đ
@@ -128,7 +128,7 @@ const Cart = () => {
                         } px-7 py-3 bg-purple-500 text-lg font-semibold text-white rounded-full  w-full mt-5`}
                         disabled={cart.chiTietGioHang.length === 0}
                       >
-                        PROCEED TO CHECKOUT
+                        ĐẾN TRANG THANH TOÁN
                       </button>
                     </Link>
                   </div>

@@ -20,7 +20,6 @@ const Products = () => {
   const [imagePreview, setImagePreview] = useState(null);
   // const [imageData, setImageData] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
-
   const [itemProduct, setItemProduct] = useState({
     tenSp: "",
     gia: "",
@@ -121,6 +120,7 @@ const Products = () => {
                   accept="image/*"
                   id="upload-profile-image"
                   type="file"
+                  hidden
                   onChange={handleUploadClick}
                 />
                 <label htmlFor="upload-profile-image">
@@ -128,7 +128,6 @@ const Products = () => {
                     Change Image
                   </Button>
                 </label>
-
                 <TextField
                   id="standard-basic"
                   label="Tên sản phẩm"

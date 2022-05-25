@@ -51,7 +51,7 @@ const UserInfo = () => {
         ) : (
           <>
             <div className="accordion-item bg-white border border-gray-200">
-              <Title name={"1. EDIT YOUR ACCOUNT INFORMATION"} />
+              <Title name={"1. THAY ĐỔI THÔNG TIN TÀI KHOẢN"} />
               <div
                 id="collapse1"
                 className="accordion-collapse collapse show"
@@ -60,14 +60,14 @@ const UserInfo = () => {
               >
                 <div className="accordion-body py-4 px-5 divide-y-2">
                   <div className="mb-5 text-lg font-normal">
-                    <h4>MY ACCOUNT INFORMATION</h4>
-                    <h5>Your Personal Details</h5>
+                    <h4>THÔNG TIN TÀI KHOẢN CỦA BẠN</h4>
+                    <h5>Thông tin cá nhân</h5>
                   </div>
                   <form onSubmit={handleUpdateUser} className="pt-5">
                     <div className="flex flex-row justify-between gap-10">
                       <div class="flex">
                         <Input
-                          name={"Full Name"}
+                          name={"Họ tên"}
                           value={userState?.hoTen}
                           handleChange={handleChange}
                           inputName={"hoTen"}
@@ -77,7 +77,7 @@ const UserInfo = () => {
                     <div className="flex flex-row justify-between">
                       <div class="flex w-full">
                         <Input
-                          name={"Email Address"}
+                          name={"Email của bạn"}
                           value={userState?.email}
                           handleChange={handleChange}
                           inputName={"email"}
@@ -90,7 +90,7 @@ const UserInfo = () => {
                     <div className="flex flex-row justify-between gap-10">
                       <div class="flex basis-1/2">
                         <Input
-                          name={"Address"}
+                          name={"Địa chỉ"}
                           value={userState?.diaChi}
                           handleChange={handleChange}
                           inputName={"diaChi"}
@@ -98,7 +98,7 @@ const UserInfo = () => {
                       </div>
                       <div class="flex basis-1/2">
                         <Input
-                          name={"Phone Number"}
+                          name={"Số điện thoại"}
                           value={userState?.soDt}
                           handleChange={handleChange}
                           inputName={"soDt"}
@@ -115,7 +115,7 @@ const UserInfo = () => {
                       {user.loading ? (
                         <i class="fad fa-spinner-third fa-spin"></i>
                       ) : (
-                        "CONTINUE"
+                        "TIẾP TỤC"
                       )}
                     </button>
                   </form>
@@ -123,7 +123,7 @@ const UserInfo = () => {
               </div>
             </div>
             <div className="accordion-item bg-white border border-gray-200">
-              <Title name={"2. CHANGE YOUR PASSWORD"} />
+              <Title name={"2. THAY ĐỔI MẬT KHẨU"} />
               <div
                 id="collapse2"
                 class="accordion-collapse collapse"
@@ -132,14 +132,14 @@ const UserInfo = () => {
               >
                 <div className="accordion-body py-4 px-5 divide-y-2">
                   <div className="mb-5 text-lg font-normal">
-                    <h4>CHANGE PASSWORD</h4>
-                    <h5>Your password</h5>
+                    <h4>THAY ĐỔI MẬT KHẨU</h4>
+                    <h5>Mật khẩu của bạn</h5>
                   </div>
                   <form className="pt-5" onSubmit={handleChangePassword}>
                     <div className="flex flex-row justify-between">
                       <div class="flex w-full">
                         <Input
-                          name={"Password"}
+                          name={"Mật khẩu cũ"}
                           inputName={"password"}
                           value={passwordState.password}
                           handleChange={handlePasswordChange}
@@ -151,7 +151,7 @@ const UserInfo = () => {
                     <div className="flex flex-row justify-between">
                       <div class="flex w-full">
                         <Input
-                          name={"New password"}
+                          name={"Mật khẩu mới"}
                           inputName={"newPassword"}
                           value={passwordState.newPassword}
                           handleChange={handlePasswordChange}
@@ -164,7 +164,7 @@ const UserInfo = () => {
                       className="py-3 px-7 mt-2 bg-gray-200 rounded-md font-semibold"
                       type="submit"
                     >
-                      CONTINUE
+                      TIẾP TỤC
                     </button>
                   </form>
                 </div>
@@ -172,7 +172,7 @@ const UserInfo = () => {
             </div>
             <div className="accordion-item bg-white border border-gray-200">
               <Link to={"/favourite"}>
-                <Title name={"3. MODIFY YOUR WISHLIST"} />
+                <Title name={"3. THAY ĐỔI YÊU THÍCH"} />
               </Link>
             </div>
           </>

@@ -14,15 +14,13 @@ const AboutUs = () => {
           <div className="text-lg">
             <p className="text-gray-500 font-semibold">Who Are We</p>
             <h1 className="text-3xl font-semibold text-gray-800">
-              Welcome to Flone
+              Chào mừng đến với website của chúng tôi
             </h1>
           </div>
           <span className="w-20 h-1 bg-black block my-3"></span>
           <p className="w-2/3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
-            tempore ducimus quo laudantium accusantium fuga illo, doloribus,
-            saepe illum suscipit magni animi ex. Quod et nesciunt, sit dolor
-            consequuntur officia.
+            Chúng tôi luôn mang đến cho bạn những sản phẩm tuyệt vời và giá cả
+            hợp lí, đa dạng mặt hàng cho mọi lứa tuổi.
           </p>
         </div>
         <div className="grid grid-cols-3 mt-10 gap-4">
@@ -66,10 +64,10 @@ const AboutUs = () => {
           </p>
         </div>
         <div className="grid grid-cols-4 gap-10 mt-10">
-          <Member />
-          <Member />
-          <Member />
-          <Member />
+          <Member name={"Phạm Quốc Ấn"} role={"Leader"} />
+          <Member name={"Trần Đức Bảo"} role={"Member"} />
+          <Member name={"Nghiêm Chí Bảo"} role={"Member"} />
+          <Member name={"Danh Đặng Hải Đăng"} role={"Member"} />
         </div>
       </div>
     </div>

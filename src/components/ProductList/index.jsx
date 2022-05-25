@@ -4,7 +4,7 @@ import ProductComponent from "../../wrapper/Product/ProductComponent";
 import FilterCheckbox from "../../wrapper/Shop/FilterCheckbox";
 import { useSelector } from "react-redux";
 import ProductLoading from "../../wrapper/Loading/ProductLoading";
-import { Box, Slider } from "@mui/material";
+import NotFoundProduct from "../../assets/images/not-found-product.png";
 
 const Index = () => {
   const products = useSelector((state) => state.products);
@@ -13,12 +13,13 @@ const Index = () => {
     gia: 0,
     colors: [],
     sort: "",
+    name: "",
   });
   useEffect(() => {
     setFilterProducts(products.products);
   }, [products.loading]);
   const handleFilter = () => {
-    const { gia, colors, sort } = filter;
+    const { gia, colors, sort, name } = filter;
     let newFilterProducts = [...products.products];
     if (gia !== 0) {
       newFilterProducts = newFilterProducts.filter((product) => {
@@ -26,7 +27,6 @@ const Index = () => {
       });
     }
     if (colors.length > 0) {
-      console.log(newFilterProducts);
       newFilterProducts = newFilterProducts.filter(function (product) {
         return colors.every((color) => product.phanLoai.mauSac.includes(color));
       });
@@ -44,18 +44,30 @@ const Index = () => {
         }
       });
     }
+    if (name !== "") {
+      newFilterProducts = newFilterProducts.filter((product) => {
+        return product.tenSp.toLowerCase().includes(name.toLowerCase());
+      });
+    }
     setFilterProducts(newFilterProducts);
   };
-  console.log(filterProducts);
+  const filterByName = (e) => {
+    setFilter({ ...filter, name: e.target.value });
+    // const newFilterProducts = products.products.filter((product) => {
+    //   return product.tenSp.toLowerCase().includes(e.target.value.toLowerCase());
+    // });
+    // setFilterProducts(newFilterProducts);
+    handleFilter();
+  };
   return (
     <Fragment>
       <div className="w-full pt-32 flex flex-col items-center">
         <Breadcrumb header={"LIST PRODUCT"} breadcrumbName="SHOP" />
-        <div className="grid place-items-center">
+        <div className="grid place-items-center w-full">
           <div className="flex flex-row gap-20 w-3/4">
             <div className="basis-1/4 flex gap-14 flex-col">
               <div className="flex flex-col gap-5">
-                <h4 className="font-medium text-xl">Filter by price</h4>
+                <h4 className="font-medium text-xl">Lọc theo giá</h4>
                 <div class="relative pt-1 flex flex-col">
                   <label
                     for="customRange3"
@@ -95,8 +107,8 @@ const Index = () => {
             </div>
             <div className="basis-3/4">
               <div>
-                <div class="flex">
-                  <div class="mb-3 xl:w-96">
+                <div class="flex flex-row justify-between items-center">
+                  <div class="mb-3 xl:w-96 flex flex-row justify-between ">
                     <select
                       class="form-select appearance-none
       block
@@ -132,8 +144,22 @@ const Index = () => {
                       {/* <option value="3">In stock</option> */}
                     </select>
                   </div>
+                  <input
+                    type="text"
+                    placeholder="Tìm kiếm"
+                    className="border border-gray-400 rounded-lg p-2"
+                    onChange={filterByName}
+                  />
                 </div>
               </div>
+              {products.loading === false && filterProducts.length === 0 && (
+                <div className="text-center flex flex-col justify-center">
+                  <img src={NotFoundProduct} alt="Not found" />
+                  <h1 className="text-2xl font-semibold text-gray-400">
+                    Không có sản phẩm nào
+                  </h1>
+                </div>
+              )}
               <div className="grid grid-cols-3 gap-7">
                 {/* One Product */}
 
@@ -143,16 +169,11 @@ const Index = () => {
                     <ProductLoading />
                     <ProductLoading />
                   </>
-                ) : filterProducts.length ? (
+                ) : (
+                  filterProducts.length !== 0 &&
                   filterProducts.map((product) => (
                     <ProductComponent product={product} />
                   ))
-                ) : (
-                  <div className="text-center">
-                    <h1 className="text-2xl font-semibold">
-                      Không có sản phẩm nào
-                    </h1>
-                  </div>
                 )}
               </div>
             </div>

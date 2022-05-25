@@ -202,6 +202,7 @@ const Checkout = () => {
                               clientId:
                                 "Ad77B1c_3OwOo-F5Ivl3mFfvlD1Lekx558kRDBOV_cdnZUvZHC-UaFcRvtcafQP-pi4L0EAuDr897QYI",
                               currency: "USD",
+                              buyerCountry: "VN",
                             }}
                             amount="20000"
                             // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
@@ -226,7 +227,7 @@ const Checkout = () => {
                 onClick={handleCheckout}
                 disabled={gioHang.chiTietGioHang.length === 0}
               >
-                Place Order
+                Thanh toán
               </button>
             </div>
           </div>

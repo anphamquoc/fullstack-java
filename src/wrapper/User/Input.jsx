@@ -19,6 +19,11 @@ const Input = ({ name, setUser, user, pattern }) => {
             ? "password"
             : "text"
         }
+        title={
+          name === "Password" || name === "Confirm Password"
+            ? "Bao gồm một chữ số, ký tự viết thường và viết hoa"
+            : ""
+        }
         pattern={pattern}
         class="form-control
       block
