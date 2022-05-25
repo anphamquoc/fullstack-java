@@ -161,20 +161,4 @@ public class SanPham {
 		this.sao = sao;
 	}
 
-	// public Set<DonDatHang> getCacDonDatHang() {
-	// return cacDonDatHang;
-	// }
-	//
-	// public void setCacDonDatHang(Set<DonDatHang> cacDonDatHang) {
-	// this.cacDonDatHang = cacDonDatHang;
-	// }
-
-	// public Set<KhachHang> getKhachHangYeuThich() {
-	// return khachHangYeuThich;
-	// }
-	//
-	// public void setKhachHangYeuThich(Set<KhachHang> khachHangYeuThich) {
-	// this.khachHangYeuThich = khachHangYeuThich;
-	// }
-
 }
