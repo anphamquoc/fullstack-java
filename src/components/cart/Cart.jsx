@@ -63,11 +63,9 @@ const Cart = () => {
             {/* <PaymentLoading /> */}
             <div className="grid grid-cols-3 w-4/5 mt-10 gap-5">
               <form className="p-7 bg-gray-100 rounded-md border-2">
-                <h4 className="text-2xl font-semibold">
-                  Estimate shipping and Tax
-                </h4>
+                <h4 className="text-2xl font-semibold">Phí vận chuyển</h4>
                 <p className="text-lg mb-4">
-                  Enter your destination to get a shipping estimate.
+                  Nhập vào vị trí hiện tại của bạn để ước tính
                 </p>
                 {/*Create select input} */}
                 <div className="flex flex-col gap-7">
@@ -81,12 +79,8 @@ const Cart = () => {
                 {/*Input zip code*/}
               </form>
               <form className="p-7 bg-gray-100 rounded-md border-2 h-fit">
-                <h4 className="text-2xl font-semibold">
-                  Estimate shipping and Tax
-                </h4>
-                <p className="text-lg mb-4">
-                  Enter your destination to get a shipping estimate.
-                </p>
+                <h4 className="text-2xl font-semibold">Áp dụng mã giảm giá</h4>
+                <p className="text-lg mb-4">Nhập vào mã giảm giá</p>
                 {/*Create select input} */}
                 <div className="flex flex-col gap-7">
                   <Input />

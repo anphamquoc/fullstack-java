@@ -75,7 +75,7 @@ function App() {
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
       {/* <Footer /> */}
-      <ToastContainer />
+      <ToastContainer autoClose={1000} />
     </Router>
   );
 }
