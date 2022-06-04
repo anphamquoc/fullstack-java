@@ -12,21 +12,25 @@ import lombok.ToString;
 public class ChiTietDonHangRequest {
 	private long maDDH;
 	private long soLuong;
+
 	public long getMaDDH() {
 		return maDDH;
 	}
+
 	public void setMaDDH(long maDDH) {
 		this.maDDH = maDDH;
 	}
+
 	public long getSoLuong() {
 		return soLuong;
 	}
+
 	public void setSoLuong(long soLuong) {
 		this.soLuong = soLuong;
 	}
-	
-	public ChiTietDonHangRequest(long maDDH, long soLuong) {
-		this.maDDH = maDDH;
-		this.soLuong = soLuong;
-	}
+
+	// public ChiTietDonHangRequest(long maDDH, long soLuong) {
+	// this.maDDH = maDDH;
+	// this.soLuong = soLuong;
+	// }
 }
