@@ -70,6 +70,7 @@ const ProductDetail = () => {
   //       return acc + cur.diem;
   //     }, 0);
   // calculateStar(!product ? 5 : diem / product.cacReview.length);
+  calculateStar(product ? product.sao : 5);
   return (
     <Fragment>
       <div className="w-full pt-32 flex flex-col items-center">
