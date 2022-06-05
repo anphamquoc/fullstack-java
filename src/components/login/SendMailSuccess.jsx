@@ -25,7 +25,8 @@ const SendMailSuccess = () => {
         "template_xmlvu2c",
         {
           name: password.user.ho_ten,
-          link: `http://localhost:3000/reset-password/${password.user.maKh}`,
+          //   link: `http://localhost:3000/reset-password/${password.user.maKh}`,
+          link: `https://fullstack-java.vercel.app/reset-password/${password.user.maKh}`,
           username: password.user.username,
           reply_to: password.user.email,
         },
