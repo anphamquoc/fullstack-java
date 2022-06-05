@@ -51,6 +51,15 @@ public class KhachHangController {
 		return ResponseEntity.ok(khachHang);
 	}
 
+	@GetMapping("/forgot-password/{username}")
+	public KhachHang getEmailCustomer(@PathVariable String username) {
+		KhachHang checkKhachHang = khachHangRepository.findByUsername(username);
+		if (checkKhachHang == null) {
+			throw new ResourceNotFoundException("Không có khách hàng cần tìm");
+		}
+		return checkKhachHang;
+	}
+
 	@PutMapping("/{id}/change-password")
 	public ResponseEntity<KhachHang> changePassword(@PathVariable long id,
 			@RequestBody PasswordRequest passwordRequest) {
@@ -60,6 +69,18 @@ public class KhachHangController {
 				khachHang.getSalt())) {
 			throw new ResourceNotFoundException("Mật khẩu không đúng");
 		}
+		String salt = PasswordUtils.getSalt(30);
+		String newPassword = PasswordUtils.generateSecurePassword(passwordRequest.getNewPassword(), salt);
+		khachHang.setPassword(newPassword);
+		khachHang.setSalt(salt);
+		return ResponseEntity.ok(khachHangRepository.save(khachHang));
+	}
+
+	@PutMapping("/{id}/reset-password")
+	public ResponseEntity<KhachHang> resetPassword(@PathVariable long id,
+			@RequestBody PasswordRequest passwordRequest) {
+		KhachHang khachHang = khachHangRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Không có khách hàng cần tìm"));
 		String salt = PasswordUtils.getSalt(30);
 		String newPassword = PasswordUtils.generateSecurePassword(passwordRequest.getNewPassword(), salt);
 		khachHang.setPassword(newPassword);
