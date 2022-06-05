@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import Breadcrumb from "../../wrapper/Breadcrumb";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Input from "../../wrapper/User/Input";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser, registerUser } from "../../redux/features/UserSlice";
@@ -87,7 +87,9 @@ const Form = () => {
                       Remember me
                     </label>
                   </div>
-                  <span>Forgot password?</span>
+                  <Link to={"/forgot-password"}>
+                    <span>Forgot password?</span>
+                  </Link>
                 </div>
                 <button
                   type="submit"
@@ -206,7 +208,6 @@ const Form = () => {
                       Remember me
                     </label>
                   </div>
-                  <span>Forgot password?</span>
                 </div>
                 <button
                   type="submit"

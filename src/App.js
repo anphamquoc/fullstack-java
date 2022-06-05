@@ -33,6 +33,9 @@ import Orders from "./components/Admin/Orders";
 import ProductDetailAdmin from "./components/Admin/ProductDetail";
 import { ToastContainer } from "react-toastify";
 import HaveFooter from "./components/Footer/HaveFooter";
+import ForgotPassword from "./components/login/ForgotPassword";
+import SendMailSuccess from "./components/login/SendMailSuccess";
+import ResetPassword from "./components/login/ResetPassword";
 
 function App() {
   //handle no access control allow origin header
@@ -47,6 +50,9 @@ function App() {
       <Routes>
         {/* Public Route */}
         <Route path="/login-register" element={<Form />}></Route>
+        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
+        <Route path="/send-mail" element={<SendMailSuccess />}></Route>
+        <Route path="/reset-password/:id" element={<ResetPassword />}></Route>
         <Route path="/" element={<HaveFooter />}>
           <Route path="/" element={<Header />}></Route>
           <Route path="/shop" element={<ProductList />}></Route>
