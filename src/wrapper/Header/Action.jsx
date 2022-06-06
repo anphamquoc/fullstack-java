@@ -5,6 +5,7 @@ import { handleImageUrl, numberWithDots } from "../../actions";
 import { logOut } from "../../redux/features/UserSlice";
 import Empty from "../../assets/images/empty.gif";
 import { auth } from "../../Firebase/firebase";
+import { form } from "../../components/login/Form";
 
 const Action = () => {
   const [active, setActive] = useState("hidden");
@@ -44,12 +45,12 @@ const Action = () => {
             >
               {!user.isAuthenticated ? (
                 <>
-                  <Link to={"/login-register"}>
+                  <Link to={"/login-register"} onClick={handleClickUser}>
                     <span className="hover:text-fuchsia-500 hover:translate-x-1 transition-all duration-200">
                       Đăng nhập
                     </span>
                   </Link>
-                  <Link to={`/login-register`}>
+                  <Link to={`/login-register`} onClick={handleClickUser}>
                     <span className="hover:text-fuchsia-500 hover:translate-x-1 transition-all duration-200">
                       Đăng ký
                     </span>

@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const Section = ({ name, url }) => {
+const Section = ({ show, name, url }) => {
   const user = useSelector((state) => state.user);
   if (name === "Admin" && (!user.user || user.user.vaiTro !== "admin"))
     return null;
@@ -18,7 +18,7 @@ const Section = ({ name, url }) => {
                 : `/${name.toLowerCase() === "home" ? "" : name.toLowerCase()}`
             }
           >
-            <h6>{name}</h6>
+            <h6>{show}</h6>
           </Link>{" "}
           {/* {haveMenu ? <i className="fal fa-angle-down" /> : ""} */}
         </div>
