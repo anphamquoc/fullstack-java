@@ -95,8 +95,8 @@ const Form = () => {
                   name={"Username"}
                   setUser={setUserLogin}
                   user={userLogin}
-                  placeholder={"username"}
-                  label={"Username"}
+                  placeholder={"tên đăng nhập"}
+                  label={"Tên đăng nhập"}
                   //username has at least 1 character, and at most 20 characters
                 />
                 <Input
@@ -118,7 +118,7 @@ const Form = () => {
                       class="form-check-label inline-block text-gray-800"
                       for="exampleCheck1"
                     >
-                      Remember me
+                      Nhớ mật khẩu
                     </label>
                   </div>
                   <Link to={"/forgot-password"}>
@@ -131,7 +131,7 @@ const Form = () => {
                     className="border border-blue-200 p-2 rounded-lg w-full"
                     type="button"
                   >
-                    <i class="fab fa-google"></i> Login with google
+                    <i class="fab fa-google"></i> Đăng nhập với google
                   </button>
                 </div>
                 <button
@@ -155,7 +155,7 @@ const Form = () => {
                   {/* {true ? (
                     <i class="fad fa-spinner-third fa-spin"></i>
                   ) : ( */}
-                  Submit
+                  Đăng nhập
                   {/* )} */}
                 </button>
               </form>
@@ -167,8 +167,8 @@ const Form = () => {
                   name={"Username"}
                   user={userRegister}
                   setUser={setUserRegister}
-                  placeholder={"username"}
-                  label={"Username"}
+                  placeholder={"tên đăng nhập"}
+                  label={"Tên đăng nhập"}
                 />
                 <Input
                   name={"Password"}
@@ -177,42 +177,6 @@ const Form = () => {
                   pattern={"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$"}
                   placeholder="mật khẩu"
                   label={"Mật khẩu"}
-                />
-                <Input
-                  name={"soDt"}
-                  user={userRegister}
-                  setUser={setUserRegister}
-                  //phone pattern
-                  pattern={
-                    "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$"
-                  }
-                  placeholder="số điện thoại"
-                  label={"Số điện thoại"}
-                />
-                <Input
-                  name={`hoTen`}
-                  user={userRegister}
-                  setUser={setUserRegister}
-                  placeholder={"họ tên"}
-                  label={"Họ tên"}
-                />
-                <Input
-                  name={"email"}
-                  user={userRegister}
-                  setUser={setUserRegister}
-                  //email pattern
-                  pattern={
-                    "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
-                  }
-                  placeholder="email"
-                  label={"Email"}
-                />
-                <Input
-                  name={"diaChi"}
-                  user={userRegister}
-                  setUser={setUserRegister}
-                  placeholder={"địa chỉ"}
-                  label={"Địa chỉ"}
                 />
                 <div class="form-group mb-6">
                   <label
@@ -249,6 +213,43 @@ const Form = () => {
               We'll never share your email with anyone else.
             </small> */}
                 </div>
+                <Input
+                  name={"soDt"}
+                  user={userRegister}
+                  setUser={setUserRegister}
+                  //phone pattern
+                  pattern={
+                    "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$"
+                  }
+                  placeholder="số điện thoại"
+                  label={"Số điện thoại"}
+                />
+                <Input
+                  name={`hoTen`}
+                  user={userRegister}
+                  setUser={setUserRegister}
+                  placeholder={"họ tên"}
+                  label={"Họ tên"}
+                />
+                <Input
+                  name={"email"}
+                  user={userRegister}
+                  setUser={setUserRegister}
+                  //email pattern
+                  pattern={
+                    "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
+                  }
+                  placeholder="email"
+                  label={"Email"}
+                />
+                <Input
+                  name={"diaChi"}
+                  user={userRegister}
+                  setUser={setUserRegister}
+                  placeholder={"địa chỉ"}
+                  label={"Địa chỉ"}
+                />
+
                 <div className="flex justify-between">
                   <div class="form-group form-check mb-6">
                     <input
@@ -260,7 +261,7 @@ const Form = () => {
                       class="form-check-label inline-block text-gray-800"
                       for="exampleCheck1"
                     >
-                      Remember me
+                      Nhớ mật khẩu
                     </label>
                   </div>
                 </div>
@@ -282,7 +283,7 @@ const Form = () => {
       duration-150
       ease-in-out"
                 >
-                  Submit
+                  Đăng ký
                 </button>
               </form>
             </div>
