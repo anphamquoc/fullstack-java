@@ -42,13 +42,15 @@ const ResetPassword = () => {
               user={passwordState}
               setUser={setPasswordState}
               pattern={"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$"}
+              label="Mật khẩu"
+              placeholder="mật khẩu"
             />
             <div class="form-group mb-6">
               <label
                 for={"rePassword"}
                 class="form-label inline-block mb-2 text-gray-400"
               >
-                Confirm Password
+                Nhập lại mật khẩu
               </label>
               <input
                 type="password"

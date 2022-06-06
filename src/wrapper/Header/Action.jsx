@@ -44,12 +44,12 @@ const Action = () => {
                 <>
                   <Link to={"/login-register"}>
                     <span className="hover:text-fuchsia-500 hover:translate-x-1 transition-all duration-200">
-                      Login
+                      Đăng nhập
                     </span>
                   </Link>
                   <Link to={`/login-register`}>
                     <span className="hover:text-fuchsia-500 hover:translate-x-1 transition-all duration-200">
-                      Register
+                      Đăng ký
                     </span>
                   </Link>
                 </>
@@ -57,19 +57,19 @@ const Action = () => {
                 <>
                   <Link to={"/favourite"}>
                     <span className="hover:text-fuchsia-500 hover:translate-x-1 transition-all duration-200">
-                      Wishlist
+                      Yêu thích
                     </span>
                   </Link>
                   <Link to={"/account-info"}>
                     <span className="hover:text-fuchsia-500 hover:translate-x-1 transition-all duration-200">
-                      My Account
+                      Tài khoản của tôi
                     </span>
                   </Link>
                   <span
                     className="hover:text-fuchsia-500 hover:translate-x-1 transition-all duration-200"
                     onClick={handleLogout}
                   >
-                    Logout
+                    Đăng xuất
                   </span>
                 </>
               )}
@@ -116,7 +116,7 @@ const Action = () => {
                               đ
                             </span>
                           </div>
-                          <i class="fas fa-times-circle pt-2"></i>
+                          {/* <i class="fas fa-times-circle pt-2"></i> */}
                         </div>
                       ))
                   ) : (

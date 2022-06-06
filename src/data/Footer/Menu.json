@@ -1,17 +1,17 @@
 [
   {
-    "name": "About Us",
+    "name": "Về chúng tôi",
     "menu": [
       {
-        "name": "About Us",
+        "name": "Về chúng tôi",
         "link": "about"
       },
       {
-        "name": "Contact",
+        "name": "Liên hệ",
         "link": "contact"
       },
       {
-        "name": "Orders Tracking",
+        "name": "Hóa đơn",
         "link": "orders"
       }
     ]
@@ -20,7 +20,7 @@
     "name": "Shop",
     "menu": [
       {
-        "name": "Home",
+        "name": "Trang chủ",
         "link": ""
       },
       {
@@ -28,24 +28,24 @@
         "link": "shop"
       },
       {
-        "name": "Cart",
+        "name": "Giỏ hàng",
         "link": "cart"
       },
       {
-        "name": "Checkout",
+        "name": "Thanh toán",
         "link": "checkout"
       }
     ]
   },
   {
-    "name": "My Account",
+    "name": "Tài khoản của tôi",
     "menu": [
       {
-        "name": "My Account",
+        "name": "Tài khoản của tôi",
         "link": "account-info"
       },
       {
-        "name": "Wish List",
+        "name": "Yêu thích",
         "link": "favourite"
       }
     ]

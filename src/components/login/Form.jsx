@@ -42,20 +42,23 @@ const Form = () => {
   return (
     <Fragment>
       <div className="flex flex-col gap-5 justify-center items-center w-full min-h-[calc(100vh)] pt-20 mb-20">
-        <Breadcrumb breadcrumbName={"LOGIN / REGISTER"} header={"Login"} />
+        <Breadcrumb
+          breadcrumbName={"ĐĂNG NHẬP / ĐĂNG KÝ"}
+          header={formActive === "login" ? "ĐĂNG NHẬP" : "ĐĂNG KÝ"}
+        />
         <div className="flex flex-row gap-5 text-2xl font-bold cursor-pointer">
           <h3
             className={formActive === "login" ? `text-purple-500` : ""}
             onClick={() => setFormActive("login")}
           >
-            Login
+            Đăng nhập
           </h3>{" "}
           |
           <h3
             onClick={() => setFormActive("register")}
             className={formActive !== "login" ? `text-purple-500` : ""}
           >
-            Register
+            Đăng ký
           </h3>
         </div>
         <div className="relative w-full h-[400px] flex justify-center">
@@ -66,12 +69,16 @@ const Form = () => {
                   name={"Username"}
                   setUser={setUserLogin}
                   user={userLogin}
+                  placeholder={"username"}
+                  label={"Username"}
                 />
                 <Input
                   name={"Password"}
                   setUser={setUserLogin}
                   user={userLogin}
                   pattern={"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$"}
+                  placeholder="mật khẩu"
+                  label={"Mật khẩu"}
                 />
                 <div className="flex justify-between">
                   <div class="form-group form-check mb-6">
@@ -124,12 +131,16 @@ const Form = () => {
                   name={"Username"}
                   user={userRegister}
                   setUser={setUserRegister}
+                  placeholder={"username"}
+                  label={"Username"}
                 />
                 <Input
                   name={"Password"}
                   user={userRegister}
                   setUser={setUserRegister}
                   pattern={"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$"}
+                  placeholder="mật khẩu"
+                  label={"Mật khẩu"}
                 />
                 <Input
                   name={"soDt"}
@@ -139,11 +150,15 @@ const Form = () => {
                   pattern={
                     "^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$"
                   }
+                  placeholder="số điện thoại"
+                  label={"Số điện thoại"}
                 />
                 <Input
                   name={`hoTen`}
                   user={userRegister}
                   setUser={setUserRegister}
+                  placeholder={"họ tên"}
+                  label={"Họ tên"}
                 />
                 <Input
                   name={"email"}
@@ -153,11 +168,15 @@ const Form = () => {
                   pattern={
                     "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"
                   }
+                  placeholder="email"
+                  label={"Email"}
                 />
                 <Input
                   name={"diaChi"}
                   user={userRegister}
                   setUser={setUserRegister}
+                  placeholder={"địa chỉ"}
+                  label={"Địa chỉ"}
                 />
                 <div class="form-group mb-6">
                   <label

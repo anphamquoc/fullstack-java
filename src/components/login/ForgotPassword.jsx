@@ -11,7 +11,6 @@ const ForgotPassword = () => {
   const password = useSelector((state) => state.password);
   const dispatch = useDispatch();
   //get root url and remove all slash
-  console.log(window.location.origin);
   const handleRecover = (e) => {
     e.preventDefault();
     dispatch(getUserByUsername(username.username));
@@ -30,7 +29,13 @@ const ForgotPassword = () => {
       <div className="relative w-full h-[400px] flex justify-center">
         <div class="block p-10 w-2/5 rounded-lg shadow-lg bg-white absolute">
           <form onSubmit={handleRecover}>
-            <Input name={"Username"} setUser={setUsername} user={username} />
+            <Input
+              name={"Username"}
+              setUser={setUsername}
+              user={username}
+              label="Username"
+              placeholder={"username"}
+            />
             <button
               type="submit"
               class="

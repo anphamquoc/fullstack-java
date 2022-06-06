@@ -55,8 +55,8 @@ const Cart = () => {
                 <Button name={"TIẾP TỤC MUA SẮM"} />
               </Link>
               <div className="flex flex-row gap-5">
-                <Button name={"UPDATE SHOPPING CART"} />
-                <Button name={"CLEAR SHOPPING CART"} />
+                {/* <Button name={"CẬP NHẬT GIỎ HÀNG"} /> */}
+                <Button name={"XÓA GIỎ HÀNG"} />
               </div>
             </div>
             {/* <PaymentLoading /> */}
@@ -84,7 +84,7 @@ const Cart = () => {
                 <div className="flex flex-col gap-7">
                   <Input />
                   <button className="px-7 py-3 w-fit bg-purple-500 text-lg font-semibold text-white rounded-full">
-                    APPLY COUPON
+                    ÁP DỤNG MÃ
                   </button>
                 </div>
                 {/*Input zip code*/}
