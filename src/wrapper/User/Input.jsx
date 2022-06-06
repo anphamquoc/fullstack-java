@@ -44,6 +44,7 @@ const Input = ({ name, setUser, user, pattern, placeholder, label }) => {
         placeholder={`Nhập ${placeholder}`}
         name={name}
         onChange={handleChange}
+        required={true}
       />
       {/* <small id="emailHelp" class="block mt-1 text-xs text-gray-600">
               We'll never share your email with anyone else.
