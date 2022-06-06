@@ -29,9 +29,9 @@ const Form = () => {
       };
       dispatch(registerUser(userData));
     } else {
-      console.log("login");
       const userData = {
         username: user.email,
+        method: "google",
         password: "",
       };
       dispatch(loginUser(userData));
