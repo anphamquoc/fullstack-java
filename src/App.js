@@ -44,30 +44,28 @@ function App() {
     dispatch(loadUser());
     dispatch(fetchProducts());
   });
+
   return (
     <Router>
       <NavBar />
       <Routes>
         {/* Public Route */}
-        <Route path="/login-register" element={<Form />}></Route>
-        <Route path="/forgot-password" element={<ForgotPassword />}></Route>
-        <Route path="/send-mail" element={<SendMailSuccess />}></Route>
-        <Route path="/reset-password/:id" element={<ResetPassword />}></Route>
+        <Route path="/login-register" element={<Form />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/send-mail" element={<SendMailSuccess />} />
+        <Route path="/reset-password/:id" element={<ResetPassword />} />
         <Route path="/" element={<HaveFooter />}>
-          <Route path="/" element={<Header />}></Route>
-          <Route path="/shop" element={<ProductList />}></Route>
-          <Route path="/product/:id" element={<ProductDetail />}></Route>
-          <Route path="/about" element={<AboutUs />}></Route>
+          <Route path="/" element={<Header />} />
+          <Route path="/shop" element={<ProductList />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/about" element={<AboutUs />} />
           {/* Private Route */}
           <Route path="/" element={<ProtectedRoute />}>
-            <Route path="/account-info" element={<Account />}></Route>
-            <Route path="/cart" element={<Cart />}></Route>
-            <Route path="/favourite" element={<Favourite />}></Route>
-            <Route path="/checkout" element={<Checkout />}></Route>
-            <Route
-              path="/checkout/success"
-              element={<CheckoutSuccess />}
-            ></Route>
+            <Route path="/account-info" element={<Account />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/favourite" element={<Favourite />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout/success" element={<CheckoutSuccess />} />
             <Route path="/orders" element={<Order />} />
           </Route>
           <Route path="/admin" element={<Admin />}>
@@ -78,7 +76,7 @@ function App() {
             <Route path="products/:id" element={<ProductDetailAdmin />} />
           </Route>
         </Route>
-        <Route path="*" element={<NotFound />}></Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       {/* <Footer /> */}
       <ToastContainer autoClose={1000} />
