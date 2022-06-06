@@ -7,7 +7,7 @@ const Footer = () => {
     <div className="w-full flex flex-row justify-around py-10 bg-gray-100 mt-10">
       <div className="flex flex-col gap-1 text-gray-700">
         <img src={Logo} alt="logo" className="w-28" />
-        <span>© 2021 Flone</span>
+        <span>© 2022 DABB</span>
         <span>All Right Reserved</span>
       </div>
       {MenuData.map((item, index) => (
