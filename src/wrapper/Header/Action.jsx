@@ -5,7 +5,6 @@ import { handleImageUrl, numberWithDots } from "../../actions";
 import { logOut } from "../../redux/features/UserSlice";
 import Empty from "../../assets/images/empty.gif";
 import { auth } from "../../Firebase/firebase";
-import { form } from "../../components/login/Form";
 
 const Action = () => {
   const [active, setActive] = useState("hidden");

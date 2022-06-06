@@ -5,7 +5,6 @@ import {
   CardMedia,
   TextField,
 } from "@mui/material";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
