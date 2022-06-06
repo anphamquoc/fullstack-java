@@ -241,6 +241,7 @@ const userSlice = createSlice({
       // alert("Thông tin khách hàng sai");
       return state;
     },
+
     [registerUser.pending]: (state, action) => {
       state.loading = true;
       return state;

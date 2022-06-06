@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { numberWithDots } from "../../actions";
 import { logOut } from "../../redux/features/UserSlice";
 import Empty from "../../assets/images/empty.gif";
+import { auth } from "../../Firebase/firebase";
 
 const Action = () => {
   const [active, setActive] = useState("hidden");
@@ -17,8 +18,9 @@ const Action = () => {
   const handleClickCart = async () => {
     setActiveCart(activeCart === "hidden" ? "flex" : "hidden");
   };
-  const handleLogout = () => {
+  const handleLogout = async () => {
     dispatch(logOut());
+    await auth.signOut();
   };
   let total = !gioHang?.chiTietGioHang
     ? 0

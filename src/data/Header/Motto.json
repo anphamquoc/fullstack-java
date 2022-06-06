@@ -1,7 +1,7 @@
 [
   {
     "name": "Free Shipping",
-    "description": "Miễn phí ship cho tất cả các sản phẩm",
+    "description": "Miễn phí ship cho hóa đơn",
     "image": "../../assets/images/motto/shipping.webp"
   },
   {
@@ -11,12 +11,12 @@
   },
   {
     "name": "Money Back",
-    "description": "30 days money back",
+    "description": "30 ngày hoàn tiền",
     "image": "../../assets/images/motto/money.webp"
   },
   {
     "name": "Order discount",
-    "description": "Order discount",
+    "description": "Nhiều mã giảm giá",
     "image": "../../assets/images/motto/discount.webp"
   }
 ]

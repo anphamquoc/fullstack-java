@@ -5,33 +5,38 @@ import Input from "../../wrapper/User/Input";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser, registerUser } from "../../redux/features/UserSlice";
 import { toast } from "react-toastify";
-// import { auth } from "../../Firebase/firebase";
-
+import firebase, { auth } from "../../Firebase/firebase";
 const Form = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formActive, setFormActive] = useState("login");
   const userRedux = useSelector((state) => state.user);
-  //login with google
-  // const handleLoginWithGoogle = async () => {
-  //   try {
-  //     const provider = new auth.GoogleAuthProvider();
-  //     const result = await auth().signInWithPopup(provider);
-  //     const user = result.user;
-  //     const userData = {
-  //       uid: user.uid,
-  //       email: user.email,
-  //       photoURL: user.photoURL,
-  //       displayName: user.displayName,
-  //       isAuthenticated: true,
-  //       loading: false,
-  //     };
-  //     dispatch(loginUser(userData));
-  //     navigate("/");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
+  const handleLoginWithGoogle = async () => {
+    const { additionalUserInfo, user } = await auth.signInWithPopup(
+      googleProvider
+    );
+    console.log(additionalUserInfo, user);
+    if (additionalUserInfo.isNewUser) {
+      console.log("register");
+      const userData = {
+        email: user.email,
+        username: user.email,
+        hoTen: user.displayName,
+        soDt: user.phoneNumber,
+        diaChi: "",
+        password: "",
+      };
+      dispatch(registerUser(userData));
+    } else {
+      console.log("login");
+      const userData = {
+        username: user.email,
+        password: "",
+      };
+      dispatch(loginUser(userData));
+    }
+  };
   const [userLogin, setUserLogin] = useState({
     username: "",
     password: "",
@@ -102,8 +107,8 @@ const Form = () => {
                   placeholder="mật khẩu"
                   label={"Mật khẩu"}
                 />
-                <div className="flex justify-between">
-                  <div class="form-group form-check mb-6">
+                <div className="flex justify-between mb-3">
+                  <div class="form-group form-check">
                     <input
                       type="checkbox"
                       class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
@@ -119,6 +124,15 @@ const Form = () => {
                   <Link to={"/forgot-password"}>
                     <span>Quên mật khẩu?</span>
                   </Link>
+                </div>
+                <div className="mb-6 flex flex-row gap-2 w-full">
+                  <button
+                    onClick={handleLoginWithGoogle}
+                    className="border border-blue-200 p-2 rounded-lg w-full"
+                    type="button"
+                  >
+                    <i class="fab fa-google"></i> Login with google
+                  </button>
                 </div>
                 <button
                   type="submit"

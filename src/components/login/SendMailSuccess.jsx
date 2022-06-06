@@ -28,6 +28,7 @@ const SendMailSuccess = () => {
           link: `${window.location.origin}/reset-password/${password.user.maKh}`,
           username: password.user.username,
           reply_to: password.user.email,
+          to_email: password.user.email,
         },
         "q9E_OWHY7-fqsGjoW"
       );

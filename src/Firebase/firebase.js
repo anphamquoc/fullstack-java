@@ -1,10 +1,7 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDjE1sARIIfx-TVOVWad28xaVE-bfUbEG0",
   authDomain: "java-watch-shop.firebaseapp.com",
@@ -15,8 +12,15 @@ const firebaseConfig = {
   measurementId: "G-8W0NLG6BHL",
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-export const db = app.firestore();
-export const auth = app.auth();
-export const storage = app.storage();
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+//sử dụng server local
+// auth.useEmulator("http://localhost:9099");
+// if (window.location.hostname === "localhost") {
+//   db.useEmulator("localhost", "8080");
+// }
+////////////////////////////////////////////////////////////////
+export { db, auth };
+export default firebase;
