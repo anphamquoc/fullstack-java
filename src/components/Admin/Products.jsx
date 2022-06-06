@@ -5,12 +5,13 @@ import {
   CardMedia,
   TextField,
 } from "@mui/material";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../redux/features/ProductSlice";
 import ProductItem from "../../wrapper/Admin/ProductItem";
+import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
+import { storage } from "../../Firebase/firebase";
 
 const Products = () => {
   const products = useSelector((state) => state.products);
@@ -20,6 +21,7 @@ const Products = () => {
   const [imagePreview, setImagePreview] = useState(null);
   // const [imageData, setImageData] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const [progress, setProgress] = useState(0);
   const [itemProduct, setItemProduct] = useState({
     tenSp: "",
     gia: "",
@@ -48,15 +50,41 @@ const Products = () => {
   };
   const handleAddProduct = () => {
     const imageData = new FormData();
-    imageData.append("myFile", imageUrl);
-    axios.post("http://localhost:5000/api/uploadfile", imageData);
-    dispatch(addProduct(itemProduct));
+    // imageData.append("myFile", imageUrl);
+    // axios.post("http://localhost:5000/api/uploadfile", imageData);
+    const storageRef = ref(storage, `images/${imageUrl.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, imageUrl);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(progress);
+      },
+      (error) => {
+        // Handle unsuccessful uploads
+      },
+      () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          setItemProduct({
+            ...itemProduct,
+            hinhAnh: downloadURL,
+          });
+          dispatch(addProduct({ ...itemProduct, hinhAnh: downloadURL }));
+        });
+      }
+    );
+    // dispatch(addProduct(itemProduct));
   };
   const handleUploadClick = (event) => {
     let file = event.target.files[0];
     setItemProduct({
       ...itemProduct,
-      hinhAnh: file.name,
+      // hinhAnh: file.name,
     });
 
     setImageUrl(file);
@@ -172,7 +200,7 @@ const Products = () => {
                   className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
                   onClick={handleAddProduct}
                 >
-                  Save changes
+                  Save change
                 </button>
               </div>
             </div>

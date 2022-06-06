@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { numberWithDots } from "../../actions";
+import { handleImageUrl, numberWithDots } from "../../actions";
 
 const ProductItem = ({ product }) => {
   return (
     <div className="flex relative flex-col gap-4 text-center rounded-lg shadow-md pb-5">
       <img
-        src={`../../${product.hinhAnh}`}
+        src={handleImageUrl(product.hinhAnh)}
         className={"h-[300px]"}
         alt="product"
       />

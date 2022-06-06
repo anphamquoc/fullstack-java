@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchOneProduct } from "../../redux/features/ProductSlice";
 import Skeleton from "react-loading-skeleton";
 import { addToCart, addToFavourite } from "../../redux/features/UserSlice";
-import { numberWithDots } from "../../actions";
+import { handleImageUrl, numberWithDots } from "../../actions";
 import { toast } from "react-toastify";
 import Zoom from "react-medium-image-zoom";
 
@@ -85,7 +85,7 @@ const ProductDetail = () => {
             <div className="basis-1/2">
               <Zoom>
                 <img
-                  src={`/../../${product?.hinhAnh}`}
+                  src={handleImageUrl(product?.hinhAnh)}
                   alt="product"
                   className="w-full"
                 />

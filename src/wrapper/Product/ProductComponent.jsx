@@ -1,8 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { numberWithDots } from "../../actions";
+import { handleImageUrl, numberWithDots } from "../../actions";
 import { addToCart, addToFavourite } from "../../redux/features/UserSlice";
 
 const ProductComponent = ({ product }) => {
@@ -39,7 +38,7 @@ const ProductComponent = ({ product }) => {
     <div className={`flex flex-col gap-4  group`}>
       <div className="w-full relative overflow-hidden">
         <img
-          src={`../../${product.hinhAnh}`}
+          src={handleImageUrl(product.hinhAnh)}
           alt="Product"
           className="w-full h-[350px]"
         />
