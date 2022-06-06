@@ -31,7 +31,7 @@ public class SanPhamController {
 
 	@PostMapping("/{id}")
 	public String addNewProduct(@RequestBody SanPham sanPham, @PathVariable long id) {
-		sanPhamRepository.addProduct(sanPham.getGia(), "assets/images/products/" + sanPham.getHinhAnh(),
+		sanPhamRepository.addProduct(sanPham.getGia(), !sanPham.getHinhAnh().contains("https") ? "assets/images/products/" + sanPham.getHinhAnh() : sanPham.getHinhAnh(),
 				sanPham.getMoTa(), sanPham.getSao(),
 				sanPham.getTenSp(), id, sanPham.getStatus());
 		;
