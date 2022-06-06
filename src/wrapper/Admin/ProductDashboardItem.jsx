@@ -1,6 +1,4 @@
 import React from "react";
-import Product from "../../assets/images/Product1.jpg";
-import moment from "moment";
 import { handleImageUrl } from "../../actions";
 
 const ProductDashboardItem = ({ product }) => {

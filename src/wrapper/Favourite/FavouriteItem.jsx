@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { handleImageUrl, numberWithDots } from "../../actions";
-import Product from "../../assets/images/Product1.webp";
 import { addToCart, removeFromFavourite } from "../../redux/features/UserSlice";
 
 const FavouriteItem = ({ product }) => {

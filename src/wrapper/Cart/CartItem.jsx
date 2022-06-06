@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { handleImageUrl, numberWithDots } from "../../actions";
-import Product from "../../assets/images/Product1.webp";
 import {
   removeFromCart,
   updateQuantityInCart,
