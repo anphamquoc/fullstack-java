@@ -7,7 +7,6 @@ import Action from "../../wrapper/Header/Action";
 import Section from "../../wrapper/Header/DropdownSection";
 
 const NavBar = () => {
-  const user = useSelector((state) => state.user);
   return (
     <div className="flex flex-row justify-between px-10 py-4 items-center fixed top-0 w-full z-50 shadow-sm bg-white">
       <Link to={"/"}>

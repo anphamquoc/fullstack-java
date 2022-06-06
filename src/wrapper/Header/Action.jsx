@@ -23,7 +23,6 @@ const Action = () => {
   let total = !gioHang?.chiTietGioHang
     ? 0
     : gioHang.chiTietGioHang?.reduce((total, item) => {
-        console.log(item);
         return total + item.soLuong * item.sanPham.gia;
       }, 0);
   return (

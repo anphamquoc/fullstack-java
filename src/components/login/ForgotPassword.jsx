@@ -10,6 +10,8 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
   const password = useSelector((state) => state.password);
   const dispatch = useDispatch();
+  //get root url and remove all slash
+  console.log(window.location.origin);
   const handleRecover = (e) => {
     e.preventDefault();
     dispatch(getUserByUsername(username.username));
@@ -22,8 +24,8 @@ const ForgotPassword = () => {
   return (
     <div className="flex flex-col gap-5 justify-center items-center w-full min-h-[calc(100vh)] pt-20 mb-20">
       <Breadcrumb
-        breadcrumbName={"RECOVER PASSWOrD"}
-        header={"RECOVER PASSWORD"}
+        breadcrumbName={"Đổi lại mật khẩu"}
+        header={"Đổi lại mật khẩu"}
       />
       <div className="relative w-full h-[400px] flex justify-center">
         <div class="block p-10 w-2/5 rounded-lg shadow-lg bg-white absolute">
