@@ -67,7 +67,7 @@ const Form = () => {
   };
   return (
     <Fragment>
-      <div className="flex flex-col gap-5 justify-center items-center w-full min-h-[calc(100vh)] pt-20 mb-20">
+      <div className="flex flex-col gap-5 justify-center items-center w-full min-h-[calc(100vh)] pt-[20vh] mb-20">
         <Breadcrumb
           breadcrumbName={"ĐĂNG NHẬP / ĐĂNG KÝ"}
           header={formActive === "login" ? "ĐĂNG NHẬP" : "ĐĂNG KÝ"}
