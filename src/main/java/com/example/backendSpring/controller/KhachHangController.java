@@ -121,7 +121,10 @@ public class KhachHangController {
 	@PostMapping("/login")
 	public KhachHang login(@RequestBody KhachHangRequest thongTin) {
 		KhachHang checkKhachHang = khachHangRepository.findByUsername(thongTin.getUsername());
-
+		System.out.println(thongTin.getMethod());
+		if (thongTin.getMethod() == "google") {
+			return checkKhachHang;
+		}
 		if (checkKhachHang == null) {
 			throw new Error("Không tìm thấy người dùng");
 		}

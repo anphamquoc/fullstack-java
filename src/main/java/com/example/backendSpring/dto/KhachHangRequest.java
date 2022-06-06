@@ -12,6 +12,7 @@ import lombok.ToString;
 public class KhachHangRequest {
 	private String username;
 	private String password;
+	private String method;
 
 	public String getUsername() {
 		return username;
@@ -27,6 +28,14 @@ public class KhachHangRequest {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getMethod() {
+		return this.method;
+	}
+
+	public void setMethod(String method) {
+		this.method = method;
 	}
 
 	// public KhachHangRequest(String username, String password) {
