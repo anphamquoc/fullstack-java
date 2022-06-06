@@ -33,8 +33,8 @@ const ForgotPassword = () => {
               name={"Username"}
               setUser={setUsername}
               user={username}
-              label="Username"
-              placeholder={"username"}
+              label="Tên đăng nhập"
+              placeholder={"tên đăng nhập"}
             />
             <button
               type="submit"
@@ -57,7 +57,7 @@ const ForgotPassword = () => {
               {password.loading ? (
                 <i class="fad fa-spinner-third fa-spin"></i>
               ) : (
-                "Submit"
+                "Tìm kiếm"
               )}
             </button>
           </form>
