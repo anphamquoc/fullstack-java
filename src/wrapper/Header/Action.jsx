@@ -129,11 +129,11 @@ const Action = () => {
                 {/* Total and Shipping fee */}
                 <div className="flex flex-col gap-5 text-lg pb-4">
                   <div className="flex justify-between">
-                    <span>Shipping:</span>
+                    <span>Phí vận chuyển:</span>
                     <span>Free ship</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Total:</span>
+                    <span>Tổng cộng:</span>
                     <span>{numberWithDots(total ? total : 0)}</span>
                   </div>
                 </div>
@@ -142,14 +142,14 @@ const Action = () => {
                   <div className="relative group">
                     <Link to={"/cart"}>
                       <button className="w-full p-3 border-[1px] border-black bg-transparent group-hover:text-white transition duration-300 ease-in-out hover:bg-fuchsia-500">
-                        View Cart
+                        Xem giỏ hàng
                       </button>
                     </Link>
                   </div>
                   <div>
                     <Link to={"/checkout"}>
                       <button className="w-full p-3 border-[1px] border-black transition duration-300 ease-in-out hover:bg-fuchsia-500 hover:text-white">
-                        Checkout
+                        Thanh toán
                       </button>
                     </Link>
                   </div>

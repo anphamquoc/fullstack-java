@@ -75,8 +75,8 @@ const ProductDetail = () => {
     <Fragment>
       <div className="w-full pt-32 flex flex-col items-center">
         <Breadcrumb
-          breadcrumbName={"SHOP DETAILS"}
-          header={"PRODUCT DETAILS"}
+          breadcrumbName={"CHI TIẾT SẢN PHẨM"}
+          header={"CHI TIẾT SẢN PHẨM"}
         />
         {products.loadingProduct ? (
           <ProductDetailsLoading />

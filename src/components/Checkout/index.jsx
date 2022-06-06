@@ -98,7 +98,7 @@ const Checkout = () => {
         <>
           <div className="flex flex-row w-4/5 gap-10">
             <div className="basis-2/3">
-              <h2 className="font-semibold text-xl">Billing Details</h2>
+              <h2 className="font-semibold text-xl">Chi tiết đơn hàng</h2>
               <div className="flex flex-col gap-4 mt-4">
                 <div className="flex flex-row">
                   {/* create input form */}
@@ -136,11 +136,11 @@ const Checkout = () => {
               </div>
             </div>
             <div className="basis-1/3">
-              <h2 className="font-semibold text-xl">Your Order</h2>
+              <h2 className="font-semibold text-xl">Đơn hàng của bạn</h2>
               <div className="flex flex-col gap-5 mt-4 divide-y">
                 <div className="flex justify-between">
-                  <h2 className="font-semibold text-lg">Product</h2>
-                  <h2 className="font-semibold text-lg">Total</h2>
+                  <h2 className="font-semibold text-lg">Sản phẩm</h2>
+                  <h2 className="font-semibold text-lg">Tổng cộng</h2>
                 </div>
                 <div className="flex flex-col gap-3 pt-5">
                   {gioHang.chiTietGioHang.map((product, i) => (
@@ -148,17 +148,17 @@ const Checkout = () => {
                   ))}
                 </div>
                 <div className="flex justify-between pt-5">
-                  <h3 className="text-lg">Shipping</h3>
+                  <h3 className="text-lg">Phí vận chuyển</h3>
                   <p>Free shipping</p>
                 </div>
                 <div className="flex justify-between pt-5">
-                  <h3 className="text-lg font-semibold">Total</h3>
+                  <h3 className="text-lg font-semibold">Tổng cộng</h3>
                   <p className="font-semibold text-lg text-purple-500">
                     {numberWithDots(total)} đ
                   </p>
                 </div>
                 <div className="flex justify-between pt-5 flex-col gap-3">
-                  <h2>Payment method</h2>
+                  <h2>Hình thức thanh toán</h2>
                   <div class="flex">
                     <div className="flex gap-2 flex-col">
                       <div class="form-check">

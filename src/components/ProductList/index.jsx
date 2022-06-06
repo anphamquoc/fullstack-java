@@ -62,7 +62,7 @@ const Index = () => {
   return (
     <Fragment>
       <div className="w-full pt-32 flex flex-col items-center">
-        <Breadcrumb header={"LIST PRODUCT"} breadcrumbName="SHOP" />
+        <Breadcrumb header={"DANH SÁCH SẢN PHẨM"} breadcrumbName="SẢN PHẨM" />
         <div className="grid place-items-center w-full">
           <div className="flex flex-row gap-20 w-3/4">
             <div className="basis-1/4 flex gap-14 flex-col">
@@ -131,7 +131,7 @@ const Index = () => {
                       }
                     >
                       <option selected value={""}>
-                        Sort by newess
+                        Sắp xếp mới nhất
                       </option>
                       <option value="a->z">A to Z</option>
                       <option value="z->a">Z to A</option>

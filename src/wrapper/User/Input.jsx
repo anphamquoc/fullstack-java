@@ -41,7 +41,7 @@ const Input = ({ name, setUser, user, pattern }) => {
       m-0
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         aria-describedby="emailHelp"
-        placeholder={`Enter ${name}`}
+        placeholder={`Nhập ${name}`}
         name={name}
         onChange={handleChange}
       />

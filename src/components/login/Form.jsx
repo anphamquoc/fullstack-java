@@ -88,7 +88,7 @@ const Form = () => {
                     </label>
                   </div>
                   <Link to={"/forgot-password"}>
-                    <span>Forgot password?</span>
+                    <span>Quên mật khẩu?</span>
                   </Link>
                 </div>
                 <button
@@ -164,7 +164,7 @@ const Form = () => {
                     for={"rePassword"}
                     class="form-label inline-block mb-2 text-gray-400"
                   >
-                    Confirm Password
+                    Nhập lại mật khẩu
                   </label>
                   <input
                     type="password"
@@ -185,7 +185,7 @@ const Form = () => {
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
-                    placeholder={`Confirm Password`}
+                    placeholder={`Nhập lại mật khẩu`}
                     name={"rePassword"}
                     onChange={(e) => setRePassword(e.target.value)}
                     pattern={"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$"}

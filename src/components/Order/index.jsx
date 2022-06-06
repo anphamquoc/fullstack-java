@@ -8,7 +8,7 @@ const Order = () => {
   const { cacDonDatHang } = user;
   return (
     <div className="w-full pt-32 flex flex-col items-center gap-5">
-      <Breadcrumb header={"Order"} breadcrumbName={"Order"} />
+      <Breadcrumb header={"Đơn đặt hàng"} breadcrumbName={"Đơn đặt hàng"} />
       {user.loading ? (
         <div class="flex flex-col w-4/5">
           <Skeleton height={"100px"} />

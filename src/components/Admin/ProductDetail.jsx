@@ -67,7 +67,7 @@ const ProductDetail = () => {
         <Skeleton height={"300px"} />
       ) : (
         <>
-          <h1 className="mb-5 text-2xl font-semibold">Product Detail</h1>
+          <h1 className="mb-5 text-2xl font-semibold">Chi tiết sản phẩm</h1>
           <div className="flex flex-row gap-5 relative">
             <div className="basis-1/4">
               <img

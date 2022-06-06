@@ -12,7 +12,7 @@ const Favourite = () => {
   const favourite = user.sanPhamYeuThich;
   return (
     <div className="w-full pt-32 flex flex-col items-center">
-      <Breadcrumb header={"Wishlist"} breadcrumbName={"Wishlist"} />
+      <Breadcrumb header={"DANH MỤC YÊU THÍCH"} breadcrumbName={"Yêu thích"} />
       {user.loading ? (
         <div class="flex flex-col w-4/5">
           <Skeleton height={"100px"} />
@@ -20,7 +20,7 @@ const Favourite = () => {
       ) : (
         <>
           <div className="text-left w-4/5 text-2xl font-semibold">
-            <h3>Your favourite items</h3>
+            <h3>Sản phẩm yêu thích</h3>
           </div>
           <div class="flex flex-col w-4/5">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -40,9 +40,9 @@ const Favourite = () => {
           </div>
           <div className="flex flex-row justify-between w-4/5">
             <Link to={"/"}>
-              <Button name={"CONTINUE SHOPPING"} />
+              <Button name={"TIẾP TỤC MUA SẮM"} />
             </Link>
-            <Button name={"CLEAR WISHLIST"} />
+            <Button name={"XÓA YÊU THÍCH"} />
           </div>
         </>
       )}

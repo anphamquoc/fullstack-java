@@ -26,13 +26,13 @@ const CheckoutSuccess = () => {
           />
         </svg>
       </div>
-      <h1 className="text-gray-900 text-3xl">Thank you for your order!</h1>
+      <h1 className="text-gray-900 text-3xl">Cảm ơn bạn đã đặt hàng</h1>
       <p className="text-gray-900 text-lg">
-        Your order has been received and is now being processed.
+        Đơn hàng của bạn đã thanh toán thành công
       </p>
       <Link to={"/"}>
         <button className="bg-purple-500 py-3 px-4 rounded-full text-white">
-          Back to home page
+          Quay về trang chủ
         </button>
       </Link>
     </div>

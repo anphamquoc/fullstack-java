@@ -61,7 +61,6 @@ export const changePassword = createAsyncThunk(
       )}/change-password`,
       passwordState
     );
-    console.log(response.data);
     const data = response.data;
     return data;
   }
@@ -207,7 +206,6 @@ const userSlice = createSlice({
     },
     [loadUser.rejected]: (state, action) => {
       state.loading = false;
-      console.log(action.payload);
       return state;
     },
     [loginUser.pending]: (state, action) => {
@@ -249,7 +247,6 @@ const userSlice = createSlice({
     },
     [registerUser.fulfilled]: (state, action) => {
       const { payload } = action;
-      console.log(payload);
       state = {
         ...state,
         user: {

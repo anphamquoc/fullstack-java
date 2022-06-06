@@ -27,7 +27,6 @@ const FavouriteItem = ({ product }) => {
   const handleAddToCart = () => {
     dispatch(addToCart({ userId: user.user.maKh, product, soLuong: quantity }));
   };
-  console.log(product);
   return (
     <tr class="bg-white border-b">
       <td class=" p-3 w-[82px] h-[82px]">

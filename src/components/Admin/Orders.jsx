@@ -79,13 +79,13 @@ const Orders = () => {
   ];
   return (
     <div className="basis-3/4">
-      <h1 className="mb-5 text-2xl font-semibold">Orders</h1>
+      <h1 className="mb-5 text-2xl font-semibold">Đơn đặt hàng</h1>
       <div className="flex items-center justify-between mb-5">
         <input
           className="px-5 py-3 border rounded-lg"
           type="text"
           name="search"
-          placeholder="Search User By Name"
+          placeholder="Tìm kiếm theo tên"
           value={query}
           onChange={handleFilterValue}
         />

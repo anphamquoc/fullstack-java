@@ -62,7 +62,7 @@ const OrderProduct = ({ product, isInvoice }) => {
               });
             }}
           >
-            Add Review
+            Thêm đánh giá
           </button>
         </td>
       )}

@@ -20,9 +20,9 @@ const Cart = () => {
   return (
     <Fragment>
       <div className="w-full pt-32 flex flex-col items-center">
-        <Breadcrumb header={"Cart"} breadcrumbName={"Cart"} />
+        <Breadcrumb header={"Giỏ hàng"} breadcrumbName={"Giỏ hàng"} />
         <div className="text-left w-4/5 text-2xl font-semibold">
-          <h3>Your cart items</h3>
+          <h3>Sản phẩm</h3>
         </div>
         {user.loading ? (
           <div class="flex flex-col w-4/5">

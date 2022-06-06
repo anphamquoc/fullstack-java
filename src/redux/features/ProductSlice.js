@@ -137,7 +137,6 @@ export const productSlice = createSlice({
     },
     [addReview.fulfilled]: (state, action) => {
       state.loadingProduct = false;
-      console.log(action.payload);
       state.products.map((product) => {
         if (product.maSp === action.payload.maSP) {
           product.cacReview.push(action.payload);

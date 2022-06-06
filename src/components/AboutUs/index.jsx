@@ -8,11 +8,11 @@ import FeatureData from "../../data/AboutUs/Feature.json";
 const AboutUs = () => {
   return (
     <div className="w-full pt-32 flex flex-col items-center">
-      <Breadcrumb header={"ABOUT US"} breadcrumbName={"ABOUT US"} />
+      <Breadcrumb header={"Về chúng tôi"} breadcrumbName={"About"} />
       <div className="w-4/5">
         <div className="text-center grid place-items-center">
           <div className="text-lg">
-            <p className="text-gray-500 font-semibold">Who Are We</p>
+            {/* <p className="text-gray-500 font-semibold">Who Are We</p> */}
             <h1 className="text-3xl font-semibold text-gray-800">
               Chào mừng đến với website của chúng tôi
             </h1>
@@ -36,18 +36,18 @@ const AboutUs = () => {
       <div className="mt-20 w-full grid place-items-center bg-gray-200 py-20">
         <div className="w-4/5 grid grid-cols-4">
           <Achive
-            name={"Project Done"}
+            name={"Dự án hoàn thành"}
             number={2}
             classIcon={"fal fa-briefcase"}
           />
-          <Achive name={"Clients"} number={100000} classIcon="fal fa-user" />
+          <Achive name={"Khách hàng"} number={100000} classIcon="fal fa-user" />
           <Achive
-            name={"Branding"}
+            name={"Nhãn hiệu"}
             number={20}
             classIcon="fal fa-shopping-bag"
           />
           <Achive
-            name={"Happy Clients"}
+            name={"Khách hàng vui vẻ"}
             number={79000}
             classIcon="fal fa-smile"
           />
@@ -56,18 +56,19 @@ const AboutUs = () => {
       <div className="mt-10">
         <div className="text-center grid place-items-center">
           <div className="text-lg">
-            <h1 className="text-3xl font-semibold">Who we are</h1>
+            <h1 className="text-3xl font-semibold">Chúng tôi là ai</h1>
           </div>
           <span className="w-20 h-1 bg-black block my-3"></span>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi,
+            Chúng tôi là những con người luôn mang đến cho các bạn những sản
+            phẩm tốt nhất
           </p>
         </div>
         <div className="grid grid-cols-4 gap-10 mt-10">
-          <Member name={"Phạm Quốc Ấn"} role={"Leader"} />
-          <Member name={"Trần Đức Bảo"} role={"Member"} />
-          <Member name={"Nghiêm Chí Bảo"} role={"Member"} />
-          <Member name={"Danh Đặng Hải Đăng"} role={"Member"} />
+          <Member name={"Phạm Quốc Ấn"} role={"Nhóm trưởng"} />
+          <Member name={"Trần Đức Bảo"} role={"Thành viên"} />
+          <Member name={"Nghiêm Chí Bảo"} role={"Thành viên"} />
+          <Member name={"Danh Đặng Hải Đăng"} role={"Thành viên"} />
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import Product from "../../assets/images/Product1.jpg";
 import moment from "moment";
 
 const ProductDashboardItem = ({ product }) => {
-  console.log(product);
   return (
     <div className="flex flex-row justify-between items-center">
       <div className="flex flex-row gap-3 items-center">

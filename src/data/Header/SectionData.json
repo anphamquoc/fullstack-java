@@ -23,5 +23,9 @@
   {
     "name": "Contact",
     "haveMenu": false
+  },
+  {
+    "name": "Admin",
+    "haveMenu": false
   }
 ]

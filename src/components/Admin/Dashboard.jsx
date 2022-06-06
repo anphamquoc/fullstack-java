@@ -27,7 +27,7 @@ ChartJS.register(
   Legend
 );
 
-const labels = ["January", "February", "March", "April"];
+const labels = ["January", "February", "March", "April", "May", "June"];
 
 export const options = {
   responsive: true,
@@ -37,7 +37,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: "Chart.js Line Chart",
+      text: "Biểu đồ người dùng trong năm nay",
     },
   },
 };
@@ -61,7 +61,7 @@ const Dashboard = () => {
     labels,
     datasets: [
       {
-        label: "Dataset 1",
+        label: "Người dùng",
         data: monthUser,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
@@ -70,7 +70,7 @@ const Dashboard = () => {
   };
 
   const dataPieChart = {
-    labels: ["One Star", "Two Star", "Three Star", "Four Star", "Five Star"],
+    labels: ["Một sao", "Hai sao", "Ba sao", "Bốn sao", "Năm sao"],
     datasets: [
       {
         label: "# of Votes",
@@ -96,42 +96,42 @@ const Dashboard = () => {
   //reverse array
   return (
     <div className="basis-3/4">
-      <h1 className="mb-5 text-2xl font-semibold">Hi, welcome back</h1>
+      <h1 className="mb-5 text-2xl font-semibold">Chào bạn quay trở lại</h1>
       <div className="grid grid-cols-4 gap-5">
         <Data
           iconClass={"fas fa-box-check"}
           description={admin.orders.length}
           colorClass="text-blue"
           bgClass="bg-blue"
-          name={"Weekly Sales"}
+          name={"Doanh thu tuần này"}
         />
         <Data
           iconClass={"fas fa-user-check"}
           description={admin.users.length}
           colorClass="text-green"
           bgClass="bg-green"
-          name={"Users"}
+          name={"Người dùng"}
         />
         <Data
           iconClass={"fas fa-smile-beam"}
           description={admin.orders.length}
           colorClass="text-yellow"
           bgClass="bg-yellow"
-          name={"Orders"}
+          name={"Hóa đơn"}
         />
         <Data
           iconClass={"fas fa-star"}
           description={admin.reviews.length}
           colorClass="text-red"
           bgClass="bg-red"
-          name={"Rating"}
+          name={"Đánh giá"}
         />
       </div>
       <div className="flex flex-row gap-5 mt-10">
         <div className="flex flex-col gap-4 basis-2/3 bg-white p-4 rounded-lg shadow-md">
           <div className="flex flex-col">
-            <h3 className="text-lg font-semibold">Users</h3>
-            <span>(+100%) than last year</span>
+            <h3 className="text-lg font-semibold">Người dùng</h3>
+            <span>(+100%) hơn năm ngoái</span>
           </div>
           <div>
             <Line data={data} options={options} />
@@ -139,7 +139,7 @@ const Dashboard = () => {
         </div>
         <div className="basis-1/3 bg-white p-4 rounded-lg shadow-md">
           <div className="flex flex-col">
-            <h3 className="text-lg font-semibold">Current Star Product</h3>
+            <h3 className="text-lg font-semibold">Số sao sản phẩm</h3>
           </div>
           <div>
             <Pie data={dataPieChart} />
@@ -149,7 +149,7 @@ const Dashboard = () => {
       <div className="flex flex-row gap-5 mt-5">
         <div className="basis-2/3 bg-white p-4 rounded-lg shadow-md">
           <div className="flex flex-col">
-            <h3 className="text-lg font-semibold mb-5">Product Updates</h3>
+            <h3 className="text-lg font-semibold mb-5">Sản phẩm mới nhất</h3>
           </div>
           <div className="flex flex-col gap-5">
             {products.loading ? (
@@ -170,7 +170,7 @@ const Dashboard = () => {
         </div>
         <div className="basis-1/3 bg-white p-4 rounded-lg shadow-md">
           <div className="flex flex-col">
-            <h3 className="text-lg font-semibold mb-5">Order Timeline</h3>
+            <h3 className="text-lg font-semibold mb-5">Đơn hàng</h3>
           </div>
           <div className="flex flex-col gap-5">
             {admin.loading ? (

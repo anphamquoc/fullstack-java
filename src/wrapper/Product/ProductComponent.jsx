@@ -6,7 +6,6 @@ import { numberWithDots } from "../../actions";
 import { addToCart, addToFavourite } from "../../redux/features/UserSlice";
 
 const ProductComponent = ({ product }) => {
-  console.log(product);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   let star = [];

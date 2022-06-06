@@ -1,7 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Section = ({ name, url }) => {
+  const user = useSelector((state) => state.user);
+  if (name === "Admin" && (!user.user || user.user.vaiTro !== "admin"))
+    return null;
   return (
     <div>
       <div className="justify-center items-center text-xl inline-block group relative">

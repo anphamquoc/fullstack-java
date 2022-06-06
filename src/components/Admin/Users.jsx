@@ -19,7 +19,6 @@ const columns = [
 
 const Users = () => {
   const admin = useSelector((state) => state.admin);
-  console.log(admin);
   const [query, setQuery] = useState("");
   //get data from users with id, name, email, phone, address, username, role
   const rows = admin.users.map((user) => {
@@ -48,13 +47,13 @@ const Users = () => {
 
   return (
     <div className="basis-3/4">
-      <h1 className="mb-5 text-2xl font-semibold">User</h1>
+      <h1 className="mb-5 text-2xl font-semibold">Người dùng</h1>
       <div className="flex items-center justify-between mb-5">
         <input
           className="px-5 py-3 border rounded-lg"
           type="text"
           name="search"
-          placeholder="Search User By Name"
+          placeholder="Tìm kiếm theo tên"
           value={query}
           onChange={handleFilterValue}
         />

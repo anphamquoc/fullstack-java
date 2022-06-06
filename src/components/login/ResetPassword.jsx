@@ -69,7 +69,7 @@ const ResetPassword = () => {
       focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
-                placeholder={`Confirm Password`}
+                placeholder={`Nhập lại mật khẩu`}
                 name={"rePassword"}
                 onChange={(e) =>
                   setPasswordState({
