@@ -60,12 +60,11 @@ const SendMailSuccess = () => {
       </div>
       <h1 className="text-gray-900 text-3xl">Lấy mật khẩu thành công</h1>
       <p className="text-gray-900 text-lg">
-        Link lấy lại mật khẩu đã chuyển đến cho {hideEmail(password.user.email)}{" "}
-        .
+        Để lấy lại mật khẩu. Truy cập email: {hideEmail(password.user.email)} .
       </p>
       <Link to={"/"}>
         <button className="bg-purple-500 py-3 px-4 rounded-full text-white">
-          Back to home page
+          Quay lại trang chủ
         </button>
       </Link>
     </div>
