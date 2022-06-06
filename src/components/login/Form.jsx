@@ -5,7 +5,7 @@ import Input from "../../wrapper/User/Input";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUser, registerUser } from "../../redux/features/UserSlice";
 import { toast } from "react-toastify";
-import { auth } from "../../Firebase/firebase";
+// import { auth } from "../../Firebase/firebase";
 
 const Form = () => {
   const navigate = useNavigate();
@@ -13,25 +13,25 @@ const Form = () => {
   const [formActive, setFormActive] = useState("login");
   const userRedux = useSelector((state) => state.user);
   //login with google
-  const handleLoginWithGoogle = async () => {
-    try {
-      const provider = new auth.GoogleAuthProvider();
-      const result = await auth().signInWithPopup(provider);
-      const user = result.user;
-      const userData = {
-        uid: user.uid,
-        email: user.email,
-        photoURL: user.photoURL,
-        displayName: user.displayName,
-        isAuthenticated: true,
-        loading: false,
-      };
-      dispatch(loginUser(userData));
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleLoginWithGoogle = async () => {
+  //   try {
+  //     const provider = new auth.GoogleAuthProvider();
+  //     const result = await auth().signInWithPopup(provider);
+  //     const user = result.user;
+  //     const userData = {
+  //       uid: user.uid,
+  //       email: user.email,
+  //       photoURL: user.photoURL,
+  //       displayName: user.displayName,
+  //       isAuthenticated: true,
+  //       loading: false,
+  //     };
+  //     dispatch(loginUser(userData));
+  //     navigate("/");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   const [userLogin, setUserLogin] = useState({
     username: "",
     password: "",
