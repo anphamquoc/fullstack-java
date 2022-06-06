@@ -8,11 +8,11 @@ const SwiperSlideComponent = ({ slide, key }) => {
         <h1 className="text-6xl font-semibold">{slide.name}</h1>
         <p className="text-justify">{slide.description}</p>
         <p>
-          Giá sản phẩm <span>{slide.price} đ</span>
+          Giá sản phẩm: <span>{slide.price} đ</span>
         </p>
         <Link to={`/shop`}>
           <button className="w-fit py-3 px-5 border border-black">
-            Shop now
+            Mua liền
           </button>
         </Link>
       </div>
