@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { calculateTotal, numberWithDots } from "../../actions";
+import { numberWithDots } from "../../actions";
 import Breadcrumb from "../../wrapper/Breadcrumb";
 import Button from "../../wrapper/Cart/Button";
 import CartHeaderComponent from "../../wrapper/Cart/CartHeaderComponent";
@@ -13,7 +13,6 @@ import SelectOption from "../../wrapper/Cart/SelectOption";
 const Cart = () => {
   const user = useSelector((state) => state.user);
   const cart = user.gioHang;
-  console.log(cart.chiTietGioHang);
   const total = cart.chiTietGioHang?.reduce((total, item) => {
     return total + item.soLuong * item.sanPham.gia;
   }, 0);
