@@ -1,5 +1,6 @@
 [
   {
+    "show": "Trang chủ",
     "name": "Home",
     "haveMenu": true,
     "menu": {
@@ -13,18 +14,22 @@
     }
   },
   {
+    "show": "Mua sắm",
     "name": "Shop",
     "haveMenu": true
   },
   {
+    "show": "Về chúng tôi",
     "name": "About",
     "haveMenu": false
   },
   {
+    "show": "Liên hệ",
     "name": "Contact",
     "haveMenu": false
   },
   {
+    "show": "Admin",
     "name": "Admin",
     "haveMenu": false
   }
