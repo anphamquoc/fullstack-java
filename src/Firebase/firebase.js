@@ -1,7 +1,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-
+import "firebase/compat/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyDjE1sARIIfx-TVOVWad28xaVE-bfUbEG0",
   authDomain: "java-watch-shop.firebaseapp.com",
@@ -16,11 +16,12 @@ firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const db = firebase.firestore();
+const storage = firebase.storage();
 //sử dụng server local
 // auth.useEmulator("http://localhost:9099");
 // if (window.location.hostname === "localhost") {
 //   db.useEmulator("localhost", "8080");
 // }
 ////////////////////////////////////////////////////////////////
-export { db, auth };
+export { db, auth, storage };
 export default firebase;

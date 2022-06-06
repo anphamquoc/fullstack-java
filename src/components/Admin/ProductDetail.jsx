@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { numberWithDots } from "../../actions";
+import { handleImageUrl, numberWithDots } from "../../actions";
 import {
   fetchOneProduct,
   updateProduct,
@@ -71,7 +71,7 @@ const ProductDetail = () => {
           <div className="flex flex-row gap-5 relative">
             <div className="basis-1/4">
               <img
-                src={`../../${product.hinhAnh}`}
+                src={handleImageUrl(product.hinhAnh)}
                 alt={"product"}
                 className="w-[500px] h-[300px]"
               />

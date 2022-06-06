@@ -1,12 +1,12 @@
 import React from "react";
 import moment from "moment";
-import { numberWithDots } from "../../actions";
+import { handleImageUrl, numberWithDots } from "../../actions";
 const OrderDashboard = ({ order }) => {
   return (
     <div className="flex flex-row justify-between items-center">
       <div className="flex flex-row gap-3 items-center">
         <img
-          src={`../../${order.chiTietDonHang[0].sanPham.hinhAnh}`}
+          src={handleImageUrl(order.chiTietDonHang[0].sanPham.hinhAnh)}
           alt="product"
           className="w-14 h-14 rounded-xl"
         />

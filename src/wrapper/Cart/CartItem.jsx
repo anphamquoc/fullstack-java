@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { numberWithDots } from "../../actions";
+import { handleImageUrl, numberWithDots } from "../../actions";
 import Product from "../../assets/images/Product1.webp";
 import {
   removeFromCart,
@@ -35,7 +35,7 @@ const CartItem = ({ product, soLuong, maGH }) => {
   return (
     <tr class="bg-white border-b">
       <td class=" p-3 w-[82px] h-[82px]">
-        <img src={`../../${product.hinhAnh}`} alt="product" />
+        <img src={handleImageUrl(product.hinhAnh)} alt="product" />
       </td>
       <td class="text-gray-900 font-semibold text-lg px-6 py-4 whitespace-nowrap">
         {product.tenSp}

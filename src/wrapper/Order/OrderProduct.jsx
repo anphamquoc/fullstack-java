@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { numberWithDots } from "../../actions";
+import { handleImageUrl, numberWithDots } from "../../actions";
 import { addReview } from "../../redux/features/ProductSlice";
 
 const OrderProduct = ({ product, isInvoice }) => {
@@ -26,7 +26,7 @@ const OrderProduct = ({ product, isInvoice }) => {
   return (
     <tr class="bg-white border-b">
       <td class=" p-3 w-[82px] h-[82px]">
-        <img src={`../../${product.sanPham.hinhAnh}`} alt="product" />
+        <img src={handleImageUrl(product.sanPham.hinhAnh)} alt="product" />
       </td>
       <td class="text-gray-900 font-semibold text-lg px-6 py-4 whitespace-nowrap text-left">
         <span className="w-5/6 truncate block" title={product.sanPham.tenSp}>

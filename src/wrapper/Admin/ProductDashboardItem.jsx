@@ -1,13 +1,14 @@
 import React from "react";
 import Product from "../../assets/images/Product1.jpg";
 import moment from "moment";
+import { handleImageUrl } from "../../actions";
 
 const ProductDashboardItem = ({ product }) => {
   return (
     <div className="flex flex-row justify-between items-center">
       <div className="flex flex-row gap-3 items-center">
         <img
-          src={`../../${product.hinhAnh}`}
+          src={handleImageUrl(product.hinhAnh)}
           alt="product"
           className="w-14 h-14 rounded-xl"
         />

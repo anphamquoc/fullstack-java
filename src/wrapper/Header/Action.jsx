@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { numberWithDots } from "../../actions";
+import { handleImageUrl, numberWithDots } from "../../actions";
 import { logOut } from "../../redux/features/UserSlice";
 import Empty from "../../assets/images/empty.gif";
 import { auth } from "../../Firebase/firebase";
@@ -98,7 +98,7 @@ const Action = () => {
                       .map((product, i) => (
                         <div className="flex flex-row gap-8 py-3">
                           <img
-                            src={`../../${product.sanPham.hinhAnh}`}
+                            src={handleImageUrl(product.sanPham.hinhAnh)}
                             alt="đồng hồ"
                             className="w-[82px] h-[82px]"
                           />
