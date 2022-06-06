@@ -121,11 +121,13 @@ public class KhachHangController {
 	@PostMapping("/login")
 	public KhachHang login(@RequestBody KhachHangRequest thongTin) {
 		KhachHang checkKhachHang = khachHangRepository.findByUsername(thongTin.getUsername());
-		if (thongTin.getMethod().equals("google")) {
+		if (thongTin.getMethod() != null && thongTin.getMethod().equals("google")) {
 			return checkKhachHang;
-		} else if (checkKhachHang == null) {
+		}
+		if (checkKhachHang == null) {
 			throw new Error("Không tìm thấy người dùng");
-		} else if (!PasswordUtils.verifyUserPassword(thongTin.getPassword(),
+		}
+		if (!PasswordUtils.verifyUserPassword(thongTin.getPassword(),
 				checkKhachHang.getPassword(),
 				checkKhachHang.getSalt())) {
 			throw new Error("Mật khẩu không đúng");
