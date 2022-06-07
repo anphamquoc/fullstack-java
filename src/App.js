@@ -36,6 +36,7 @@ import HaveFooter from "./components/Footer/HaveFooter";
 import ForgotPassword from "./components/login/ForgotPassword";
 import SendMailSuccess from "./components/login/SendMailSuccess";
 import ResetPassword from "./components/login/ResetPassword";
+import ScrollToTop from "./components/ScollToTop";
 
 function App() {
   //handle no access control allow origin header
@@ -48,36 +49,38 @@ function App() {
   return (
     <Router>
       <NavBar />
-      <Routes>
-        {/* Public Route */}
-        <Route path="/login-register" element={<Form />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/send-mail" element={<SendMailSuccess />} />
-        <Route path="/reset-password/:id" element={<ResetPassword />} />
-        <Route path="/" element={<HaveFooter />}>
-          <Route path="/" element={<Header />} />
-          <Route path="/shop" element={<ProductList />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/about" element={<AboutUs />} />
-          {/* Private Route */}
-          <Route path="/" element={<ProtectedRoute />}>
-            <Route path="/account-info" element={<Account />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/favourite" element={<Favourite />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/checkout/success" element={<CheckoutSuccess />} />
-            <Route path="/orders" element={<Order />} />
+      <ScrollToTop>
+        <Routes>
+          {/* Public Route */}
+          <Route path="/login-register" element={<Form />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/send-mail" element={<SendMailSuccess />} />
+          <Route path="/reset-password/:id" element={<ResetPassword />} />
+          <Route path="/" element={<HaveFooter />}>
+            <Route path="/" element={<Header />} />
+            <Route path="/shop" element={<ProductList />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/about" element={<AboutUs />} />
+            {/* Private Route */}
+            <Route path="/" element={<ProtectedRoute />}>
+              <Route path="/account-info" element={<Account />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/favourite" element={<Favourite />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/checkout/success" element={<CheckoutSuccess />} />
+              <Route path="/orders" element={<Order />} />
+            </Route>
+            <Route path="/admin" element={<Admin />}>
+              <Route path="" element={<Dashboard />} />
+              <Route path="products" element={<Products />} />
+              <Route path="users" element={<Users />} />
+              <Route path="orders" element={<Orders />} />
+              <Route path="products/:id" element={<ProductDetailAdmin />} />
+            </Route>
           </Route>
-          <Route path="/admin" element={<Admin />}>
-            <Route path="" element={<Dashboard />} />
-            <Route path="products" element={<Products />} />
-            <Route path="users" element={<Users />} />
-            <Route path="orders" element={<Orders />} />
-            <Route path="products/:id" element={<ProductDetailAdmin />} />
-          </Route>
-        </Route>
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </ScrollToTop>
       {/* <Footer /> */}
       <ToastContainer autoClose={1000} />
     </Router>
