@@ -164,7 +164,7 @@ const ProductDetail = () => {
                           className="p-4 w-full bg-gray-800 text-white font-bold"
                           onClick={handleAddToCart}
                         >
-                          Thêm
+                          Thêm vào giỏ
                         </button>
                         <i
                           class="fal fa-heart text-2xl ml-3 cursor-pointer"

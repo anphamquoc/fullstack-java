@@ -5,6 +5,7 @@ import FilterCheckbox from "../../wrapper/Shop/FilterCheckbox";
 import { useSelector } from "react-redux";
 import ProductLoading from "../../wrapper/Loading/ProductLoading";
 import NotFoundProduct from "../../assets/images/not-found-product.png";
+import PaginationItem from "../ScrollToTop/Pagination";
 
 const Index = () => {
   const products = useSelector((state) => state.products);
@@ -15,9 +16,10 @@ const Index = () => {
     sort: "",
     name: "",
   });
+  const [index, setIndex] = useState(1);
   useEffect(() => {
     setFilterProducts(products.products);
-  }, [products.loading]);
+  }, [products.loading, products.products]);
   const handleFilter = () => {
     const { gia, colors, sort, name } = filter;
     let newFilterProducts = [...products.products];
@@ -171,11 +173,16 @@ const Index = () => {
                   </>
                 ) : (
                   filterProducts.length !== 0 &&
-                  filterProducts.map((product) => (
-                    <ProductComponent product={product} />
-                  ))
+                  filterProducts
+                    .slice((index - 1) * 6, index * 6)
+                    .map((product) => <ProductComponent product={product} />)
                 )}
               </div>
+              <PaginationItem
+                products={filterProducts}
+                setIndex={setIndex}
+                quantity={6}
+              />
             </div>
           </div>
         </div>

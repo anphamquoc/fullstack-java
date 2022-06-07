@@ -12,7 +12,7 @@ import { addProduct } from "../../redux/features/ProductSlice";
 import ProductItem from "../../wrapper/Admin/ProductItem";
 import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
 import { storage } from "../../Firebase/firebase";
-import { Zoom } from "react-toastify";
+import PaginationItem from "../ScrollToTop/Pagination";
 
 const Products = () => {
   const products = useSelector((state) => state.products);
@@ -31,6 +31,7 @@ const Products = () => {
     sao: 5,
     status: 1,
   });
+  const [index, setIndex] = useState(1);
   const handleFilterValue = (e) => {
     setQuery(e.target.value);
     const filter = products.products.filter((product) => {
@@ -50,7 +51,7 @@ const Products = () => {
     });
   };
   const handleAddProduct = () => {
-    const imageData = new FormData();
+    // const imageData = new FormData();
     // imageData.append("myFile", imageUrl);
     // axios.post("http://localhost:5000/api/uploadfile", imageData);
     const storageRef = ref(storage, `images/${imageUrl.name}`);
@@ -76,6 +77,14 @@ const Products = () => {
             hinhAnh: downloadURL,
           });
           dispatch(addProduct({ ...itemProduct, hinhAnh: downloadURL }));
+          setItemProduct({
+            tenSp: "",
+            gia: "",
+            moTa: "",
+            hinhAnh: "",
+            sao: 5,
+            status: 1,
+          });
         });
       }
     );
@@ -217,11 +226,16 @@ const Products = () => {
         {products.loading ? (
           <Skeleton height={"300px"} />
         ) : (
-          productFilter.map((product, i) => {
+          productFilter.slice((index - 1) * 8, index * 8).map((product, i) => {
             return <ProductItem key={i} product={product} />;
           })
         )}
       </div>
+      <PaginationItem
+        products={productFilter}
+        setIndex={setIndex}
+        quantity={8}
+      />
     </div>
   );
 };

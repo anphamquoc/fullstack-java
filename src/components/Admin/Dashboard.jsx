@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -93,6 +93,9 @@ const Dashboard = () => {
       },
     ],
   };
+  function calculateTotal(items) {
+    return items.reduce((total, item) => total + item.tongTien, 0);
+  }
   //reverse array
   return (
     <div className="basis-3/4">
@@ -100,7 +103,7 @@ const Dashboard = () => {
       <div className="grid grid-cols-4 gap-5">
         <Data
           iconClass={"fas fa-box-check"}
-          description={admin.orders.length}
+          description={calculateTotal(admin.orders)}
           colorClass="text-blue"
           bgClass="bg-blue"
           name={"Doanh thu tuần này"}
@@ -183,7 +186,7 @@ const Dashboard = () => {
             ) : (
               admin.orders
                 // .sort((a, b) => a.ngayDatHang - b.ngayDatHang)
-                .slice(admin.orders.length - 6, admin.orders.length - 1)
+                .slice(0, 5)
                 .reverse()
                 .map((order) => <OrderDashboard key={order.id} order={order} />)
             )}

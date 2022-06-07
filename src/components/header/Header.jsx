@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import SwiperSlideComponent from "../../wrapper/Swiper/SwiperSlideComponent";
@@ -12,6 +12,8 @@ import MottoData from "../../data/Header/Motto.json";
 
 const Header = () => {
   const products = useSelector((state) => state.products);
+  const [index] = useState(1);
+
   return (
     <Fragment>
       {/* Swiper  */}
@@ -45,11 +47,16 @@ const Header = () => {
               <ProductLoading />
             </>
           ) : (
-            products.products.map((product) => (
-              <ProductComponent product={product} />
-            ))
+            products.products
+              .slice((index - 1) * 8, index * 8)
+              .map((product) => <ProductComponent product={product} />)
           )}
         </div>
+        {/* <PaginationItem
+          products={products.products}
+          setIndex={setIndex}
+          quantity={8}
+        /> */}
       </div>
       {/* Blog */}
       <div className="grid place-items-center">

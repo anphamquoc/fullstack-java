@@ -16,9 +16,7 @@ const Form = () => {
     const { additionalUserInfo, user } = await auth.signInWithPopup(
       googleProvider
     );
-    console.log(additionalUserInfo, user);
     if (additionalUserInfo.isNewUser) {
-      console.log("register");
       const userData = {
         email: user.email,
         username: user.email,
