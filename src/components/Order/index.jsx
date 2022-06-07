@@ -15,9 +15,12 @@ const Order = () => {
         </div>
       ) : (
         <>
-          {cacDonDatHang?.map((order, i) => (
-            <OrderItem order={order} key={i} />
-          ))}
+          {cacDonDatHang
+            ?.slice(0)
+            .reverse()
+            .map((order, i) => (
+              <OrderItem order={order} key={i} />
+            ))}
         </>
       )}
     </div>

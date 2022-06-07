@@ -76,7 +76,7 @@ const FavouriteItem = ({ product }) => {
           className="bg-purple-500 rounded-full text-white font-semibold py-2 px-4 cursor-pointer"
           onClick={handleAddToCart}
         >
-          Add to cart
+          Thêm
         </button>
       </td>
     </tr>

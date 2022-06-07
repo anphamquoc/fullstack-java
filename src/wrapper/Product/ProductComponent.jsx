@@ -63,7 +63,7 @@ const ProductComponent = ({ product }) => {
             onClick={handleAddToCart}
           >
             <i class="fal fa-shopping-cart mr-2 text-sm "></i>
-            Add to cart
+            Thêm
           </button>
           <a href={`/product/${product.maSp}`} className="basis-1/6">
             <i className="fal fa-eye py-4 bg-fuchsia-500 grid place-items-center translate-y-4 opacity-0 group-hover:opacity-100 transition group-hover:translate-y-0 duration-500 ease-in-out delay-200 hover:bg-fuchsia-700"></i>

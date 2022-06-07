@@ -111,7 +111,7 @@ const Admin = () => {
       <div className="basis-1/4 flex flex-col gap-10 items-center">
         <div className="flex flex-row items-center justify-between mx-10 px-10 py-3 bg-gray-100 w-full rounded-lg">
           <img src={UserImage} alt="user" />
-          <h3 className="font-semibold">Mark Jokenperk</h3>
+          <h3 className="font-semibold">Admin</h3>
         </div>
         <ul className="flex flex-col w-full text-gray-700">
           {AdminDataMenu.map((item) => (
