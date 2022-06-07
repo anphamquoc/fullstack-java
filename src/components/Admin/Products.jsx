@@ -101,7 +101,6 @@ const Products = () => {
     setImageUrl(file);
     setImagePreview(URL.createObjectURL(file));
   };
-
   return (
     <div className="basis-3/4">
       <h1 className="mb-5 text-2xl font-semibold">Sản phẩm</h1>
@@ -222,7 +221,7 @@ const Products = () => {
           </div>
         </div>
       </div>
-      {productFilter.length === 0 ? (
+      {productFilter.length === 0 && products.loading === false ? (
         <div className="text-center flex flex-col justify-center items-center">
           <img src={NotFoundProduct} alt="Not found" className="w-3/4" />
           <h1 className="text-2xl font-semibold text-gray-400">
