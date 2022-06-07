@@ -5,7 +5,6 @@ const PaginationItem = ({ products, setIndex, quantity }) => {
   const handleChangeIndex = (event, value) => {
     setIndex(value);
   };
-  console.log(products.length);
   return (
     <div className="mt-4 grid place-items-center">
       <Pagination

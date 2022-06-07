@@ -26,7 +26,7 @@ const Additional = ({ name, active }) => {
         data-bs-target={`#${name.split(" ")[0]}`}
         role="tab"
         aria-controls={`#${name.split(" ")[0]}`}
-        aria-selected={name === "Additional Information" ? "true" : "false"}
+        aria-selected={name === "Thông tin thêm" ? "true" : "false"}
       >
         {name}
       </a>

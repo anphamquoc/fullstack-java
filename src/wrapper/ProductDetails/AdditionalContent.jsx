@@ -5,17 +5,15 @@ const AdditionalContent = ({ name, value, review }) => {
   //convert date to hh:mm:ss dd/mm/yyy
   return (
     <div
-      class={`tab-pane fade show ${
-        name === "Additional Information" ? "active" : ""
-      }`}
+      class={`tab-pane fade show ${name === "Thông tin thêm" ? "active" : ""}`}
       id={name.split(" ")[0]}
       role="tabpanel"
       aria-labelledby={name.split(" ")[0]}
     >
       <div className="flex flex-row gap-8 font-semibold text-lg text-gray-500">
-        {name === "Description" ? (
+        {name === "Mô tả" ? (
           value
-        ) : name === "Reviews" ? (
+        ) : name === "Đánh giá" ? (
           <div className="font-normal flex flex-col gap-5">
             {review?.map((item, index) => (
               <ReviewItem item={item} />

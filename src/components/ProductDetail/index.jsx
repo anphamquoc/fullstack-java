@@ -193,14 +193,14 @@ const ProductDetail = () => {
               id="tabs-tabFill"
               role="tablist"
             >
-              <Additional name={"Additional Information"} active={true} />
-              <Additional name={"Description"} />
-              <Additional name={"Reviews"} />
+              <Additional name={"Thông tin thêm"} active={true} />
+              <Additional name={"Mô tả"} />
+              <Additional name={"Đánh giá"} />
             </ul>
             <div class="tab-content" id="tabs-tabContentFill">
-              <AdditionalContent name={"Additional Information"} />
-              <AdditionalContent name={"Description"} value={product.moTa} />
-              <AdditionalContent name={"Reviews"} review={product.cacReview} />
+              <AdditionalContent name={"Thông tin thêm"} />
+              <AdditionalContent name={"Mô tả"} value={product.moTa} />
+              <AdditionalContent name={"Đánh giá"} review={product.cacReview} />
               <div
                 class="tab-pane fade text-gray-700 text-lg"
                 id="tabs-profileFill"
