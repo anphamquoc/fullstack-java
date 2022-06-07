@@ -2,8 +2,6 @@ import { Pagination } from "@mui/material";
 import React from "react";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 
 const PaginationItem = ({ products, setIndex, quantity }) => {
   const handleChangeIndex = (event, value) => {
