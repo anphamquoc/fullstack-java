@@ -1,9 +1,12 @@
+import { useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import Breadcrumb from "../../wrapper/Breadcrumb";
 import OrderItem from "../../wrapper/Order/OrderItem";
+import PaginationItem from "../ScrollToTop/Pagination";
 
 const Order = () => {
+  const [index, setIndex] = useState(1);
   const user = useSelector((state) => state.user);
   const { cacDonDatHang } = user;
   return (
@@ -18,9 +21,17 @@ const Order = () => {
           {cacDonDatHang
             ?.slice(0)
             .reverse()
+            .slice((index - 1) * 3, index * 3)
             .map((order, i) => (
-              <OrderItem order={order} key={i} />
+              <div className="w-4/5 items-center flex flex-col">
+                <OrderItem order={order} key={i} />
+              </div>
             ))}
+          <PaginationItem
+            products={cacDonDatHang}
+            quantity={3}
+            setIndex={setIndex}
+          />
         </>
       )}
     </div>

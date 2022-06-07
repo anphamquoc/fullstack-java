@@ -13,6 +13,7 @@ import ProductItem from "../../wrapper/Admin/ProductItem";
 import { ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
 import { storage } from "../../Firebase/firebase";
 import PaginationItem from "../ScrollToTop/Pagination";
+import NotFoundProduct from "../../assets/images/not-found-product.png";
 
 const Products = () => {
   const products = useSelector((state) => state.products);
@@ -221,16 +222,26 @@ const Products = () => {
           </div>
         </div>
       </div>
-
-      <div className="grid grid-cols-4 gap-5">
-        {products.loading ? (
-          <Skeleton height={"300px"} />
-        ) : (
-          productFilter.slice((index - 1) * 8, index * 8).map((product, i) => {
-            return <ProductItem key={i} product={product} />;
-          })
-        )}
-      </div>
+      {productFilter.length === 0 ? (
+        <div className="text-center flex flex-col justify-center items-center">
+          <img src={NotFoundProduct} alt="Not found" className="w-3/4" />
+          <h1 className="text-2xl font-semibold text-gray-400">
+            Không có sản phẩm nào
+          </h1>
+        </div>
+      ) : (
+        <div className={`grid grid-cols-4 gap-5 w-full`}>
+          {products.loading ? (
+            <Skeleton height={"300px"} />
+          ) : (
+            productFilter
+              .slice((index - 1) * 8, index * 8)
+              .map((product, i) => {
+                return <ProductItem key={i} product={product} />;
+              })
+          )}
+        </div>
+      )}
       <PaginationItem
         products={productFilter}
         setIndex={setIndex}

@@ -60,7 +60,7 @@ const Users = () => {
         <i class="fas fa-trash-alt text-xl"></i>
       </div>
       <div className="h-[400px] w-full bg-white">
-        {admin.loading ? (
+        {admin.loadingUser ? (
           <Skeleton height={"300px"} />
         ) : (
           <DataGrid

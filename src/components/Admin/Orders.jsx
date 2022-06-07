@@ -38,6 +38,7 @@ const Orders = () => {
   useEffect(() => {
     setOrderFilter(rows);
   }, [order.loading, admin.loadingOrder]);
+  console.log(order.loading, admin.loadingOrder);
   const handleFilterValue = (e) => {
     setQuery(e.target.value);
     const filter = rows.filter((row) =>
@@ -92,7 +93,7 @@ const Orders = () => {
         <i class="fas fa-trash-alt text-xl"></i>
       </div>
       <div className="h-[400px] w-full bg-white">
-        {admin.loading ? (
+        {admin.loadingOrder ? (
           <Skeleton height={"300px"} />
         ) : (
           <DataGrid
@@ -128,13 +129,13 @@ const Orders = () => {
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body relative p-4">
+            <div class="modal-body relative m-4 overflow-hidden">
               {order.loading ? (
                 <Skeleton height={"300px"} />
               ) : (
-                <>
+                <div className="w-full items-center flex flex-col">
                   <OrderItem order={order.order} isAdmin={true} />
-                </>
+                </div>
               )}
             </div>
           </div>

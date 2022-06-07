@@ -39,8 +39,8 @@ const OrderItem = ({ order, key, isAdmin }) => {
   };
 
   return (
-    <div className="w-full items-center flex flex-col">
-      <div className="text-left w-4/5 text-2xl font-semibold">
+    <>
+      <div className="text-left w-full text-2xl font-semibold">
         <h3>Hóa đơn {key}</h3>
         <ul className="text-sm font-normal">
           <li>Nơi nhận: {order.noiNhan}</li>
@@ -59,7 +59,7 @@ const OrderItem = ({ order, key, isAdmin }) => {
           </li>
         </ul>
       </div>
-      <div class="flex flex-col w-4/5 mt-4">
+      <div class="flex flex-col w-full mt-4">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden">
@@ -87,7 +87,7 @@ const OrderItem = ({ order, key, isAdmin }) => {
           Thay đổi trạng thái
         </button>
       )}
-    </div>
+    </>
   );
 };
 

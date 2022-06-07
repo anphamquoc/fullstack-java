@@ -28,7 +28,7 @@ const OrderProduct = ({ product, isInvoice }) => {
       <td class=" p-3 w-[82px] h-[82px]">
         <img src={handleImageUrl(product.sanPham.hinhAnh)} alt="product" />
       </td>
-      <td class="text-gray-900 font-semibold text-lg px-6 py-4 whitespace-nowrap text-left">
+      <td class="text-gray-900 font-semibold text-lg px-3 py-4 whitespace-nowrap text-left">
         <span className="w-5/6 truncate block" title={product.sanPham.tenSp}>
           {product.sanPham.tenSp}
         </span>

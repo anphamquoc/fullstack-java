@@ -14,7 +14,7 @@ import { Line, Pie } from "react-chartjs-2";
 import Data from "../../wrapper/Admin/Data";
 import { useSelector } from "react-redux";
 import ProductDashboardItem from "../../wrapper/Admin/ProductDashboardItem";
-import { Skeleton } from "@mui/material";
+import { CircularProgress, Skeleton } from "@mui/material";
 import OrderDashboard from "../../wrapper/Admin/OrderDashboard";
 
 ChartJS.register(
@@ -107,6 +107,7 @@ const Dashboard = () => {
           colorClass="text-blue"
           bgClass="bg-blue"
           name={"Doanh thu tuần này"}
+          loading={admin.loadingUser}
         />
         <Data
           iconClass={"fas fa-user-check"}
@@ -114,6 +115,7 @@ const Dashboard = () => {
           colorClass="text-green"
           bgClass="bg-green"
           name={"Người dùng"}
+          loading={admin.loadingUser}
         />
         <Data
           iconClass={"fas fa-smile-beam"}
@@ -121,6 +123,7 @@ const Dashboard = () => {
           colorClass="text-yellow"
           bgClass="bg-yellow"
           name={"Hóa đơn"}
+          loading={admin.loadingUser}
         />
         <Data
           iconClass={"fas fa-star"}
@@ -128,6 +131,7 @@ const Dashboard = () => {
           colorClass="text-red"
           bgClass="bg-red"
           name={"Đánh giá"}
+          loading={admin.loadingUser}
         />
       </div>
       <div className="flex flex-row gap-5 mt-10">
@@ -136,16 +140,24 @@ const Dashboard = () => {
             <h3 className="text-lg font-semibold">Người dùng</h3>
             <span>(+100%) hơn năm ngoái</span>
           </div>
-          <div>
-            <Line data={data} options={options} />
+          <div className="grid place-items-center h-full">
+            {admin.loadingUser ? (
+              <CircularProgress />
+            ) : (
+              <Line data={data} options={options} />
+            )}
           </div>
         </div>
         <div className="basis-1/3 bg-white p-4 rounded-lg shadow-md">
           <div className="flex flex-col">
             <h3 className="text-lg font-semibold">Số sao sản phẩm</h3>
           </div>
-          <div>
-            <Pie data={dataPieChart} />
+          <div className="grid place-items-center h-full">
+            {admin.loadingUser ? (
+              <CircularProgress />
+            ) : (
+              <Pie data={dataPieChart} />
+            )}
           </div>
         </div>
       </div>
@@ -157,6 +169,7 @@ const Dashboard = () => {
           <div className="flex flex-col gap-5">
             {products.loading ? (
               <>
+                <Skeleton height={"50px"} />
                 <Skeleton height={"50px"} />
                 <Skeleton height={"50px"} />
                 <Skeleton height={"50px"} />
@@ -176,8 +189,9 @@ const Dashboard = () => {
             <h3 className="text-lg font-semibold mb-5">Đơn hàng</h3>
           </div>
           <div className="flex flex-col gap-5">
-            {admin.loading ? (
+            {admin.loadingOrder ? (
               <>
+                <Skeleton height={"50px"} />
                 <Skeleton height={"50px"} />
                 <Skeleton height={"50px"} />
                 <Skeleton height={"50px"} />
