@@ -1,22 +1,21 @@
 import React from "react";
-import Product from "../../assets/images/large-2.webp";
 
-const BlogComponent = () => {
+const BlogComponent = ({ product }) => {
   return (
     <div className="flex flex-col gap-3">
       <div className="group overflow-hidden">
         <img
-          src={Product}
+          src={product.hinhAnh}
           alt="Product"
           className="group-hover:scale-125 transition ease-in-out duration-500"
         />
       </div>
       <div className="flex flex-col gap-3 text-center">
-        <h3 className="font-semibold text-2xl">
-          Đồng Hồ Thông Minh Fossil Unisex FTW6024
+        <h3 className="font-semibold text-2xl truncate" title={product.tenSp}>
+          {product.tenSp}
         </h3>
         <span className="font-normal text-xl italic text-gray-400">
-          By Phạm Quốc Ấn
+          Đã bán {product.soLuongBan}
         </span>
       </div>
     </div>

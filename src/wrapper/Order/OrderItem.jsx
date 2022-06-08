@@ -49,7 +49,10 @@ const OrderItem = ({ order, key, isAdmin }) => {
           <li>Ngày đặt hàng: {dateString}</li>
           <li>Tổng tiền: {numberWithDots(order.tongTien)} đ</li>
           <li>Trạng thái giao hàng: {order.trangThai}</li>
-          <li>Phương thức thanh toán: {order.phuongThucThanhToan}</li>
+          <li>
+            Phương thức thanh toán:{" "}
+            {order.phuongThucThanhToan === "cash" ? "Tiền mặt" : "Paypal"}
+          </li>
           <li>
             Số tiền cần thanh toán cho shipper:{" "}
             {order.phuongThucThanhToan === "paypal"

@@ -58,7 +58,7 @@ const Form = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     if (userRegister.password !== rePassword) {
-      toast.error("Password not match");
+      toast.error("Mật khẩu không trùng khớp");
     } else {
       dispatch(registerUser(userRegister));
     }
@@ -129,7 +129,7 @@ const Form = () => {
                     className="border border-blue-200 p-2 rounded-lg w-full"
                     type="button"
                   >
-                    <i class="fab fa-google"></i> Đăng nhập với google
+                    <i class="fab fa-google"></i> Đăng nhập với Google
                   </button>
                 </div>
                 <button
