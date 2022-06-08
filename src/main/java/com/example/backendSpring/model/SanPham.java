@@ -45,6 +45,9 @@ public class SanPham {
 	@Column(name = "status")
 	private int status;
 
+	@Column(name = "so_luong_ban")
+	private long soLuongBan = 0;
+
 	@ManyToOne
 	@JoinColumn(name = "ma_pl", nullable = false)
 	private PhanLoai phanLoai;
@@ -159,6 +162,14 @@ public class SanPham {
 
 	public void setSao(double sao) {
 		this.sao = sao;
+	}
+
+	public long getSoLuongBan() {
+		return this.soLuongBan;
+	}
+
+	public void setSoLuongBan(long soLuongBan) {
+		this.soLuongBan = soLuongBan;
 	}
 
 }

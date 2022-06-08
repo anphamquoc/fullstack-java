@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backendSpring.exception.ResourceNotFoundException;
 import com.example.backendSpring.model.ChiTietDonHang;
+import com.example.backendSpring.model.SanPham;
 import com.example.backendSpring.repository.ChiTietDonHangRepository;
+import com.example.backendSpring.repository.SanPhamRepository;
 
 @RestController
 @RequestMapping("/api/v1/chi-tiet-don-hang")
@@ -24,6 +26,9 @@ public class ChiTietDonHangController {
 
 	@Autowired
 	private ChiTietDonHangRepository chiTietDonHangRepository;
+
+	@Autowired
+	private SanPhamRepository sanPhamRepository;
 
 	@GetMapping
 	public List<ChiTietDonHang> getAllDetailOrders() {
@@ -34,6 +39,10 @@ public class ChiTietDonHangController {
 	public String createDetailOrder(@PathVariable long pid, @RequestBody ChiTietDonHang chiTietDonHang) {
 		chiTietDonHangRepository.createDetailOrder(chiTietDonHang.getMaDDH(),
 				chiTietDonHang.getSoLuong(), pid);
+		SanPham sanPham = sanPhamRepository.findById(pid)
+				.orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sản phẩm này"));
+		sanPham.setSoLuongBan(sanPham.getSoLuongBan() + chiTietDonHang.getSoLuong());
+		sanPhamRepository.save(sanPham);
 		return "Add thành công";
 	}
 
