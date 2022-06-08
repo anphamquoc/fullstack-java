@@ -6,26 +6,47 @@ import { useSelector } from "react-redux";
 import ProductLoading from "../../wrapper/Loading/ProductLoading";
 import NotFoundProduct from "../../assets/images/not-found-product.png";
 import PaginationItem from "../ScrollToTop/Pagination";
+import { Slider } from "@mui/material";
+import { numberWithDots } from "../../actions";
 
 const Index = () => {
   const products = useSelector((state) => state.products);
   const [filterProducts, setFilterProducts] = useState([]);
+
   const [filter, setFilter] = useState({
-    gia: 0,
+    gia: [0, 10000000],
     colors: [],
     sort: "",
     name: "",
   });
+
   const [index, setIndex] = useState(1);
   useEffect(() => {
     setFilterProducts(products.products);
   }, [products.loading, products.products]);
+  const handleChange = (event, newValue, activeThumb) => {
+    if (!Array.isArray(newValue)) {
+      return;
+    }
+
+    if (activeThumb === 0) {
+      setFilter({
+        ...filter,
+        gia: [Math.min(newValue[0], filter.gia[1] - 1000000), filter.gia[1]],
+      });
+    } else {
+      setFilter({
+        ...filter,
+        gia: [filter.gia[0], Math.max(newValue[1], filter.gia[0] + 1000000)],
+      });
+    }
+  };
   const handleFilter = () => {
     const { gia, colors, sort, name } = filter;
     let newFilterProducts = [...products.products];
-    if (gia !== 0) {
+    if (filter.gia) {
       newFilterProducts = newFilterProducts.filter((product) => {
-        return product.gia <= gia;
+        return product.gia >= gia[0] && product.gia <= gia[1];
       });
     }
     if (colors.length > 0) {
@@ -33,6 +54,7 @@ const Index = () => {
         return colors.every((color) => product.phanLoai.mauSac.includes(color));
       });
     }
+
     if (sort !== "") {
       newFilterProducts = newFilterProducts.sort((a, b) => {
         if (sort === "gia-cao-den-thap") {
@@ -53,6 +75,9 @@ const Index = () => {
     }
     setFilterProducts(newFilterProducts);
   };
+  function valuetext(value) {
+    return numberWithDots(value);
+  }
   const filterByName = (e) => {
     setFilter({ ...filter, name: e.target.value });
     // const newFilterProducts = products.products.filter((product) => {
@@ -75,9 +100,9 @@ const Index = () => {
                     for="customRange3"
                     class="form-label font-medium text-xl"
                   >
-                    0 - {filter.gia}
+                    {filter.gia[0]} - {filter.gia[1]}
                   </label>
-                  <input
+                  {/* <input
                     type="range"
                     class="
       form-range
@@ -95,6 +120,16 @@ const Index = () => {
                     onChange={(e) =>
                       setFilter({ ...filter, gia: e.target.value })
                     }
+                  /> */}
+                  <Slider
+                    getAriaLabel={() => "Minimum distance"}
+                    value={filter.gia}
+                    onChange={handleChange}
+                    valueLabelDisplay="auto"
+                    getAriaValueText={valuetext}
+                    disableSwap
+                    min={0}
+                    max={10000000}
                   />
                 </div>
               </div>
