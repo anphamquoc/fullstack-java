@@ -8,11 +8,11 @@ import BlogComponent from "../../wrapper/Header/BlogComponent";
 import { useSelector } from "react-redux";
 import ProductLoading from "../../wrapper/Loading/ProductLoading";
 import MottoData from "../../data/Header/Motto.json";
+import { CircularProgress } from "@mui/material";
 
 const Header = () => {
   const products = useSelector((state) => state.products);
   const [index] = useState(1);
-
   return (
     <Fragment>
       {/* Swiper  */}
@@ -23,15 +23,21 @@ const Header = () => {
           delay: 2500,
         }}
       >
-        {products.products
-          .slice(0)
-          .sort((a, b) => b.soLuongBan - a.soLuongBan)
-          .slice(0, 4)
-          .map((product, i) => (
-            <SwiperSlide key={i}>
-              <SwiperSlideComponent slide={product} />
-            </SwiperSlide>
-          ))}
+        {products.loading ? (
+          <SwiperSlide>
+            <CircularProgress />
+          </SwiperSlide>
+        ) : (
+          products.products
+            .slice(0)
+            .sort((a, b) => b.soLuongBan - a.soLuongBan)
+            .slice(0, 4)
+            .map((product, i) => (
+              <SwiperSlide key={i}>
+                <SwiperSlideComponent slide={product} />
+              </SwiperSlide>
+            ))
+        )}
       </Swiper>
       {/* Shipping */}
       <div className="grid place-items-center">
