@@ -1,13 +1,12 @@
 import React, { Fragment, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
+import { Autoplay, Navigation } from "swiper";
 import SwiperSlideComponent from "../../wrapper/Swiper/SwiperSlideComponent";
 import Motto from "../../wrapper/Header/Motto";
 import ProductComponent from "../../wrapper/Product/ProductComponent";
 import BlogComponent from "../../wrapper/Header/BlogComponent";
 import { useSelector } from "react-redux";
 import ProductLoading from "../../wrapper/Loading/ProductLoading";
-import Slide from "../../data/Header/SwiperSlice.json";
 import MottoData from "../../data/Header/Motto.json";
 
 const Header = () => {
@@ -17,12 +16,22 @@ const Header = () => {
   return (
     <Fragment>
       {/* Swiper  */}
-      <Swiper navigation={true} modules={[Navigation]}>
-        {Slide.map((item, index) => (
-          <SwiperSlide key={index}>
-            <SwiperSlideComponent slide={item} />
-          </SwiperSlide>
-        ))}
+      <Swiper
+        navigation={true}
+        modules={[Navigation, Autoplay]}
+        autoplay={{
+          delay: 2500,
+        }}
+      >
+        {products.products
+          .slice(0)
+          .sort((a, b) => b.soLuongBan - a.soLuongBan)
+          .slice(0, 4)
+          .map((product, i) => (
+            <SwiperSlide key={i}>
+              <SwiperSlideComponent slide={product} />
+            </SwiperSlide>
+          ))}
       </Swiper>
       {/* Shipping */}
       <div className="grid place-items-center">
@@ -68,8 +77,13 @@ const Header = () => {
           <span className="w-[80px] h-[2px] bg-black"></span>
         </div>
         <div className="grid grid-cols-3 w-4/5 gap-7">
-          <BlogComponent />
-          <BlogComponent />
+          {products.products
+            .slice(0)
+            .sort((a, b) => b.soLuongBan - a.soLuongBan)
+            .slice(0, 3)
+            .map((product) => (
+              <BlogComponent product={product} />
+            ))}
         </div>
       </div>
     </Fragment>
