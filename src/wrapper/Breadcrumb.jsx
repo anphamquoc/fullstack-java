@@ -7,7 +7,7 @@ const Breadcrumb = ({ header, breadcrumbName }) => {
         {header}
       </h1>
       <h3 className="text-lg w-full  uppercase text-center font-semibold">
-        Home / {breadcrumbName}
+        Trang chủ / {breadcrumbName}
       </h3>
     </div>
   );

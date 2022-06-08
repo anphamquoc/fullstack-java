@@ -4,15 +4,15 @@ import { useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 70 },
-  { field: "name", headerName: "Name", width: 200 },
+  { field: "id", headerName: "Mã ID", width: 70 },
+  { field: "name", headerName: "Họ tên", width: 200 },
   { field: "email", headerName: "Email", width: 200 },
-  { field: "phone", headerName: "Phone", width: 200 },
-  { field: "address", headerName: "Address", width: 200 },
-  { field: "username", headerName: "Username", width: 200 },
+  { field: "phone", headerName: "Số điện thoại", width: 200 },
+  { field: "address", headerName: "Địa chỉ", width: 200 },
+  { field: "username", headerName: "Tên đăng nhập", width: 200 },
   {
     field: "role",
-    headerName: "Role",
+    headerName: "Quyền",
     width: 200,
   },
 ];

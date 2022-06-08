@@ -104,7 +104,7 @@ const Index = () => {
                 className="bg-purple-500 text-white py-2 rounded-full hover:bg-purple-600"
                 onClick={handleFilter}
               >
-                Filter
+                Lọc
               </button>
             </div>
             <div className="basis-3/4">

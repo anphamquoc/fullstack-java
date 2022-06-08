@@ -47,18 +47,18 @@ const Orders = () => {
     setOrderFilter(filter);
   };
   const columns = [
-    { field: "id", headerName: "ID", width: 70 },
-    { field: "name", headerName: "Name", width: 200 },
+    { field: "id", headerName: "Mã ID", width: 70 },
+    { field: "name", headerName: "Họ tên", width: 200 },
     { field: "email", headerName: "Email", width: 200 },
-    { field: "phone", headerName: "Phone", width: 200 },
-    { field: "address", headerName: "Address", width: 200 },
-    { field: "status", headerName: "Status", width: 200 },
-    { field: "method", headerName: "Payment Method", width: 200 },
-    { field: "total", headerName: "Total", width: 200 },
-    { field: "createdAt", headerName: "Created At", width: 200 },
+    { field: "phone", headerName: "Số điện thoại", width: 200 },
+    { field: "address", headerName: "Địa chỉ giao hàng", width: 200 },
+    { field: "status", headerName: "Trạng thái", width: 200 },
+    { field: "method", headerName: "Phương thức thanh toán", width: 200 },
+    { field: "total", headerName: "Tổng cộng", width: 200 },
+    { field: "createdAt", headerName: "Ngày tạo hoá đơn", width: 200 },
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Xem hoá đơn",
       width: 200,
       renderCell: (params) => {
         return (
@@ -71,7 +71,7 @@ const Orders = () => {
                 setLocation(params.value);
               }}
             >
-              View
+              Xem đơn hàng
             </button>
           </div>
         );

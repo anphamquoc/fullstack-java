@@ -41,7 +41,7 @@ const UserInfo = () => {
   };
   return (
     <div className="w-full pt-32 flex flex-col items-center">
-      <Breadcrumb header={"Account"} breadcrumbName="ACCOUNT" />
+      <Breadcrumb header={"Tài khoản của bạn"} breadcrumbName="Tài khoản của bạn" />
       <div
         className="accordion w-3/5 flex flex-col gap-5"
         id="accordionExample"

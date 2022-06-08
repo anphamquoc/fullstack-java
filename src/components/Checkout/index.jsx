@@ -74,14 +74,14 @@ const Checkout = () => {
   if (gioHang.chiTietGioHang?.length === 0) {
     return (
       <div className="w-full flex flex-col items-center">
-        <Breadcrumb header={"Checkout"} breadcrumbName="CHECKOUT" />
+        <Breadcrumb header={"Thanh toán"} breadcrumbName="Thanh toán" />
         <div className="w-full flex flex-col items-center">
           <img src={Empty} alt="empty" />
           <h1 className="text-3xl font-semibold text-center">
-            Your cart is empty to checkout
+            Giỏ hàng bạn hiện đang trống
           </h1>
           <button className="bg-purple-500 mt-5 px-5 py-3 text-white rounded-full">
-            <a href="/">Back to home</a>
+            <a href="/">Quay về trang chủ</a>
           </button>
         </div>
       </div>
@@ -89,7 +89,7 @@ const Checkout = () => {
   }
   return (
     <div className="w-full pt-32 flex flex-col items-center">
-      <Breadcrumb header={"Checkout"} breadcrumbName={"Checkout"} />
+      <Breadcrumb header={"Thanh toán"} breadcrumbName={"Thanh toán"} />
       {user.loading ? (
         <div class="flex flex-col w-4/5">
           <Skeleton height={"100px"} />
@@ -104,7 +104,7 @@ const Checkout = () => {
                   {/* create input form */}
                   <div className="flex flex-row w-full">
                     <Input
-                      labelName={"Full name"}
+                      labelName={"Họ tên khách hàng"}
                       inputName="hoTen"
                       userState={userState}
                       setUserState={setUserState}
@@ -113,13 +113,13 @@ const Checkout = () => {
                 </div>
                 <div className="flex flex-row gap-5">
                   <Input
-                    labelName={"Phone"}
+                    labelName={"Số điện thoại liên lạc"}
                     inputName="soDt"
                     userState={userState}
                     setUserState={setUserState}
                   />
                   <Input
-                    labelName={"Email Address"}
+                    labelName={"Địa chỉ email"}
                     inputName="email"
                     userState={userState}
                     setUserState={setUserState}
@@ -127,7 +127,7 @@ const Checkout = () => {
                 </div>
                 <div>
                   <Input
-                    inputName={"noiNhan"}
+                    inputName={"Địa chỉ giao hàng"}
                     labelName="Address"
                     setUserState={setUserState}
                     userState={userState}
