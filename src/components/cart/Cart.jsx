@@ -121,7 +121,7 @@ const Cart = () => {
                         } px-7 py-3 bg-purple-500 text-lg font-semibold text-white rounded-full  w-full mt-5`}
                         disabled={cart.chiTietGioHang.length === 0}
                       >
-                        ĐẾN TRANG THANH TOÁN
+                        THANH TOÁN
                       </button>
                     </Link>
                   </div>

@@ -13,12 +13,16 @@ const CartHeaderComponent = ({ isCart, isFavourite, isInvoice }) => {
         <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
           Giá sản phẩm
         </th>
-        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-          Số lượng
-        </th>
-        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
-          Tổng cộng
-        </th>
+        {!isFavourite && (
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+            Số lượng
+          </th>
+        )}
+        {!isFavourite && (
+          <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+            Tổng cộng
+          </th>
+        )}
         {(isCart || isFavourite) && (
           <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
             Xóa
