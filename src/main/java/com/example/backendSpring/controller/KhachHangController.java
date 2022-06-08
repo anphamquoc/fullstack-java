@@ -101,41 +101,44 @@ public class KhachHangController {
 		return khachHang;
 	}
 
-	@PostMapping("/register")
+	// @PostMapping("/register")
 
-	public KhachHang register(@RequestBody KhachHang khachHang) {
-		KhachHang checKhachHang = khachHangRepository.findByUsername(khachHang.getUsername());
-		if (checKhachHang != null) {
-			throw new Error("Người dùng này đã tồn tại");
-		}
-		String password = khachHang.getPassword();
-		String salt = PasswordUtils.getSalt(30);
-		String encryptPassword = PasswordUtils.generateSecurePassword(password, salt);
-		khachHang.setPassword(encryptPassword);
-		khachHang.setSalt(salt);
+	// public KhachHang register(@RequestBody KhachHang khachHang) {
+	// KhachHang checKhachHang =
+	// khachHangRepository.findByUsername(khachHang.getUsername());
+	// if (checKhachHang != null) {
+	// throw new Error("Người dùng này đã tồn tại");
+	// }
+	// String password = khachHang.getPassword();
+	// String salt = PasswordUtils.getSalt(30);
+	// String encryptPassword = PasswordUtils.generateSecurePassword(password,
+	// salt);
+	// khachHang.setPassword(encryptPassword);
+	// khachHang.setSalt(salt);
 
-		KhachHang khachHang2 = khachHangRepository.save(khachHang);
-		khachHangRepository.createCart(khachHang2.getMaKh(), khachHang2.getMaKh());
-		return khachHang2;
-	}
+	// KhachHang khachHang2 = khachHangRepository.save(khachHang);
+	// khachHangRepository.createCart(khachHang2.getMaKh(), khachHang2.getMaKh());
+	// return khachHang2;
+	// }
 
-	@PostMapping("/login")
-	public KhachHang login(@RequestBody KhachHangRequest thongTin) {
-		KhachHang checkKhachHang = khachHangRepository.findByUsername(thongTin.getUsername());
-		if (thongTin.getMethod() != null && thongTin.getMethod().equals("google")) {
-			return checkKhachHang;
-		}
-		if (checkKhachHang == null) {
-			throw new Error("Không tìm thấy người dùng");
-		}
-		if (!PasswordUtils.verifyUserPassword(thongTin.getPassword(),
-				checkKhachHang.getPassword(),
-				checkKhachHang.getSalt())) {
-			throw new Error("Mật khẩu không đúng");
-		}
+	// @PostMapping("/login")
+	// public KhachHang login(@RequestBody KhachHangRequest thongTin) {
+	// KhachHang checkKhachHang =
+	// khachHangRepository.findByUsername(thongTin.getUsername());
+	// if (thongTin.getMethod() != null && thongTin.getMethod().equals("google")) {
+	// return checkKhachHang;
+	// }
+	// if (checkKhachHang == null) {
+	// throw new Error("Không tìm thấy người dùng");
+	// }
+	// if (!PasswordUtils.verifyUserPassword(thongTin.getPassword(),
+	// checkKhachHang.getPassword(),
+	// checkKhachHang.getSalt())) {
+	// throw new Error("Mật khẩu không đúng");
+	// }
 
-		return checkKhachHang;
-	}
+	// return checkKhachHang;
+	// }
 
 	@GetMapping("/{id}/yeu-thich")
 	public Set<SanPham> getAllFavouriteProduct(@PathVariable long id) {
