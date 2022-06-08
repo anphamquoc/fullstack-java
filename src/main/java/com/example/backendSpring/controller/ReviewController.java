@@ -21,14 +21,14 @@ public class ReviewController {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    @GetMapping
-    public List<Review> getAllReviews() {
-        return reviewRepository.findAll();
-    }
+    // @GetMapping
+    // public List<Review> getAllReviews() {
+    // return reviewRepository.findAll();
+    // }
 
-    @PostMapping
-    public Review addNewReview(@RequestBody Review review) {
-        reviewRepository.save(review);
-        return review;
-    }
+    // @PostMapping
+    // public Review addNewReview(@RequestBody Review review) {
+    // reviewRepository.save(review);
+    // return review;
+    // }
 }
