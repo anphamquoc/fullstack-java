@@ -13,6 +13,7 @@ import {
   removeFromCart,
 } from "../../redux/features/UserSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Checkout = () => {
   const user = useSelector((state) => state.user);
@@ -50,26 +51,37 @@ const Checkout = () => {
       tongTien: total,
       phuongThucThanhToan: paymentMethod,
     };
-    dispatch(createOrder(data)).then((res) => {
-      if (res.meta.requestStatus === "fulfilled") {
-        gioHang.chiTietGioHang.forEach((item) => {
-          const data = {
-            maDDH: res.payload.maDDH,
-            soLuong: item.soLuong,
-            maSp: item.sanPham.maSp,
-            product: item,
-          };
-          dispatch(
-            removeFromCart({
-              userId: user.user.maKh,
-              pid: item.sanPham.maSp,
-            })
-          );
-          dispatch(addProductToOrder(data));
-        });
-        navigate("/checkout/success");
-      }
-    });
+    if (
+      data.maKH === "" ||
+      data.hoTen === "" ||
+      data.noiNhan === "" ||
+      data.soDt === "" ||
+      data.email === ""
+    ) {
+      toast.warning("Vui lòng nhập đầy đủ thông tin");
+      return;
+    } else {
+      dispatch(createOrder(data)).then((res) => {
+        if (res.meta.requestStatus === "fulfilled") {
+          gioHang.chiTietGioHang.forEach((item) => {
+            const data = {
+              maDDH: res.payload.maDDH,
+              soLuong: item.soLuong,
+              maSp: item.sanPham.maSp,
+              product: item,
+            };
+            dispatch(
+              removeFromCart({
+                userId: user.user.maKh,
+                pid: item.sanPham.maSp,
+              })
+            );
+            dispatch(addProductToOrder(data));
+          });
+          navigate("/checkout/success");
+        }
+      });
+    }
   };
   if (gioHang.chiTietGioHang?.length === 0) {
     return (
@@ -127,8 +139,8 @@ const Checkout = () => {
                 </div>
                 <div>
                   <Input
-                    inputName={"Địa chỉ giao hàng"}
-                    labelName="Address"
+                    inputName={"noiNhan"}
+                    labelName="Địa chỉ nhận hàng"
                     setUserState={setUserState}
                     userState={userState}
                   />
