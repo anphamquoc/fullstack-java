@@ -238,7 +238,10 @@ const Checkout = () => {
                     : ""
                 }`}
                 onClick={handleCheckout}
-                disabled={gioHang.chiTietGioHang.length === 0}
+                disabled={
+                  gioHang.chiTietGioHang.length === 0 ||
+                  paymentMethod === "paypal"
+                }
               >
                 Thanh toán
               </button>
