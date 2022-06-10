@@ -11,6 +11,6 @@ import com.example.backendSpring.model.SanPham;
 public interface SanPhamRepository extends JpaRepository<SanPham, Long> {
     @Modifying
     @Transactional
-    @Query(value = "insert into san_pham(gia, hinh_anh, mo_ta, sao, ten_sp, ma_pl, status) values(?1, ?2, ?3, ?4, ?5, ?6, ?7)", nativeQuery = true)
+    @Query(value = "insert into san_pham(gia, hinh_anh, mo_ta, sao, ten_sp, ma_pl, status, so_luong_ban) values(?1, ?2, ?3, ?4, ?5, ?6, ?7, 0)", nativeQuery = true)
     void addProduct(long gia, String hinhAnh, String moTa, double sao, String tenSp, long maPl, int status);
 }
