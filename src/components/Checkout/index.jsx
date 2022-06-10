@@ -232,7 +232,8 @@ const Checkout = () => {
               </div>
               <button
                 className={`bg-purple-500 w-full py-3 mt-5 rounded-full text-white uppercase ${
-                  gioHang.chiTietGioHang.length === 0
+                  gioHang.chiTietGioHang.length === 0 ||
+                  paymentMethod === "paypal"
                     ? "cursor-not-allowed"
                     : ""
                 }`}
