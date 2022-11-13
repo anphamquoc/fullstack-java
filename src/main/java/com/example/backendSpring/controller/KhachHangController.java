@@ -65,7 +65,8 @@ public class KhachHangController {
 			@RequestBody PasswordRequest passwordRequest) {
 		KhachHang khachHang = khachHangRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Không có khách hàng cần tìm"));
-		if (!PasswordUtils.verifyUserPassword(passwordRequest.getPassword(), khachHang.getPassword(),
+		if (!PasswordUtils.verifyUserPassword(passwordRequest.getPassword(),
+				khachHang.getPassword(),
 				khachHang.getSalt())) {
 			throw new ResourceNotFoundException("Mật khẩu không đúng");
 		}
@@ -109,7 +110,8 @@ public class KhachHangController {
 		}
 		String password = khachHang.getPassword();
 		String salt = PasswordUtils.getSalt(30);
-		String encryptPassword = PasswordUtils.generateSecurePassword(password, salt);
+		String encryptPassword = PasswordUtils.generateSecurePassword(password,
+				salt);
 		khachHang.setPassword(encryptPassword);
 		khachHang.setSalt(salt);
 		if(khachHang.getUsername() == "hello5424") {
